@@ -3,50 +3,51 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>HomeTutor - Verified In-Home Tutors</title>
+  <title>HomeTutor - Ethiopia's Premier Academic Marketplace</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
-<body class="bg-slate-900 text-slate-100 font-sans antialiased min-h-screen">
+<body class="bg-slate-950 text-slate-100 font-sans antialiased min-h-screen">
 
   <!-- Header -->
-  <header class="border-b border-slate-800 bg-slate-900/80 backdrop-blur-md sticky top-0 z-40">
+  <header class="border-b border-amber-500/20 bg-slate-900/90 backdrop-blur-md sticky top-0 z-40">
     <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
-      <div class="flex items-center gap-3 text-2xl font-black text-indigo-400 tracking-tight">
-        <div class="w-10 h-10 rounded-xl bg-indigo-600/20 border border-indigo-500/30 flex items-center justify-center text-indigo-400">
-          <i class="fa-solid fa-graduation-cap text-xl"></i>
+      <div class="flex items-center gap-3 text-2xl font-black text-amber-400 tracking-tight">
+        <div class="w-10 h-10 rounded-xl bg-amber-500/10 border border-amber-500/30 flex items-center justify-center text-amber-400 shadow-inner">
+          <i class="fa-solid fa-book-bookmark text-xl"></i>
         </div>
-        <span>HomeTutor</span>
+        <span>HomeTutor <span class="text-xs font-semibold px-2 py-0.5 rounded bg-amber-500/20 text-amber-300 border border-amber-500/30">Academic</span></span>
       </div>
-      <button onclick="openModal('tutorModal')" class="bg-indigo-600 text-white px-5 py-2.5 rounded-xl font-semibold hover:bg-indigo-500 shadow-lg shadow-indigo-600/20 transition flex items-center gap-2 cursor-pointer">
-        <i class="fa-solid fa-plus text-xs"></i>
+      <button onclick="openModal('tutorModal')" class="bg-amber-600 hover:bg-amber-500 text-slate-950 px-5 py-2.5 rounded-xl font-bold shadow-lg shadow-amber-600/20 transition flex items-center gap-2 cursor-pointer">
+        <i class="fa-solid fa-user-plus text-xs"></i>
         <span>Become a Tutor</span>
       </button>
     </div>
   </header>
 
   <!-- Hero Section -->
-  <section class="relative overflow-hidden pt-16 pb-12 max-w-7xl mx-auto px-6">
+  <section class="relative overflow-hidden pt-12 pb-10 max-w-7xl mx-auto px-6">
     <div class="text-center max-w-3xl mx-auto relative z-10">
-      <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-indigo-300 text-xs font-semibold mb-6">
-        <i class="fa-solid fa-shield-check"></i> Verified Educators in Ethiopia
+      <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-500/10 border border-amber-500/20 text-amber-300 text-xs font-semibold mb-4">
+        <i class="fa-solid fa-school"></i> Primary, High School & University Level Prep
       </span>
-      <h1 class="text-4xl md:text-6xl font-black text-white tracking-tight mb-6 leading-tight">
-        Find Qualified In-Home Tutors <span class="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-400">Near You</span>
+      <h1 class="text-4xl md:text-5xl font-black text-white tracking-tight mb-4 leading-tight">
+        Private In-Home Tutoring <br>
+        <span class="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 via-yellow-200 to-amber-500">Tailored to Your Child's Schedule</span>
       </h1>
-      <p class="text-slate-400 text-base md:text-lg mb-8 max-w-2xl mx-auto">
-        Connect with degreed professionals (B.Sc, M.Sc, PhD). Pay seamlessly via Telebirr or CBE Birr.
+      <p class="text-slate-400 text-base mb-6 max-w-2xl mx-auto">
+        Select verified educators, specify learning goals & convenient lesson times, and pay securely via Telebirr or CBE Birr.
       </p>
 
       <!-- Search & Filters -->
-      <div class="bg-slate-800/60 backdrop-blur-lg border border-slate-700/60 p-2.5 rounded-2xl shadow-2xl flex flex-col md:flex-row gap-2 max-w-2xl mx-auto mb-8">
+      <div class="bg-slate-900/80 backdrop-blur-lg border border-slate-800 p-3 rounded-2xl shadow-2xl flex flex-col md:flex-row gap-2 max-w-2xl mx-auto">
         <div class="relative flex-1">
-          <i class="fa-solid fa-magnifying-glass absolute left-4 top-3.5 text-slate-400"></i>
-          <input id="searchInput" onkeyup="filterTutors()" type="text" placeholder="Search by subject (e.g. Physics, Math)..." class="w-full pl-11 pr-4 py-2.5 bg-slate-900/50 text-white rounded-xl border border-slate-700/50 text-sm focus:outline-none focus:border-indigo-500">
+          <i class="fa-solid fa-magnifying-glass absolute left-4 top-3.5 text-slate-500"></i>
+          <input id="searchInput" onkeyup="filterTutors()" type="text" placeholder="Search subject (e.g. Mathematics, Physics)..." class="w-full pl-11 pr-4 py-2.5 bg-slate-950 text-white rounded-xl border border-slate-800 text-sm focus:outline-none focus:border-amber-500">
         </div>
-        <select id="degreeFilter" onchange="filterTutors()" class="bg-slate-900/50 text-slate-300 border border-slate-700/50 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-indigo-500">
-          <option value="ALL">All Degrees</option>
+        <select id="degreeFilter" onchange="filterTutors()" class="bg-slate-950 text-slate-300 border border-slate-800 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-amber-500">
+          <option value="ALL">All Qualifications</option>
           <option value="B.Sc">B.Sc / B.A.</option>
           <option value="M.Sc">M.Sc / Master's</option>
           <option value="Ph.D">Ph.D. Doctorate</option>
@@ -57,75 +58,95 @@
 
   <!-- Tutors Grid -->
   <section class="py-6 max-w-7xl mx-auto px-6 mb-20">
-    <div class="flex items-center justify-between mb-8">
+    <div class="flex items-center justify-between mb-6">
       <h2 class="text-xl font-bold text-white flex items-center gap-2">
-        <i class="fa-solid fa-user-graduate text-indigo-400"></i>
+        <i class="fa-solid fa-graduation-cap text-amber-400"></i>
         <span>Available Tutors</span>
       </h2>
-      <span id="tutorCount" class="text-xs font-semibold px-2.5 py-1 rounded-md bg-slate-800 text-slate-400 border border-slate-700">Loading...</span>
+      <span id="tutorCount" class="text-xs font-semibold px-3 py-1 rounded-md bg-slate-900 text-slate-400 border border-slate-800">Loading...</span>
     </div>
 
     <div id="tutorGrid" class="grid md:grid-cols-3 gap-6"></div>
   </section>
 
-  <!-- Clean Telegram Support Button -->
-  <a href="https://t.me/Dr_doom098" target="_blank" class="fixed bottom-6 right-6 bg-emerald-500 hover:bg-emerald-400 text-white px-5 py-3.5 rounded-full shadow-2xl z-50 flex items-center gap-3 transition-transform hover:scale-105 border border-emerald-400/30">
-    <i class="fa-brands fa-telegram text-2xl"></i>
-    <span class="font-bold text-sm hidden md:inline">Customer Support</span>
+  <!-- Customer Support Phone Call Button -->
+  <a href="tel:0906925258" class="fixed bottom-6 right-6 bg-amber-500 hover:bg-amber-400 text-slate-950 px-5 py-3.5 rounded-full shadow-2xl z-50 flex items-center gap-3 transition-transform hover:scale-105 font-bold text-sm">
+    <i class="fa-solid fa-phone text-xl"></i>
+    <span class="hidden md:inline">Customer Support</span>
   </a>
 
   <!-- Tutor Onboarding Modal -->
   <div id="tutorModal" class="hidden fixed inset-0 bg-slate-950/80 backdrop-blur-md z-50 flex items-center justify-center p-4">
-    <div class="bg-slate-800 border border-slate-700 rounded-2xl max-w-lg w-full p-6 shadow-2xl relative">
+    <div class="bg-slate-900 border border-slate-800 rounded-2xl max-w-lg w-full p-6 shadow-2xl relative">
       <button onclick="closeModal('tutorModal')" class="absolute right-4 top-4 text-slate-400 hover:text-white cursor-pointer"><i class="fa-solid fa-xmark text-xl"></i></button>
-      <h3 class="text-2xl font-black mb-4 text-white">Register as a Tutor</h3>
+      <h3 class="text-2xl font-black mb-1 text-white">Register as an Educator</h3>
+      <p class="text-xs text-slate-400 mb-4">Join our network of private home tutors in Ethiopia.</p>
       
       <form onsubmit="registerTutor(event)" class="space-y-3">
-        <input id="tName" required type="text" placeholder="Full Name" class="w-full px-4 py-2.5 bg-slate-900 border border-slate-700 rounded-xl text-white text-sm">
+        <input id="tName" required type="text" placeholder="Full Name" class="w-full px-4 py-2.5 bg-slate-950 border border-slate-800 rounded-xl text-white text-sm">
         
         <div class="grid grid-cols-2 gap-2">
-          <input id="tRate" required type="number" placeholder="Hourly Rate (ETB)" class="w-full px-4 py-2.5 bg-slate-900 border border-slate-700 rounded-xl text-white text-sm">
-          <select id="tDegree" class="w-full px-4 py-2.5 bg-slate-900 border border-slate-700 rounded-xl text-white text-sm">
+          <input id="tRate" required type="number" placeholder="Hourly Rate (ETB)" class="w-full px-4 py-2.5 bg-slate-950 border border-slate-800 rounded-xl text-white text-sm">
+          <select id="tDegree" class="w-full px-4 py-2.5 bg-slate-950 border border-slate-800 rounded-xl text-white text-sm">
             <option value="B.Sc / B.A. Degree">B.Sc / B.A. Degree</option>
             <option value="M.Sc / M.A. Master's">M.Sc / M.A. Master's</option>
             <option value="Ph.D. Doctorate">Ph.D. Doctorate</option>
-            <option value="University Student">University Student</option>
           </select>
         </div>
 
-        <input id="tSubject" required type="text" placeholder="Subject (e.g. Physics, Math)" class="w-full px-4 py-2.5 bg-slate-900 border border-slate-700 rounded-xl text-white text-sm">
+        <input id="tSubject" required type="text" placeholder="Main Subjects (e.g. Physics, Chemistry)" class="w-full px-4 py-2.5 bg-slate-950 border border-slate-800 rounded-xl text-white text-sm">
+        <input id="tPhoto" type="url" placeholder="Photo URL (Optional)" class="w-full px-4 py-2.5 bg-slate-950 border border-slate-800 rounded-xl text-white text-sm">
         
-        <select id="tGrade" class="w-full px-4 py-2.5 bg-slate-900 border border-slate-700 rounded-xl text-white text-sm">
-          <option value="High School (9-12)">High School (9-12)</option>
-          <option value="Middle School (6-8)">Middle School (6-8)</option>
-          <option value="Elementary (K-5)">Elementary (K-5)</option>
+        <select id="tGrade" class="w-full px-4 py-2.5 bg-slate-950 border border-slate-800 rounded-xl text-white text-sm">
+          <option value="High School (Grades 9-12)">High School (Grades 9-12)</option>
+          <option value="Middle School (Grades 6-8)">Middle School (Grades 6-8)</option>
+          <option value="Primary School (Grades 1-5)">Primary School (Grades 1-5)</option>
         </select>
 
-        <textarea id="tBio" required placeholder="Describe your teaching experience and degree..." class="w-full px-4 py-2.5 bg-slate-900 border border-slate-700 rounded-xl text-white text-sm"></textarea>
+        <textarea id="tBio" required placeholder="Qualifications, teaching background, and preferred teaching areas..." class="w-full px-4 py-2.5 bg-slate-950 border border-slate-800 rounded-xl text-white text-sm h-24"></textarea>
         
-        <button type="submit" class="w-full bg-indigo-600 text-white font-bold py-3 rounded-xl hover:bg-indigo-500 transition shadow-lg shadow-indigo-600/20 cursor-pointer">Publish Live Profile</button>
+        <button type="submit" class="w-full bg-amber-500 text-slate-950 font-bold py-3 rounded-xl hover:bg-amber-400 transition shadow-lg shadow-amber-500/20 cursor-pointer">Publish Tutor Profile</button>
       </form>
     </div>
   </div>
 
   <!-- Booking Modal -->
   <div id="bookingModal" class="hidden fixed inset-0 bg-slate-950/80 backdrop-blur-md z-50 flex items-center justify-center p-4">
-    <div class="bg-slate-800 border border-slate-700 rounded-2xl max-w-md w-full p-6 shadow-2xl relative">
+    <div class="bg-slate-900 border border-slate-800 rounded-2xl max-w-md w-full p-6 shadow-2xl relative">
       <button onclick="closeModal('bookingModal')" class="absolute right-4 top-4 text-slate-400 hover:text-white cursor-pointer"><i class="fa-solid fa-xmark text-xl"></i></button>
-      <h3 class="text-xl font-bold mb-1 text-white">Book Lesson</h3>
-      <p id="modalTutorName" class="text-sm text-indigo-400 font-semibold mb-4"></p>
+      <h3 class="text-xl font-bold mb-1 text-white">Schedule & Book Lesson</h3>
+      <p id="modalTutorName" class="text-sm text-amber-400 font-semibold mb-4"></p>
 
-      <form onsubmit="payWithChapa(event)" class="space-y-4">
+      <form onsubmit="payWithChapa(event)" class="space-y-3">
         <div>
           <label class="block text-xs font-bold text-slate-400 mb-1">PARENT EMAIL</label>
-          <input id="parentEmail" required type="email" placeholder="parent@gmail.com" class="w-full px-4 py-2.5 bg-slate-900 border border-slate-700 rounded-xl text-white text-sm">
+          <input id="parentEmail" required type="email" placeholder="parent@gmail.com" class="w-full px-4 py-2 bg-slate-950 border border-slate-800 rounded-xl text-white text-sm">
         </div>
         <div>
           <label class="block text-xs font-bold text-slate-400 mb-1">PHONE NUMBER (Telebirr / CBE)</label>
-          <input id="parentPhone" required type="tel" placeholder="0912345678" class="w-full px-4 py-2.5 bg-slate-900 border border-slate-700 rounded-xl text-white text-sm">
+          <input id="parentPhone" required type="tel" placeholder="0912345678" class="w-full px-4 py-2 bg-slate-950 border border-slate-800 rounded-xl text-white text-sm">
         </div>
-        <button type="submit" class="w-full bg-emerald-600 text-white font-bold py-3 rounded-xl hover:bg-emerald-500 transition shadow-lg shadow-emerald-600/20 cursor-pointer">
-          Pay with Telebirr / CBE Birr
+        <div class="grid grid-cols-2 gap-2">
+          <div>
+            <label class="block text-xs font-bold text-slate-400 mb-1">LESSON DATE & TIME</label>
+            <input id="lessonTime" required type="datetime-local" class="w-full px-3 py-2 bg-slate-950 border border-slate-800 rounded-xl text-white text-xs">
+          </div>
+          <div>
+            <label class="block text-xs font-bold text-slate-400 mb-1">STUDENT GRADE</label>
+            <select id="studentGrade" class="w-full px-3 py-2 bg-slate-950 border border-slate-800 rounded-xl text-white text-xs">
+              <option value="Grade 1-5">Grades 1-5</option>
+              <option value="Grade 6-8">Grades 6-8</option>
+              <option value="Grade 9-10">Grades 9-10</option>
+              <option value="Grade 11-12">Grades 11-12</option>
+            </select>
+          </div>
+        </div>
+        <div>
+          <label class="block text-xs font-bold text-slate-400 mb-1">TOPICS TO FOCUS ON</label>
+          <textarea id="topics" required placeholder="What specific chapters or exam prep should the tutor focus on?" class="w-full px-4 py-2 bg-slate-950 border border-slate-800 rounded-xl text-white text-sm h-16"></textarea>
+        </div>
+        <button type="submit" class="w-full bg-emerald-500 text-slate-950 font-bold py-3 rounded-xl hover:bg-emerald-400 transition shadow-lg shadow-emerald-500/20 cursor-pointer">
+          Confirm Booking & Pay
         </button>
       </form>
     </div>
@@ -139,13 +160,8 @@
     let allTutors = [];
     let selectedTutor = null;
 
-    function openModal(id) {
-      document.getElementById(id).classList.remove('hidden');
-    }
-    
-    function closeModal(id) {
-      document.getElementById(id).classList.add('hidden');
-    }
+    function openModal(id) { document.getElementById(id).classList.remove('hidden'); }
+    function closeModal(id) { document.getElementById(id).classList.add('hidden'); }
 
     async function loadTutors() {
       const { data: tutors, error } = await dbClient.from('tutors').select('*');
@@ -153,10 +169,10 @@
       
       if (error || !tutors || !tutors.length) {
         grid.innerHTML = `
-          <div class="col-span-full text-center py-12 bg-slate-800/30 rounded-2xl border border-dashed border-slate-800">
-            <i class="fa-solid fa-folder-open text-3xl text-slate-600 mb-3"></i>
+          <div class="col-span-full text-center py-12 bg-slate-900/50 rounded-2xl border border-dashed border-slate-800">
+            <i class="fa-solid fa-school-circle-exclamation text-3xl text-slate-600 mb-3"></i>
             <p class="text-slate-400 font-medium">No tutors registered yet.</p>
-            <button onclick="openModal('tutorModal')" class="mt-3 text-indigo-400 text-sm font-semibold hover:underline cursor-pointer">+ Add the first tutor profile</button>
+            <button onclick="openModal('tutorModal')" class="mt-3 text-amber-400 text-sm font-semibold hover:underline cursor-pointer">+ Register as the first tutor</button>
           </div>
         `;
         document.getElementById('tutorCount').innerText = '0 Available';
@@ -173,22 +189,28 @@
       document.getElementById('tutorCount').innerText = `${tutors.length} Available`;
 
       tutors.forEach(t => {
+        const defaultAvatar = `https://ui-avatars.com/api/?name=${encodeURIComponent(t.full_name)}&background=0d172a&color=f59e0b&bold=true`;
+        const avatarSrc = t.photo_url || defaultAvatar;
+
         grid.innerHTML += `
-          <div class="bg-slate-800/60 border border-slate-700/60 p-6 rounded-2xl shadow-xl hover:border-indigo-500/50 transition duration-200">
-            <div class="flex items-start justify-between mb-3">
-              <div>
-                <h3 class="font-bold text-lg text-white">${t.full_name}</h3>
-                <p class="text-indigo-400 text-xs font-semibold mt-0.5"><i class="fa-solid fa-book-open mr-1"></i> ${t.subject_title}</p>
+          <div class="bg-slate-900 border border-slate-800 p-6 rounded-2xl shadow-xl flex flex-col justify-between hover:border-amber-500/40 transition">
+            <div>
+              <div class="flex items-center gap-4 mb-4">
+                <img src="${avatarSrc}" alt="${t.full_name}" class="w-14 h-14 rounded-full object-cover border-2 border-amber-500/30">
+                <div>
+                  <h3 class="font-bold text-lg text-white">${t.full_name}</h3>
+                  <p class="text-amber-400 text-xs font-semibold"><i class="fa-solid fa-book-open mr-1"></i> ${t.subject_title}</p>
+                  <span class="inline-block bg-slate-800 text-slate-400 text-xs px-2 py-0.5 rounded font-medium mt-1 border border-slate-700">${t.grade_level || 'General'}</span>
+                </div>
               </div>
-              <span class="bg-slate-700/50 text-slate-300 text-xs px-2.5 py-1 rounded-md font-medium border border-slate-600/50">${t.grade_level || 'General'}</span>
+              <p class="text-slate-400 text-sm mb-6 leading-relaxed line-clamp-3">${t.bio}</p>
             </div>
-            <p class="text-slate-400 text-sm mb-6 line-clamp-3 leading-relaxed">${t.bio}</p>
-            <div class="flex items-center justify-between border-t border-slate-700/50 pt-4">
+            <div class="flex items-center justify-between border-t border-slate-800 pt-4">
               <div>
                 <span class="text-xl font-black text-white">${t.hourly_rate}</span>
                 <span class="text-slate-400 text-xs font-semibold"> ETB/hr</span>
               </div>
-              <button onclick="startBooking('${t.full_name}', ${t.hourly_rate})" class="bg-indigo-600 text-white px-4 py-2 rounded-xl text-sm font-semibold hover:bg-indigo-500 transition shadow-lg shadow-indigo-600/20 cursor-pointer">Book Lesson</button>
+              <button onclick="startBooking('${t.full_name}', ${t.hourly_rate})" class="bg-amber-500 text-slate-950 px-4 py-2 rounded-xl text-sm font-bold hover:bg-amber-400 transition cursor-pointer">Book Lesson</button>
             </div>
           </div>
         `;
@@ -218,6 +240,7 @@
         hourly_rate: document.getElementById('tRate').value,
         subject_title: document.getElementById('tSubject').value,
         grade_level: document.getElementById('tGrade').value,
+        photo_url: document.getElementById('tPhoto').value || null,
         bio: bioText
       };
 
@@ -232,14 +255,17 @@
 
     function startBooking(name, rate) {
       selectedTutor = { name, rate };
-      document.getElementById('modalTutorName').innerText = `Tutor: ${name} (${rate} ETB/hr)`;
+      document.getElementById('modalTutorName').innerText = `Selected Tutor: ${name} (${rate} ETB/hr)`;
       openModal('bookingModal');
     }
 
     function payWithChapa(e) {
       e.preventDefault();
       const totalAmount = Number(selectedTutor.rate) + 100;
-      alert(`Redirecting to Telebirr / CBE Birr via Chapa...\nTotal Payment: ${totalAmount} ETB (Includes 100 ETB Service Fee)`);
+      const lessonTime = document.getElementById('lessonTime').value;
+      const topics = document.getElementById('topics').value;
+
+      alert(`Booking Confirmed!\n\nTutor: ${selectedTutor.name}\nScheduled Time: ${lessonTime}\nFocus Topics: ${topics}\nTotal Amount: ${totalAmount} ETB (Includes 100 ETB Platform Fee)\n\nRedirecting to Telebirr / CBE Birr...`);
       closeModal('bookingModal');
     }
 
