@@ -1,1 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HomeTutor - Find In-Home Tutors</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-slate-50 text-slate-900 font-sans">
 
+  <!-- Navbar -->
+  <nav class="border-b bg-white sticky top-0 z-50 px-6 py-4 flex items-center justify-between shadow-sm">
+    <div class="text-2xl font-bold text-indigo-600">HomeTutor</div>
+    <div class="space-x-4">
+      <button class="text-slate-600 hover:text-slate-900 font-medium">Find a Tutor</button>
+      <button class="text-slate-600 hover:text-slate-900 font-medium">Become a Tutor</button>
+      <button class="bg-indigo-600 text-white px-4 py-2 rounded-lg font-medium hover:bg-indigo-700 transition">Sign In</button>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="max-w-6xl mx-auto px-6 py-20 text-center">
+    <h1 class="text-5xl font-extrabold tracking-tight text-slate-900 mb-6">
+      Find the Right In-Home Tutor for Your Child
+    </h1>
+    <p class="text-xl text-slate-600 max-w-2xl mx-auto mb-10">
+      Connect with vetted, qualified teachers for personalized 1-on-1 tutoring in the safety of your home.
+    </p>
+
+    <!-- Search Box -->
+    <div class="bg-white p-4 rounded-xl shadow-lg border border-slate-200 max-w-3xl mx-auto flex flex-col md:flex-row gap-4">
+      <input type="text" placeholder="Subject (e.g. Math, Physics)" class="flex-1 px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500" />
+      <input type="text" placeholder="Grade Level (e.g. High School)" class="flex-1 px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500" />
+      <button class="bg-indigo-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-indigo-700 transition">Search Tutors</button>
+    </div>
+  </section>
+
+  <!-- How It Works -->
+  <section class="bg-white py-16 border-t">
+    <div class="max-w-6xl mx-auto px-6">
+      <h2 class="text-3xl font-bold text-center mb-12">How It Works</h2>
+      <div class="grid md:grid-cols-4 gap-8 text-center">
+        <div class="p-4">
+          <div class="w-12 h-12 bg-indigo-100 text-indigo-600 rounded-full flex items-center justify-center mx-auto mb-4 font-bold text-xl">1</div>
+          <h3 class="font-semibold text-lg mb-2">Search Tutors</h3>
+          <p class="text-slate-600 text-sm">Filter by subject, grade level, rate, and location.</p>
+        </div>
+        <div class="p-4">
+          <div class="w-12 h-12 bg-indigo-100 text-indigo-600 rounded-full flex items-center justify-center mx-auto mb-4 font-bold text-xl">2</div>
+          <h3 class="font-semibold text-lg mb-2">Compare Profiles</h3>
+          <p class="text-slate-600 text-sm">Review credentials, background checks, and ratings.</p>
+        </div>
+        <div class="p-4">
+          <div class="w-12 h-12 bg-indigo-100 text-indigo-600 rounded-full flex items-center justify-center mx-auto mb-4 font-bold text-xl">3</div>
+          <h3 class="font-semibold text-lg mb-2">Book a Session</h3>
+          <p class="text-slate-600 text-sm">Select an available date and time slot for your home lesson.</p>
+        </div>
+        <div class="p-4">
+          <div class="w-12 h-12 bg-indigo-100 text-indigo-600 rounded-full flex items-center justify-center mx-auto mb-4 font-bold text-xl">4</div>
+          <h3 class="font-semibold text-lg mb-2">Learn at Home</h3>
+          <p class="text-slate-600 text-sm">Get personalized 1-on-1 tutoring and track progress.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</body>
+</html>
