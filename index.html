@@ -3,66 +3,252 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>HomeTutor - Find In-Home Tutors</title>
+  <title>HomeTutor - Verified In-Home Tutors</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
-<body class="bg-slate-50 text-slate-900 font-sans">
+<body class="bg-slate-50 text-slate-900 font-sans antialiased">
 
-  <!-- Navbar -->
-  <nav class="border-b bg-white sticky top-0 z-50 px-6 py-4 flex items-center justify-between shadow-sm">
-    <div class="text-2xl font-bold text-indigo-600">HomeTutor</div>
-    <div class="space-x-4">
-      <button class="text-slate-600 hover:text-slate-900 font-medium">Find a Tutor</button>
-      <button class="text-slate-600 hover:text-slate-900 font-medium">Become a Tutor</button>
-      <button class="bg-indigo-600 text-white px-4 py-2 rounded-lg font-medium hover:bg-indigo-700 transition">Sign In</button>
+  <!-- Header / Navigation -->
+  <header class="border-b bg-white sticky top-0 z-50 shadow-sm">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+      <div class="flex items-center gap-2 text-2xl font-black text-indigo-600 tracking-tight">
+        <i class="fa-solid fa-graduation-cap"></i>
+        <span>HomeTutor</span>
+      </div>
+      <nav class="hidden md:flex items-center gap-8 font-medium text-slate-600">
+        <a href="#tutors" class="hover:text-indigo-600 transition">Find Tutors</a>
+        <a href="#how-it-works" class="hover:text-indigo-600 transition">How It Works</a>
+        <a href="#become-tutor" class="hover:text-indigo-600 transition">Become a Tutor</a>
+      </nav>
+      <div class="flex items-center gap-3">
+        <button class="text-slate-700 hover:text-indigo-600 px-3 py-2 font-semibold transition">Log In</button>
+        <button class="bg-indigo-600 text-white px-5 py-2.5 rounded-xl font-semibold hover:bg-indigo-700 shadow-md transition">Sign Up Free</button>
+      </div>
     </div>
-  </nav>
+  </header>
 
   <!-- Hero Section -->
-  <section class="max-w-6xl mx-auto px-6 py-20 text-center">
-    <h1 class="text-5xl font-extrabold tracking-tight text-slate-900 mb-6">
-      Find the Right In-Home Tutor for Your Child
+  <section class="max-w-7xl mx-auto px-6 py-20 text-center relative">
+    <div class="inline-flex items-center gap-2 bg-indigo-50 border border-indigo-200 text-indigo-700 px-4 py-1.5 rounded-full text-sm font-semibold mb-6">
+      <i class="fa-solid fa-shield-halved text-indigo-600"></i> 100% Background-Checked Tutors
+    </div>
+    <h1 class="text-4xl md:text-6xl font-black tracking-tight text-slate-900 max-w-4xl mx-auto leading-tight mb-6">
+      Expert In-Home Tutors tailored for your child’s success.
     </h1>
-    <p class="text-xl text-slate-600 max-w-2xl mx-auto mb-10">
-      Connect with vetted, qualified teachers for personalized 1-on-1 tutoring in the safety of your home.
+    <p class="text-lg md:text-xl text-slate-600 max-w-2xl mx-auto mb-10">
+      Boost grades and confidence with verified, 1-on-1 private educators right in the comfort of your home.
     </p>
 
-    <!-- Search Box -->
-    <div class="bg-white p-4 rounded-xl shadow-lg border border-slate-200 max-w-3xl mx-auto flex flex-col md:flex-row gap-4">
-      <input type="text" placeholder="Subject (e.g. Math, Physics)" class="flex-1 px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500" />
-      <input type="text" placeholder="Grade Level (e.g. High School)" class="flex-1 px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500" />
-      <button class="bg-indigo-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-indigo-700 transition">Search Tutors</button>
+    <!-- Professional Search Filter Bar -->
+    <div class="bg-white p-4 rounded-2xl shadow-xl border border-slate-200 max-w-4xl mx-auto grid md:grid-cols-3 gap-3">
+      <div class="relative">
+        <i class="fa-solid fa-book-open absolute left-4 top-4 text-slate-400"></i>
+        <input type="text" placeholder="Subject (e.g., Algebra, Physics)" class="w-full pl-11 pr-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500 font-medium" />
+      </div>
+      <div class="relative">
+        <i class="fa-solid fa-layer-group absolute left-4 top-4 text-slate-400"></i>
+        <select class="w-full pl-11 pr-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500 font-medium text-slate-600">
+          <option value="">Select Grade Level</option>
+          <option>Elementary (K-5)</option>
+          <option>Middle School (6-8)</option>
+          <option>High School (9-12)</option>
+          <option>College / Test Prep</option>
+        </select>
+      </div>
+      <button class="bg-indigo-600 text-white py-3 px-6 rounded-xl font-bold flex items-center justify-center gap-2 hover:bg-indigo-700 shadow-lg transition">
+        <i class="fa-solid fa-magnifying-glass"></i> Search Available Tutors
+      </button>
     </div>
   </section>
 
-  <!-- How It Works -->
-  <section class="bg-white py-16 border-t">
-    <div class="max-w-6xl mx-auto px-6">
-      <h2 class="text-3xl font-bold text-center mb-12">How It Works</h2>
-      <div class="grid md:grid-cols-4 gap-8 text-center">
-        <div class="p-4">
-          <div class="w-12 h-12 bg-indigo-100 text-indigo-600 rounded-full flex items-center justify-center mx-auto mb-4 font-bold text-xl">1</div>
-          <h3 class="font-semibold text-lg mb-2">Search Tutors</h3>
-          <p class="text-slate-600 text-sm">Filter by subject, grade level, rate, and location.</p>
+  <!-- How It Works Section -->
+  <section id="how-it-works" class="bg-white py-20 border-y border-slate-200">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="text-center max-w-2xl mx-auto mb-16">
+        <h2 class="text-3xl font-extrabold text-slate-900 mb-3">How HomeTutor Works</h2>
+        <p class="text-slate-600">Simple, secure, and personalized learning in 4 easy steps.</p>
+      </div>
+
+      <div class="grid md:grid-cols-4 gap-8">
+        <div class="bg-slate-50 p-6 rounded-2xl border border-slate-100 text-center">
+          <div class="w-14 h-14 bg-indigo-100 text-indigo-600 rounded-2xl flex items-center justify-center mx-auto mb-4 text-xl font-bold">1</div>
+          <h3 class="font-bold text-lg mb-2">Search & Match</h3>
+          <p class="text-slate-600 text-sm">Filter tutors by subject specialization, location, and hourly rate.</p>
         </div>
-        <div class="p-4">
-          <div class="w-12 h-12 bg-indigo-100 text-indigo-600 rounded-full flex items-center justify-center mx-auto mb-4 font-bold text-xl">2</div>
-          <h3 class="font-semibold text-lg mb-2">Compare Profiles</h3>
-          <p class="text-slate-600 text-sm">Review credentials, background checks, and ratings.</p>
+        <div class="bg-slate-50 p-6 rounded-2xl border border-slate-100 text-center">
+          <div class="w-14 h-14 bg-indigo-100 text-indigo-600 rounded-2xl flex items-center justify-center mx-auto mb-4 text-xl font-bold">2</div>
+          <h3 class="font-bold text-lg mb-2">Check Credentials</h3>
+          <p class="text-slate-600 text-sm">View verified teaching qualifications, reviews, and identity badges.</p>
         </div>
-        <div class="p-4">
-          <div class="w-12 h-12 bg-indigo-100 text-indigo-600 rounded-full flex items-center justify-center mx-auto mb-4 font-bold text-xl">3</div>
-          <h3 class="font-semibold text-lg mb-2">Book a Session</h3>
-          <p class="text-slate-600 text-sm">Select an available date and time slot for your home lesson.</p>
+        <div class="bg-slate-50 p-6 rounded-2xl border border-slate-100 text-center">
+          <div class="w-14 h-14 bg-indigo-100 text-indigo-600 rounded-2xl flex items-center justify-center mx-auto mb-4 text-xl font-bold">3</div>
+          <h3 class="font-bold text-lg mb-2">Schedule Session</h3>
+          <p class="text-slate-600 text-sm">Pick a convenient day and time for your tutor to visit your home.</p>
         </div>
-        <div class="p-4">
-          <div class="w-12 h-12 bg-indigo-100 text-indigo-600 rounded-full flex items-center justify-center mx-auto mb-4 font-bold text-xl">4</div>
-          <h3 class="font-semibold text-lg mb-2">Learn at Home</h3>
-          <p class="text-slate-600 text-sm">Get personalized 1-on-1 tutoring and track progress.</p>
+        <div class="bg-slate-50 p-6 rounded-2xl border border-slate-100 text-center">
+          <div class="w-14 h-14 bg-indigo-100 text-indigo-600 rounded-2xl flex items-center justify-center mx-auto mb-4 text-xl font-bold">4</div>
+          <h3 class="font-bold text-lg mb-2">Learn & Grow</h3>
+          <p class="text-slate-600 text-sm">Get dedicated 1-on-1 guidance with guaranteed academic progress.</p>
         </div>
       </div>
     </div>
   </section>
+
+  <!-- Featured Tutors Section -->
+  <section id="tutors" class="py-20 max-w-7xl mx-auto px-6">
+    <div class="flex flex-col md:flex-row md:items-end justify-between mb-12">
+      <div>
+        <h2 class="text-3xl font-extrabold text-slate-900 mb-2">Top Rated Local Tutors</h2>
+        <p class="text-slate-600">Hand-selected qualified educators available for in-home sessions.</p>
+      </div>
+      <button class="mt-4 md:mt-0 text-indigo-600 font-bold hover:underline flex items-center gap-1">
+        View All Tutors <i class="fa-solid fa-arrow-right text-sm"></i>
+      </button>
+    </div>
+
+    <!-- Tutor Cards Grid -->
+    <div class="grid md:grid-cols-3 gap-8">
+      <!-- Tutor Card 1 -->
+      <div class="bg-white rounded-2xl shadow-md border border-slate-200 overflow-hidden hover:shadow-xl transition">
+        <div class="p-6">
+          <div class="flex items-center gap-4 mb-4">
+            <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=200" alt="Tutor Sarah" class="w-16 h-16 rounded-full object-cover border-2 border-indigo-600">
+            <div>
+              <h3 class="font-bold text-lg flex items-center gap-1">
+                Sarah Jenkins <i class="fa-solid fa-circle-check text-indigo-600 text-sm" title="Verified Educator"></i>
+              </h3>
+              <p class="text-slate-500 text-sm">Mathematics Specialist</p>
+              <div class="flex items-center gap-1 text-amber-500 text-sm mt-1">
+                <i class="fa-solid fa-star"></i>
+                <span class="font-bold text-slate-800">4.9</span>
+                <span class="text-slate-400">(48 reviews)</span>
+              </div>
+            </div>
+          </div>
+          <p class="text-slate-600 text-sm mb-4">M.Sc in Mathematics with 6+ years experience helping High School & AP students master Calculus and Algebra.</p>
+          <div class="flex flex-wrap gap-2 mb-6">
+            <span class="bg-slate-100 text-slate-700 text-xs px-2.5 py-1 rounded-md font-semibold">Calculus</span>
+            <span class="bg-slate-100 text-slate-700 text-xs px-2.5 py-1 rounded-md font-semibold">SAT Math</span>
+            <span class="bg-slate-100 text-slate-700 text-xs px-2.5 py-1 rounded-md font-semibold">Geometry</span>
+          </div>
+          <div class="flex items-center justify-between border-t pt-4">
+            <div>
+              <span class="text-xs text-slate-400 block font-medium">HOURLY RATE</span>
+              <span class="text-xl font-black text-slate-900">$45<span class="text-xs text-slate-500 font-normal">/hr</span></span>
+            </div>
+            <button class="bg-indigo-600 text-white px-4 py-2 rounded-xl text-sm font-semibold hover:bg-indigo-700 transition">Book Session</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tutor Card 2 -->
+      <div class="bg-white rounded-2xl shadow-md border border-slate-200 overflow-hidden hover:shadow-xl transition">
+        <div class="p-6">
+          <div class="flex items-center gap-4 mb-4">
+            <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&q=80&w=200" alt="Tutor David" class="w-16 h-16 rounded-full object-cover border-2 border-indigo-600">
+            <div>
+              <h3 class="font-bold text-lg flex items-center gap-1">
+                David Chen <i class="fa-solid fa-circle-check text-indigo-600 text-sm" title="Verified Educator"></i>
+              </h3>
+              <p class="text-slate-500 text-sm">Physics & Chemistry Tutor</p>
+              <div class="flex items-center gap-1 text-amber-500 text-sm mt-1">
+                <i class="fa-solid fa-star"></i>
+                <span class="font-bold text-slate-800">5.0</span>
+                <span class="text-slate-400">(62 reviews)</span>
+              </div>
+            </div>
+          </div>
+          <p class="text-slate-600 text-sm mb-4">Former High School Science teacher dedicated to breaking down complex Physics & Chemistry concepts.</p>
+          <div class="flex flex-wrap gap-2 mb-6">
+            <span class="bg-slate-100 text-slate-700 text-xs px-2.5 py-1 rounded-md font-semibold">Physics</span>
+            <span class="bg-slate-100 text-slate-700 text-xs px-2.5 py-1 rounded-md font-semibold">Chemistry</span>
+            <span class="bg-slate-100 text-slate-700 text-xs px-2.5 py-1 rounded-md font-semibold">STEM</span>
+          </div>
+          <div class="flex items-center justify-between border-t pt-4">
+            <div>
+              <span class="text-xs text-slate-400 block font-medium">HOURLY RATE</span>
+              <span class="text-xl font-black text-slate-900">$50<span class="text-xs text-slate-500 font-normal">/hr</span></span>
+            </div>
+            <button class="bg-indigo-600 text-white px-4 py-2 rounded-xl text-sm font-semibold hover:bg-indigo-700 transition">Book Session</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tutor Card 3 -->
+      <div class="bg-white rounded-2xl shadow-md border border-slate-200 overflow-hidden hover:shadow-xl transition">
+        <div class="p-6">
+          <div class="flex items-center gap-4 mb-4">
+            <img src="https://images.unsplash.com/photo-1580894732413-801111b7b0cd?auto=format&fit=crop&q=80&w=200" alt="Tutor Emily" class="w-16 h-16 rounded-full object-cover border-2 border-indigo-600">
+            <div>
+              <h3 class="font-bold text-lg flex items-center gap-1">
+                Emily Watson <i class="fa-solid fa-circle-check text-indigo-600 text-sm" title="Verified Educator"></i>
+              </h3>
+              <p class="text-slate-500 text-sm">English & History Educator</p>
+              <div class="flex items-center gap-1 text-amber-500 text-sm mt-1">
+                <i class="fa-solid fa-star"></i>
+                <span class="font-bold text-slate-800">4.9</span>
+                <span class="text-slate-400">(35 reviews)</span>
+              </div>
+            </div>
+          </div>
+          <p class="text-slate-600 text-sm mb-4">Certified teacher helping students excel in Essay Writing, Literature analysis, and History prep.</p>
+          <div class="flex flex-wrap gap-2 mb-6">
+            <span class="bg-slate-100 text-slate-700 text-xs px-2.5 py-1 rounded-md font-semibold">English Lit</span>
+            <span class="bg-slate-100 text-slate-700 text-xs px-2.5 py-1 rounded-md font-semibold">Essay Writing</span>
+            <span class="bg-slate-100 text-slate-700 text-xs px-2.5 py-1 rounded-md font-semibold">AP History</span>
+          </div>
+          <div class="flex items-center justify-between border-t pt-4">
+            <div>
+              <span class="text-xs text-slate-400 block font-medium">HOURLY RATE</span>
+              <span class="text-xl font-black text-slate-900">$40<span class="text-xs text-slate-500 font-normal">/hr</span></span>
+            </div>
+            <button class="bg-indigo-600 text-white px-4 py-2 rounded-xl text-sm font-semibold hover:bg-indigo-700 transition">Book Session</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-slate-900 text-slate-400 py-12 border-t border-slate-800">
+    <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-4 gap-8">
+      <div>
+        <div class="flex items-center gap-2 text-2xl font-black text-white mb-4">
+          <i class="fa-solid fa-graduation-cap text-indigo-500"></i>
+          <span>HomeTutor</span>
+        </div>
+        <p class="text-sm">Connecting families with certified local tutors for safe and effective in-home academic instruction.</p>
+      </div>
+      <div>
+        <h4 class="text-white font-bold mb-4">For Parents</h4>
+        <ul class="space-y-2 text-sm">
+          <li><a href="#" class="hover:text-white transition">Find Tutors</a></li>
+          <li><a href="#" class="hover:text-white transition">Safety & Verification</a></li>
+          <li><a href="#" class="hover:text-white transition">Pricing & Guarantees</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="text-white font-bold mb-4">For Tutors</h4>
+        <ul class="space-y-2 text-sm">
+          <li><a href="#" class="hover:text-white transition">Apply to Teach</a></li>
+          <li><a href="#" class="hover:text-white transition">Tutor Guidelines</a></li>
+          <li><a href="#" class="hover:text-white transition">Earnings & Payouts</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="text-white font-bold mb-4">Support</h4>
+        <ul class="space-y-2 text-sm">
+          <li><a href="#" class="hover:text-white transition">Help Center</a></li>
+          <li><a href="#" class="hover:text-white transition">Contact Us</a></li>
+          <li><a href="#" class="hover:text-white transition">Terms & Privacy Policy</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="max-w-7xl mx-auto px-6 mt-12 pt-6 border-t border-slate-800 text-center text-xs">
+      © 2026 HomeTutor Marketplace Inc. All rights reserved.
+    </div>
+  </footer>
 
 </body>
 </html>
