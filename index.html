@@ -4,106 +4,73 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <title>HomeTutor | Find the Right Tutor</title>
+  <title>HomeTutor Academy | Find Trusted Tutors in Ethiopia</title>
 
-  <!-- Tailwind -->
+  <meta
+    name="description"
+    content="HomeTutor Academy connects students and parents with qualified private tutors for personalized in-home and online academic lessons."
+  />
+
   <script src="https://cdn.tailwindcss.com"></script>
 
-  <!-- Font Awesome -->
   <link
     rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
   />
 
-  <!-- Google Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-  <link
-    href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Outfit:wght@500;600;700;800;900&display=swap"
-    rel="stylesheet"
-  />
-
-  <!-- Supabase -->
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
   <style>
-    :root {
-      --primary: #2563eb;
-      --secondary: #7c3aed;
-      --yellow: #fbbf24;
-    }
-
-    * {
-      box-sizing: border-box;
-    }
-
     html {
       scroll-behavior: smooth;
     }
 
     body {
-      font-family: "DM Sans", sans-serif;
-      background: #f8fafc;
-      color: #0f172a;
       overflow-x: hidden;
     }
 
-    h1,
-    h2,
-    h3,
-    h4 {
-      font-family: "Outfit", sans-serif;
-    }
-
-    .hero-pattern {
+    .school-pattern {
       background-image:
-        linear-gradient(rgba(37, 99, 235, 0.05) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(37, 99, 235, 0.05) 1px, transparent 1px);
-      background-size: 50px 50px;
+        linear-gradient(rgba(15, 23, 42, 0.96), rgba(15, 23, 42, 0.96)),
+        url("https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=2000&q=85");
+      background-size: cover;
+      background-position: center;
     }
 
-    .floating-animation {
-      animation: float 5s ease-in-out infinite;
+    .grid-pattern {
+      background-image:
+        linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+      background-size: 45px 45px;
     }
 
-    .floating-animation-slow {
-      animation: float 7s ease-in-out infinite;
+    .glass-card {
+      background: rgba(15, 23, 42, 0.78);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
     }
 
-    @keyframes float {
-      0%, 100% {
-        transform: translateY(0px);
+    .hero-orb {
+      position: absolute;
+      border-radius: 9999px;
+      filter: blur(90px);
+      pointer-events: none;
+    }
+
+    .fade-up {
+      animation: fadeUp 0.7s ease both;
+    }
+
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(18px);
       }
 
-      50% {
-        transform: translateY(-14px);
+      to {
+        opacity: 1;
+        transform: translateY(0);
       }
-    }
-
-    .tutor-card {
-      transition:
-        transform 0.35s ease,
-        box-shadow 0.35s ease,
-        border-color 0.35s ease;
-    }
-
-    .tutor-card:hover {
-      transform: translateY(-8px);
-      box-shadow:
-        0 25px 50px -12px rgba(15, 23, 42, 0.12);
-    }
-
-    .subject-card {
-      transition: all 0.3s ease;
-    }
-
-    .subject-card:hover {
-      transform: translateY(-7px);
-    }
-
-    .modal-open {
-      overflow: hidden;
     }
 
     .line-clamp-3 {
@@ -113,822 +80,1224 @@
       overflow: hidden;
     }
 
-    .nav-link {
-      position: relative;
-    }
-
-    .nav-link::after {
-      content: "";
-      position: absolute;
-      left: 0;
-      bottom: -6px;
-      width: 0;
-      height: 2px;
-      background: #2563eb;
-      transition: width 0.25s ease;
-    }
-
-    .nav-link:hover::after {
-      width: 100%;
+    .line-clamp-4 {
+      display: -webkit-box;
+      -webkit-line-clamp: 4;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
     }
   </style>
 </head>
 
+<body class="bg-slate-950 text-slate-100 font-sans antialiased">
 
-<body>
-
-
-  <!-- ===================================================== -->
-  <!-- NAVBAR -->
-  <!-- ===================================================== -->
+  <!-- =========================================================
+       HEADER
+  ========================================================== -->
 
   <header
-    class="
-    fixed top-0 left-0 right-0 z-50
-    bg-white/85 backdrop-blur-xl
-    border-b border-slate-200/70
-    "
+    class="sticky top-0 z-50 border-b border-white/5 bg-slate-950/80 backdrop-blur-xl"
   >
+    <div class="max-w-7xl mx-auto px-5 lg:px-8">
+      <div class="h-20 flex items-center justify-between">
 
-    <div
-      class="
-      max-w-7xl mx-auto
-      px-5 sm:px-8
-      h-20
-      flex items-center justify-between
-      "
-    >
+        <!-- Logo -->
 
-      <!-- Logo -->
+        <a href="#home" class="flex items-center gap-3">
 
-      <a href="#" class="flex items-center gap-3">
+          <div
+            class="w-11 h-11 rounded-2xl bg-gradient-to-br from-amber-400 to-orange-500 flex items-center justify-center text-slate-950 shadow-lg shadow-amber-500/20"
+          >
+            <i class="fa-solid fa-graduation-cap text-lg"></i>
+          </div>
 
-        <div
-          class="
-          w-11 h-11
-          rounded-2xl
-          bg-gradient-to-br
-          from-blue-600
-          to-indigo-600
-          text-white
-          flex items-center justify-center
-          shadow-lg shadow-blue-500/25
-          "
-        >
-          <i class="fa-solid fa-graduation-cap text-lg"></i>
+          <div>
+            <h1 class="font-black text-xl text-white leading-none">
+              HomeTutor
+            </h1>
+
+            <p
+              class="text-[10px] uppercase tracking-[0.2em] text-amber-400 mt-1"
+            >
+              Academy
+            </p>
+          </div>
+
+        </a>
+
+
+        <!-- Desktop Navigation -->
+
+        <nav class="hidden lg:flex items-center gap-7 text-sm font-semibold">
+
+          <a
+            href="#home"
+            class="text-slate-300 hover:text-amber-400 transition"
+          >
+            Home
+          </a>
+
+          <a
+            href="#how-it-works"
+            class="text-slate-300 hover:text-amber-400 transition"
+          >
+            How It Works
+          </a>
+
+          <a
+            href="#tutors"
+            class="text-slate-300 hover:text-amber-400 transition"
+          >
+            Find Tutors
+          </a>
+
+          <a
+            href="#about"
+            class="text-slate-300 hover:text-amber-400 transition"
+          >
+            About Us
+          </a>
+
+          <a
+            href="#faq"
+            class="text-slate-300 hover:text-amber-400 transition"
+          >
+            FAQ
+          </a>
+
+          <a
+            href="#contact"
+            class="text-slate-300 hover:text-amber-400 transition"
+          >
+            Contact
+          </a>
+
+        </nav>
+
+
+        <!-- Header Buttons -->
+
+        <div class="hidden lg:flex items-center gap-3">
+
+          <a
+            href="tel:0906925258"
+            class="flex items-center gap-2 text-xs font-bold text-slate-300 border border-slate-700 hover:border-amber-500/40 px-4 py-2.5 rounded-xl transition"
+          >
+            <i class="fa-solid fa-phone text-amber-400"></i>
+            0906925258
+          </a>
+
+          <button
+            onclick="openModal('tutorModal')"
+            class="bg-amber-500 hover:bg-amber-400 text-slate-950 px-4 py-2.5 rounded-xl font-black text-sm shadow-lg shadow-amber-500/20 transition cursor-pointer"
+          >
+            Become a Tutor
+          </button>
+
         </div>
 
 
-        <div>
-
-          <div
-            class="
-            text-2xl
-            font-black
-            tracking-tight
-            text-slate-900
-            "
-          >
-            Home<span class="text-blue-600">Tutor</span>
-          </div>
-
-          <div
-            class="
-            text-[9px]
-            font-bold
-            uppercase
-            tracking-[0.18em]
-            text-slate-400
-            -mt-1
-            "
-          >
-            Learn without limits
-          </div>
-
-        </div>
-
-      </a>
-
-
-      <!-- Navigation -->
-
-      <nav
-        class="
-        hidden lg:flex
-        items-center
-        gap-8
-        text-sm
-        font-semibold
-        text-slate-600
-        "
-      >
-
-        <a href="#subjects" class="nav-link">
-          Subjects
-        </a>
-
-        <a href="#how-it-works" class="nav-link">
-          How it Works
-        </a>
-
-        <a href="#tutors" class="nav-link">
-          Find Tutors
-        </a>
-
-      </nav>
-
-
-      <!-- Actions -->
-
-      <div class="flex items-center gap-3">
-
-        <a
-          href="tel:0906925258"
-          class="
-          hidden sm:flex
-          items-center gap-2
-          text-sm font-bold
-          text-slate-600
-          hover:text-blue-600
-          transition
-          "
-        >
-          <i class="fa-solid fa-phone text-blue-600"></i>
-          0906925258
-        </a>
-
+        <!-- Mobile Menu Button -->
 
         <button
-          onclick="openModal('tutorModal')"
-          class="
-          px-5 py-3
-          rounded-xl
-          bg-slate-900
-          hover:bg-blue-600
-          text-white
-          text-sm
-          font-bold
-          transition
-          shadow-lg shadow-slate-900/10
-          cursor-pointer
-          "
+          onclick="toggleMobileMenu()"
+          class="lg:hidden w-11 h-11 rounded-xl border border-slate-700 flex items-center justify-center text-slate-200"
         >
-          <i class="fa-solid fa-chalkboard-user mr-2"></i>
+          <i class="fa-solid fa-bars"></i>
+        </button>
+
+      </div>
+
+
+      <!-- Mobile Navigation -->
+
+      <div
+        id="mobileMenu"
+        class="hidden lg:hidden pb-5"
+      >
+
+        <div
+          class="grid grid-cols-2 gap-2 text-sm font-semibold"
+        >
+
+          <a href="#home" onclick="toggleMobileMenu()" class="p-3 rounded-xl bg-slate-900 text-slate-300">
+            Home
+          </a>
+
+          <a href="#how-it-works" onclick="toggleMobileMenu()" class="p-3 rounded-xl bg-slate-900 text-slate-300">
+            How It Works
+          </a>
+
+          <a href="#tutors" onclick="toggleMobileMenu()" class="p-3 rounded-xl bg-slate-900 text-slate-300">
+            Tutors
+          </a>
+
+          <a href="#about" onclick="toggleMobileMenu()" class="p-3 rounded-xl bg-slate-900 text-slate-300">
+            About Us
+          </a>
+
+          <a href="#faq" onclick="toggleMobileMenu()" class="p-3 rounded-xl bg-slate-900 text-slate-300">
+            FAQ
+          </a>
+
+          <a href="#contact" onclick="toggleMobileMenu()" class="p-3 rounded-xl bg-slate-900 text-slate-300">
+            Contact
+          </a>
+
+        </div>
+
+        <button
+          onclick="openModal('tutorModal'); toggleMobileMenu();"
+          class="w-full mt-3 bg-amber-500 text-slate-950 font-black py-3 rounded-xl"
+        >
           Become a Tutor
         </button>
 
       </div>
 
     </div>
-
   </header>
 
 
-
-  <!-- ===================================================== -->
-  <!-- HERO -->
-  <!-- ===================================================== -->
+  <!-- =========================================================
+       HERO SECTION
+  ========================================================== -->
 
   <section
-    class="
-    relative
-    min-h-[850px]
-    pt-32
-    overflow-hidden
-    bg-white
-    "
+    id="home"
+    class="relative min-h-[720px] flex items-center overflow-hidden school-pattern"
   >
 
-
-    <!-- Background Grid -->
-
-    <div class="absolute inset-0 hero-pattern"></div>
-
-
-    <!-- Decorative Gradient -->
+    <div class="absolute inset-0 grid-pattern opacity-60"></div>
 
     <div
-      class="
-      absolute
-      -top-32 -right-32
-      w-[600px] h-[600px]
-      bg-blue-100/70
-      rounded-full
-      blur-3xl
-      "
+      class="hero-orb w-96 h-96 bg-amber-500/20 top-10 -left-40"
+    ></div>
+
+    <div
+      class="hero-orb w-96 h-96 bg-blue-500/10 bottom-0 right-0"
     ></div>
 
 
-    <div
-      class="
-      absolute
-      bottom-0 -left-32
-      w-[500px] h-[500px]
-      bg-violet-100/60
-      rounded-full
-      blur-3xl
-      "
-    ></div>
+    <div class="relative z-10 max-w-7xl mx-auto px-5 lg:px-8 py-20 w-full">
+
+      <div class="max-w-4xl mx-auto text-center fade-up">
 
 
+        <!-- Badge -->
 
-    <!-- Floating Academic Icons -->
+        <div
+          class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-amber-500/10 border border-amber-500/20 text-amber-300 text-xs font-bold mb-6"
+        >
+          <i class="fa-solid fa-location-dot"></i>
+          Ethiopian Curriculum • Personalized Learning
+        </div>
 
-    <div
-      class="
-      hidden lg:flex
-      floating-animation
-      absolute
-      top-44
-      left-[6%]
-      w-16 h-16
-      bg-white
-      rounded-2xl
-      shadow-xl
-      border border-slate-100
-      items-center justify-center
-      text-blue-600
-      text-2xl
-      "
-    >
-      <i class="fa-solid fa-square-root-variable"></i>
+
+        <!-- Heading -->
+
+        <h2
+          class="text-5xl md:text-6xl lg:text-7xl font-black tracking-tight leading-[1.05] text-white"
+        >
+          Better Learning Starts With
+          <span
+            class="block mt-2 text-transparent bg-clip-text bg-gradient-to-r from-amber-300 via-yellow-100 to-amber-500"
+          >
+            The Right Teacher.
+          </span>
+        </h2>
+
+
+        <p
+          class="max-w-2xl mx-auto mt-7 text-lg md:text-xl text-slate-300 leading-relaxed"
+        >
+          Connect with qualified tutors for personalized academic support.
+          Learn difficult subjects with confidence—at home or through
+          flexible private lessons.
+        </p>
+
+
+        <!-- CTA -->
+
+        <div
+          class="flex flex-col sm:flex-row justify-center gap-3 mt-9"
+        >
+
+          <a
+            href="#tutors"
+            class="bg-amber-500 hover:bg-amber-400 text-slate-950 font-black px-7 py-4 rounded-2xl transition shadow-xl shadow-amber-500/20"
+          >
+            <i class="fa-solid fa-magnifying-glass mr-2"></i>
+            Find Your Tutor
+          </a>
+
+          <a
+            href="#how-it-works"
+            class="bg-slate-900/80 hover:bg-slate-800 border border-slate-700 text-white font-bold px-7 py-4 rounded-2xl transition"
+          >
+            How HomeTutor Works
+          </a>
+
+        </div>
+
+
+        <!-- Search Box -->
+
+        <div
+          class="mt-12 bg-slate-950/75 backdrop-blur-xl border border-slate-700/60 rounded-3xl p-3 shadow-2xl max-w-4xl mx-auto"
+        >
+
+          <div
+            class="flex flex-col md:flex-row gap-3"
+          >
+
+            <div class="relative flex-1">
+
+              <i
+                class="fa-solid fa-magnifying-glass absolute left-5 top-1/2 -translate-y-1/2 text-slate-500"
+              ></i>
+
+              <input
+                id="searchInput"
+                onkeyup="filterTutors()"
+                type="text"
+                placeholder="Search Mathematics, Chemistry, Biology..."
+                class="w-full bg-slate-900 border border-slate-700 focus:border-amber-500 focus:outline-none rounded-2xl py-4 pl-12 pr-5 text-white"
+              />
+
+            </div>
+
+
+            <select
+              id="streamFilter"
+              onchange="filterTutors()"
+              class="bg-slate-900 border border-slate-700 focus:border-amber-500 focus:outline-none rounded-2xl px-5 py-4 text-slate-300"
+            >
+
+              <option value="ALL">All Subjects</option>
+
+              <option value="Natural Science">
+                Natural Science
+              </option>
+
+              <option value="Social Science">
+                Social Science
+              </option>
+
+              <option value="Language & General">
+                Language & General
+              </option>
+
+            </select>
+
+
+            <a
+              href="#tutors"
+              class="bg-amber-500 hover:bg-amber-400 text-slate-950 font-black px-7 py-4 rounded-2xl whitespace-nowrap"
+            >
+              Search Tutors
+            </a>
+
+          </div>
+
+        </div>
+
+
+        <!-- Trust -->
+
+        <div
+          class="flex flex-wrap justify-center gap-5 md:gap-8 mt-8 text-xs font-semibold text-slate-400"
+        >
+
+          <span>
+            <i class="fa-solid fa-circle-check text-emerald-400 mr-1"></i>
+            Qualified Tutors
+          </span>
+
+          <span>
+            <i class="fa-solid fa-house text-emerald-400 mr-1"></i>
+            Personalized Learning
+          </span>
+
+          <span>
+            <i class="fa-solid fa-lock text-emerald-400 mr-1"></i>
+            Secure Booking
+          </span>
+
+          <span>
+            <i class="fa-solid fa-bolt text-emerald-400 mr-1"></i>
+            Quick Matching
+          </span>
+
+        </div>
+
+      </div>
+
     </div>
 
+  </section>
+
+
+  <!-- =========================================================
+       STATS
+  ========================================================== -->
+
+  <section class="relative border-y border-slate-800 bg-slate-900">
 
     <div
-      class="
-      hidden lg:flex
-      floating-animation-slow
-      absolute
-      top-32
-      right-[10%]
-      w-20 h-20
-      bg-yellow-400
-      rounded-[28px]
-      shadow-xl shadow-yellow-500/20
-      items-center justify-center
-      text-slate-900
-      text-3xl
-      rotate-12
-      "
+      class="max-w-7xl mx-auto px-5 lg:px-8 py-10 grid grid-cols-2 md:grid-cols-4 gap-6"
     >
-      <i class="fa-solid fa-flask"></i>
+
+      <div class="text-center">
+        <div class="text-3xl font-black text-white">
+          <span id="statsTutorCount">0</span>+
+        </div>
+
+        <p class="text-xs text-slate-500 font-bold uppercase tracking-wider mt-1">
+          Tutors
+        </p>
+      </div>
+
+
+      <div class="text-center">
+        <div class="text-3xl font-black text-white">
+          100%
+        </div>
+
+        <p class="text-xs text-slate-500 font-bold uppercase tracking-wider mt-1">
+          Personalized
+        </p>
+      </div>
+
+
+      <div class="text-center">
+        <div class="text-3xl font-black text-white">
+          1-on-1
+        </div>
+
+        <p class="text-xs text-slate-500 font-bold uppercase tracking-wider mt-1">
+          Learning
+        </p>
+      </div>
+
+
+      <div class="text-center">
+        <div class="text-3xl font-black text-white">
+          <i class="fa-solid fa-house text-amber-400"></i>
+        </div>
+
+        <p class="text-xs text-slate-500 font-bold uppercase tracking-wider mt-1">
+          Home Lessons
+        </p>
+      </div>
+
     </div>
 
+  </section>
 
-    <div
-      class="
-      hidden lg:flex
-      floating-animation
-      absolute
-      bottom-48
-      left-[10%]
-      w-16 h-16
-      bg-violet-600
-      rounded-full
-      shadow-xl
-      items-center justify-center
-      text-white
-      text-xl
-      "
-    >
-      <i class="fa-solid fa-atom"></i>
+
+  <!-- =========================================================
+       HOW IT WORKS
+  ========================================================== -->
+
+  <section
+    id="how-it-works"
+    class="py-24 bg-slate-950"
+  >
+
+    <div class="max-w-7xl mx-auto px-5 lg:px-8">
+
+
+      <div class="max-w-2xl mx-auto text-center mb-14">
+
+        <p class="text-amber-400 text-xs font-black uppercase tracking-[0.2em]">
+          Simple Process
+        </p>
+
+        <h2 class="text-4xl md:text-5xl font-black text-white mt-3">
+          How HomeTutor Works
+        </h2>
+
+        <p class="text-slate-400 mt-4">
+          Finding academic support should not be complicated.
+        </p>
+
+      </div>
+
+
+      <div class="grid md:grid-cols-3 gap-6">
+
+
+        <!-- Step 1 -->
+
+        <div class="relative bg-slate-900 border border-slate-800 rounded-3xl p-8">
+
+          <div
+            class="absolute -top-4 left-8 w-10 h-10 rounded-full bg-amber-500 text-slate-950 font-black flex items-center justify-center"
+          >
+            1
+          </div>
+
+          <div
+            class="w-14 h-14 rounded-2xl bg-blue-500/10 text-blue-400 flex items-center justify-center text-2xl mb-7"
+          >
+            <i class="fa-solid fa-magnifying-glass"></i>
+          </div>
+
+          <h3 class="text-xl font-black text-white">
+            Find Your Tutor
+          </h3>
+
+          <p class="text-slate-400 text-sm leading-relaxed mt-3">
+            Browse tutors by subject, stream, qualification, grade level,
+            and teaching specialty.
+          </p>
+
+        </div>
+
+
+        <!-- Step 2 -->
+
+        <div class="relative bg-slate-900 border border-slate-800 rounded-3xl p-8">
+
+          <div
+            class="absolute -top-4 left-8 w-10 h-10 rounded-full bg-amber-500 text-slate-950 font-black flex items-center justify-center"
+          >
+            2
+          </div>
+
+          <div
+            class="w-14 h-14 rounded-2xl bg-emerald-500/10 text-emerald-400 flex items-center justify-center text-2xl mb-7"
+          >
+            <i class="fa-solid fa-calendar-check"></i>
+          </div>
+
+          <h3 class="text-xl font-black text-white">
+            Choose Your Schedule
+          </h3>
+
+          <p class="text-slate-400 text-sm leading-relaxed mt-3">
+            Select a convenient lesson date and time based on your
+            academic needs.
+          </p>
+
+        </div>
+
+
+        <!-- Step 3 -->
+
+        <div class="relative bg-slate-900 border border-slate-800 rounded-3xl p-8">
+
+          <div
+            class="absolute -top-4 left-8 w-10 h-10 rounded-full bg-amber-500 text-slate-950 font-black flex items-center justify-center"
+          >
+            3
+          </div>
+
+          <div
+            class="w-14 h-14 rounded-2xl bg-purple-500/10 text-purple-400 flex items-center justify-center text-2xl mb-7"
+          >
+            <i class="fa-solid fa-book-open-reader"></i>
+          </div>
+
+          <h3 class="text-xl font-black text-white">
+            Learn & Grow
+          </h3>
+
+          <p class="text-slate-400 text-sm leading-relaxed mt-3">
+            Receive focused one-on-one tutoring designed around your
+            strengths, weaknesses, and learning goals.
+          </p>
+
+        </div>
+
+      </div>
+
     </div>
 
+  </section>
 
 
-    <div
-      class="
-      relative z-10
-      max-w-7xl mx-auto
-      px-5 sm:px-8
-      "
-    >
+  <!-- =========================================================
+       TUTORS
+  ========================================================== -->
+
+  <section
+    id="tutors"
+    class="py-24 bg-slate-900 border-y border-slate-800"
+  >
+
+    <div class="max-w-7xl mx-auto px-5 lg:px-8">
 
 
       <div
-        class="
-        grid
-        lg:grid-cols-2
-        gap-14
-        items-center
-        min-h-[650px]
-        "
+        class="flex flex-col md:flex-row md:items-end justify-between gap-5 mb-10"
       >
-
-
-        <!-- Left Content -->
 
         <div>
 
+          <p class="text-amber-400 text-xs font-black uppercase tracking-[0.2em]">
+            Tutor Marketplace
+          </p>
+
+          <h2 class="text-4xl md:text-5xl font-black text-white mt-3">
+            Find Your Perfect Tutor
+          </h2>
+
+          <p class="text-slate-400 mt-3 max-w-xl">
+            Browse available tutors and find academic support for the
+            subjects that matter most.
+          </p>
+
+        </div>
+
+
+        <span
+          id="tutorCount"
+          class="self-start md:self-auto bg-slate-950 border border-slate-700 px-4 py-2 rounded-xl text-sm font-bold text-slate-300"
+        >
+          Loading Tutors...
+        </span>
+
+      </div>
+
+
+      <div
+        id="tutorGrid"
+        class="grid sm:grid-cols-2 xl:grid-cols-3 gap-6"
+      >
+
+        <!-- Loading Skeleton -->
+
+        <div class="h-96 rounded-3xl bg-slate-800 animate-pulse"></div>
+        <div class="h-96 rounded-3xl bg-slate-800 animate-pulse"></div>
+        <div class="h-96 rounded-3xl bg-slate-800 animate-pulse"></div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- =========================================================
+       WHY CHOOSE US
+  ========================================================== -->
+
+  <section class="py-24 bg-slate-950">
+
+    <div class="max-w-7xl mx-auto px-5 lg:px-8">
+
+      <div class="grid lg:grid-cols-2 gap-14 items-center">
+
+
+        <!-- Image Area -->
+
+        <div class="relative">
+
+          <img
+            src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=1200&q=85"
+            alt="Students learning together"
+            class="w-full h-[520px] object-cover rounded-[2rem] border border-slate-800"
+          />
 
           <div
-            class="
-            inline-flex
-            items-center gap-2
-            bg-blue-50
-            text-blue-700
-            border border-blue-100
-            px-4 py-2
-            rounded-full
-            text-sm
-            font-bold
-            mb-7
-            "
+            class="absolute -bottom-6 -right-3 md:-right-6 bg-slate-900 border border-slate-700 rounded-2xl p-5 shadow-2xl"
           >
 
-            <span
-              class="
-              w-2 h-2
-              rounded-full
-              bg-green-500
-              animate-pulse
-              "
-            ></span>
+            <div class="flex items-center gap-3">
 
-            Trusted private tutoring for Ethiopian students
+              <div
+                class="w-12 h-12 rounded-xl bg-amber-500/10 text-amber-400 flex items-center justify-center"
+              >
+                <i class="fa-solid fa-star text-xl"></i>
+              </div>
+
+              <div>
+                <p class="font-black text-white">
+                  Built for Learning
+                </p>
+
+                <p class="text-xs text-slate-400">
+                  Focused academic support
+                </p>
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <!-- Content -->
+
+        <div>
+
+          <p class="text-amber-400 text-xs font-black uppercase tracking-[0.2em]">
+            Why HomeTutor
+          </p>
+
+          <h2 class="text-4xl md:text-5xl font-black text-white mt-4">
+            Education Should Feel
+            <span class="text-amber-400">
+              Personal.
+            </span>
+          </h2>
+
+
+          <p class="text-slate-400 leading-relaxed mt-6">
+            Every student learns differently. HomeTutor Academy helps
+            families connect with tutors who can provide focused,
+            personalized academic support.
+          </p>
+
+
+          <div class="mt-8 space-y-5">
+
+
+            <div class="flex gap-4">
+
+              <div
+                class="w-11 h-11 shrink-0 rounded-xl bg-emerald-500/10 text-emerald-400 flex items-center justify-center"
+              >
+                <i class="fa-solid fa-user-check"></i>
+              </div>
+
+              <div>
+
+                <h3 class="font-bold text-white">
+                  Qualified Tutors
+                </h3>
+
+                <p class="text-sm text-slate-400 mt-1">
+                  Connect with tutors based on their academic background
+                  and subject specialization.
+                </p>
+
+              </div>
+
+            </div>
+
+
+            <div class="flex gap-4">
+
+              <div
+                class="w-11 h-11 shrink-0 rounded-xl bg-blue-500/10 text-blue-400 flex items-center justify-center"
+              >
+                <i class="fa-solid fa-person-chalkboard"></i>
+              </div>
+
+              <div>
+
+                <h3 class="font-bold text-white">
+                  One-on-One Learning
+                </h3>
+
+                <p class="text-sm text-slate-400 mt-1">
+                  Individual attention allows tutors to focus on the
+                  student's specific needs.
+                </p>
+
+              </div>
+
+            </div>
+
+
+            <div class="flex gap-4">
+
+              <div
+                class="w-11 h-11 shrink-0 rounded-xl bg-purple-500/10 text-purple-400 flex items-center justify-center"
+              >
+                <i class="fa-solid fa-book"></i>
+              </div>
+
+              <div>
+
+                <h3 class="font-bold text-white">
+                  Ethiopian Curriculum Focus
+                </h3>
+
+                <p class="text-sm text-slate-400 mt-1">
+                  Academic support designed around subjects and grade
+                  levels relevant to Ethiopian students.
+                </p>
+
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- =========================================================
+       BECOME A TUTOR
+  ========================================================== -->
+
+  <section class="py-20 bg-slate-950">
+
+    <div class="max-w-7xl mx-auto px-5 lg:px-8">
+
+      <div
+        class="relative overflow-hidden bg-gradient-to-br from-amber-500 via-orange-500 to-amber-600 rounded-[2rem] p-8 md:p-14"
+      >
+
+        <div
+          class="absolute right-0 top-0 w-96 h-96 bg-white/10 rounded-full blur-3xl"
+        ></div>
+
+
+        <div
+          class="relative grid lg:grid-cols-2 gap-10 items-center"
+        >
+
+          <div>
+
+            <div
+              class="inline-flex items-center gap-2 bg-slate-950/10 px-3 py-2 rounded-full text-xs font-black text-slate-950"
+            >
+              <i class="fa-solid fa-chalkboard-user"></i>
+              FOR EDUCATORS
+            </div>
+
+            <h2
+              class="text-4xl md:text-5xl font-black text-slate-950 mt-5"
+            >
+              Share What You Know.
+              Teach What You Love.
+            </h2>
+
+            <p class="text-slate-900/80 mt-5 max-w-xl font-medium">
+              Join HomeTutor Academy and connect with students looking
+              for support in your areas of expertise.
+            </p>
 
           </div>
 
 
+          <div class="lg:text-right">
 
-          <h1
-            class="
-            text-5xl
-            sm:text-6xl
-            xl:text-7xl
-            font-black
-            leading-[0.98]
-            tracking-tight
-            text-slate-950
-            mb-7
-            "
-          >
-
-            The right tutor can
-
-            <span
-              class="
-              block
-              text-transparent
-              bg-clip-text
-              bg-gradient-to-r
-              from-blue-600
-              via-indigo-600
-              to-violet-600
-              mt-2
-              "
+            <button
+              onclick="openModal('tutorModal')"
+              class="bg-slate-950 hover:bg-slate-900 text-white px-7 py-4 rounded-2xl font-black shadow-xl transition"
             >
-              change everything.
-            </span>
+              Become a Tutor
+              <i class="fa-solid fa-arrow-right ml-2"></i>
+            </button>
 
-          </h1>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
 
 
+  <!-- =========================================================
+       ABOUT
+  ========================================================== -->
 
-          <p
-            class="
-            text-lg
-            sm:text-xl
-            text-slate-600
-            leading-relaxed
-            max-w-xl
-            mb-9
-            "
+  <section
+    id="about"
+    class="py-24 bg-slate-900 border-y border-slate-800"
+  >
+
+    <div class="max-w-5xl mx-auto px-5 lg:px-8 text-center">
+
+      <p class="text-amber-400 text-xs font-black uppercase tracking-[0.2em]">
+        About HomeTutor Academy
+      </p>
+
+
+      <h2 class="text-4xl md:text-5xl font-black text-white mt-4">
+        Connecting Students With
+        <span class="text-amber-400">
+          Better Learning Opportunities.
+        </span>
+      </h2>
+
+
+      <p class="text-slate-400 leading-relaxed text-lg mt-7">
+        HomeTutor Academy is an academic tutoring platform designed to
+        help students and families connect with qualified tutors for
+        personalized lessons. Our goal is to make academic support more
+        accessible, flexible, and focused on the individual student's
+        needs.
+      </p>
+
+
+      <div class="grid md:grid-cols-3 gap-5 mt-12 text-left">
+
+
+        <div class="bg-slate-950 border border-slate-800 p-7 rounded-3xl">
+
+          <i class="fa-solid fa-bullseye text-amber-400 text-2xl"></i>
+
+          <h3 class="font-black text-white text-lg mt-5">
+            Our Mission
+          </h3>
+
+          <p class="text-sm text-slate-400 mt-3 leading-relaxed">
+            Help students gain confidence and improve their academic
+            performance through personalized tutoring.
+          </p>
+
+        </div>
+
+
+        <div class="bg-slate-950 border border-slate-800 p-7 rounded-3xl">
+
+          <i class="fa-solid fa-eye text-blue-400 text-2xl"></i>
+
+          <h3 class="font-black text-white text-lg mt-5">
+            Our Vision
+          </h3>
+
+          <p class="text-sm text-slate-400 mt-3 leading-relaxed">
+            Build a trusted educational marketplace connecting learners
+            with talented educators.
+          </p>
+
+        </div>
+
+
+        <div class="bg-slate-950 border border-slate-800 p-7 rounded-3xl">
+
+          <i class="fa-solid fa-heart text-rose-400 text-2xl"></i>
+
+          <h3 class="font-black text-white text-lg mt-5">
+            Our Values
+          </h3>
+
+          <p class="text-sm text-slate-400 mt-3 leading-relaxed">
+            Trust, quality education, respect, accessibility, and a
+            commitment to student success.
+          </p>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- =========================================================
+       FAQ
+  ========================================================== -->
+
+  <section
+    id="faq"
+    class="py-24 bg-slate-950"
+  >
+
+    <div class="max-w-4xl mx-auto px-5">
+
+      <div class="text-center mb-12">
+
+        <p class="text-amber-400 text-xs font-black uppercase tracking-[0.2em]">
+          Questions & Answers
+        </p>
+
+        <h2 class="text-4xl md:text-5xl font-black text-white mt-4">
+          Frequently Asked Questions
+        </h2>
+
+      </div>
+
+
+      <div class="space-y-3">
+
+
+        <details
+          class="group bg-slate-900 border border-slate-800 rounded-2xl p-5"
+        >
+
+          <summary
+            class="cursor-pointer list-none flex items-center justify-between font-bold text-white"
           >
+            How do I book a tutor?
 
-            Connect with qualified tutors for personalized
-            in-home learning. From Mathematics and Physics
-            to Chemistry, Biology and more.
+            <i class="fa-solid fa-chevron-down text-slate-500 group-open:rotate-180 transition"></i>
+          </summary>
 
+          <p class="text-sm text-slate-400 leading-relaxed mt-4">
+            Browse available tutors, select the tutor you want, click
+            "Book Lesson", choose your lesson details, and complete the
+            booking process.
+          </p>
+
+        </details>
+
+
+        <details
+          class="group bg-slate-900 border border-slate-800 rounded-2xl p-5"
+        >
+
+          <summary
+            class="cursor-pointer list-none flex items-center justify-between font-bold text-white"
+          >
+            Are tutors verified?
+
+            <i class="fa-solid fa-chevron-down text-slate-500 group-open:rotate-180 transition"></i>
+          </summary>
+
+          <p class="text-sm text-slate-400 leading-relaxed mt-4">
+            Tutor profiles may go through an approval process before
+            becoming publicly visible on the platform.
+          </p>
+
+        </details>
+
+
+        <details
+          class="group bg-slate-900 border border-slate-800 rounded-2xl p-5"
+        >
+
+          <summary
+            class="cursor-pointer list-none flex items-center justify-between font-bold text-white"
+          >
+            What subjects are available?
+
+            <i class="fa-solid fa-chevron-down text-slate-500 group-open:rotate-180 transition"></i>
+          </summary>
+
+          <p class="text-sm text-slate-400 leading-relaxed mt-4">
+            Subjects may include Mathematics, Chemistry, Biology,
+            Physics, History, Geography, Economics, and other subjects
+            offered by registered tutors.
+          </p>
+
+        </details>
+
+
+        <details
+          class="group bg-slate-900 border border-slate-800 rounded-2xl p-5"
+        >
+
+          <summary
+            class="cursor-pointer list-none flex items-center justify-between font-bold text-white"
+          >
+            How are payments handled?
+
+            <i class="fa-solid fa-chevron-down text-slate-500 group-open:rotate-180 transition"></i>
+          </summary>
+
+          <p class="text-sm text-slate-400 leading-relaxed mt-4">
+            Your booking page can use an integrated Ethiopian payment
+            provider such as Chapa. The final payment system should use
+            secure server-side verification before production launch.
+          </p>
+
+        </details>
+
+
+        <details
+          class="group bg-slate-900 border border-slate-800 rounded-2xl p-5"
+        >
+
+          <summary
+            class="cursor-pointer list-none flex items-center justify-between font-bold text-white"
+          >
+            Can I become a tutor?
+
+            <i class="fa-solid fa-chevron-down text-slate-500 group-open:rotate-180 transition"></i>
+          </summary>
+
+          <p class="text-sm text-slate-400 leading-relaxed mt-4">
+            Yes. Click "Become a Tutor", submit your information, and
+            your application can be reviewed before publication.
+          </p>
+
+        </details>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- =========================================================
+       CONTACT
+  ========================================================== -->
+
+  <section
+    id="contact"
+    class="py-24 bg-slate-900 border-y border-slate-800"
+  >
+
+    <div class="max-w-7xl mx-auto px-5 lg:px-8">
+
+      <div class="grid lg:grid-cols-2 gap-10">
+
+
+        <!-- Contact Information -->
+
+        <div>
+
+          <p class="text-amber-400 text-xs font-black uppercase tracking-[0.2em]">
+            Get In Touch
+          </p>
+
+          <h2 class="text-4xl md:text-5xl font-black text-white mt-4">
+            We're Here To Help.
+          </h2>
+
+          <p class="text-slate-400 mt-5 leading-relaxed max-w-xl">
+            Have questions about finding a tutor, booking a lesson, or
+            joining as an educator? Contact HomeTutor Academy.
           </p>
 
 
+          <div class="mt-9 space-y-4">
 
-          <!-- Hero Buttons -->
 
-          <div
-            class="
-            flex
-            flex-col sm:flex-row
-            gap-4
-            mb-10
-            "
-          >
+            <a
+              href="tel:0906925258"
+              class="flex items-center gap-4 bg-slate-950 border border-slate-800 hover:border-amber-500/40 p-5 rounded-2xl transition"
+            >
+
+              <div
+                class="w-12 h-12 rounded-xl bg-amber-500/10 text-amber-400 flex items-center justify-center"
+              >
+                <i class="fa-solid fa-phone"></i>
+              </div>
+
+              <div>
+
+                <p class="text-xs text-slate-500 font-bold">
+                  PHONE
+                </p>
+
+                <p class="text-white font-black">
+                  0906925258
+                </p>
+
+              </div>
+
+            </a>
+
+
+            <a
+              href="mailto:support@hometutoracademy.com"
+              class="flex items-center gap-4 bg-slate-950 border border-slate-800 hover:border-amber-500/40 p-5 rounded-2xl transition"
+            >
+
+              <div
+                class="w-12 h-12 rounded-xl bg-blue-500/10 text-blue-400 flex items-center justify-center"
+              >
+                <i class="fa-solid fa-envelope"></i>
+              </div>
+
+              <div>
+
+                <p class="text-xs text-slate-500 font-bold">
+                  EMAIL
+                </p>
+
+                <p class="text-white font-black">
+                  support@hometutoracademy.com
+                </p>
+
+              </div>
+
+            </a>
+
+
+            <div
+              class="flex items-center gap-4 bg-slate-950 border border-slate-800 p-5 rounded-2xl"
+            >
+
+              <div
+                class="w-12 h-12 rounded-xl bg-emerald-500/10 text-emerald-400 flex items-center justify-center"
+              >
+                <i class="fa-solid fa-location-dot"></i>
+              </div>
+
+              <div>
+
+                <p class="text-xs text-slate-500 font-bold">
+                  SERVICE AREA
+                </p>
+
+                <p class="text-white font-black">
+                  Addis Ababa, Ethiopia
+                </p>
+
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <!-- Contact CTA -->
+
+        <div
+          class="bg-slate-950 border border-slate-800 rounded-3xl p-7 md:p-10"
+        >
+
+          <h3 class="text-2xl font-black text-white">
+            Ready To Get Started?
+          </h3>
+
+          <p class="text-slate-400 text-sm mt-3">
+            Browse available tutors or register as an educator.
+          </p>
+
+
+          <div class="grid gap-3 mt-7">
 
             <a
               href="#tutors"
-              class="
-              px-7 py-4
-              bg-blue-600
-              hover:bg-blue-700
-              text-white
-              rounded-2xl
-              font-bold
-              text-center
-              transition
-              shadow-xl shadow-blue-500/25
-              "
+              class="bg-amber-500 hover:bg-amber-400 text-slate-950 font-black py-4 rounded-2xl text-center transition"
             >
+              <i class="fa-solid fa-magnifying-glass mr-2"></i>
               Find a Tutor
-              <i class="fa-solid fa-arrow-right ml-2"></i>
             </a>
 
 
             <button
               onclick="openModal('tutorModal')"
-              class="
-              px-7 py-4
-              bg-white
-              hover:bg-slate-50
-              text-slate-800
-              border border-slate-200
-              rounded-2xl
-              font-bold
-              transition
-              cursor-pointer
-              "
+              class="border border-slate-700 hover:border-amber-500/50 text-white font-bold py-4 rounded-2xl transition"
             >
-              <i class="fa-solid fa-chalkboard-user mr-2 text-blue-600"></i>
+              <i class="fa-solid fa-chalkboard-user mr-2 text-amber-400"></i>
               Become a Tutor
             </button>
 
           </div>
 
 
+          <div class="border-t border-slate-800 mt-8 pt-6">
 
-          <!-- Trust -->
+            <p class="text-xs text-slate-500 font-bold uppercase tracking-wider">
+              Working Hours
+            </p>
 
-          <div
-            class="
-            flex
-            flex-wrap
-            gap-6
-            "
-          >
-
-            <div class="flex items-center gap-3">
-
-              <div
-                class="
-                w-10 h-10
-                bg-green-100
-                rounded-xl
-                flex items-center justify-center
-                text-green-600
-                "
-              >
-                <i class="fa-solid fa-user-check"></i>
-              </div>
-
-              <div>
-                <div class="font-bold text-sm">
-                  Qualified Tutors
-                </div>
-
-                <div class="text-xs text-slate-500">
-                  Academic professionals
-                </div>
-              </div>
-
-            </div>
-
-
-            <div class="flex items-center gap-3">
-
-              <div
-                class="
-                w-10 h-10
-                bg-blue-100
-                rounded-xl
-                flex items-center justify-center
-                text-blue-600
-                "
-              >
-                <i class="fa-solid fa-house"></i>
-              </div>
-
-              <div>
-                <div class="font-bold text-sm">
-                  Learn at Home
-                </div>
-
-                <div class="text-xs text-slate-500">
-                  Comfortable learning
-                </div>
-              </div>
-
-            </div>
+            <p class="text-sm text-slate-300 mt-2">
+              Monday – Saturday
+              <br>
+              8:00 AM – 6:00 PM
+            </p>
 
           </div>
-
 
         </div>
-
-
-
-        <!-- Right Hero Image -->
-
-        <div class="relative">
-
-
-          <!-- Main Image Shape -->
-
-          <div
-            class="
-            relative
-            rounded-[45px]
-            overflow-hidden
-            bg-slate-200
-            shadow-2xl
-            "
-          >
-
-            <img
-              src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=1200&q=90"
-              alt="Students learning together"
-              class="
-              w-full
-              h-[600px]
-              object-cover
-              "
-            />
-
-
-            <!-- Image Overlay -->
-
-            <div
-              class="
-              absolute inset-0
-              bg-gradient-to-t
-              from-slate-950/45
-              via-transparent
-              to-transparent
-              "
-            ></div>
-
-
-            <!-- Image Caption -->
-
-            <div
-              class="
-              absolute
-              bottom-8
-              left-8
-              right-8
-              bg-white/90
-              backdrop-blur-xl
-              rounded-2xl
-              p-5
-              shadow-xl
-              "
-            >
-
-              <div class="flex items-center gap-4">
-
-                <div
-                  class="
-                  w-12 h-12
-                  rounded-xl
-                  bg-blue-600
-                  text-white
-                  flex items-center justify-center
-                  "
-                >
-                  <i class="fa-solid fa-lightbulb text-xl"></i>
-                </div>
-
-
-                <div>
-
-                  <div class="font-black text-slate-900">
-                    Learn smarter, not harder
-                  </div>
-
-                  <div class="text-sm text-slate-500">
-                    Personalized lessons built around your needs
-                  </div>
-
-                </div>
-
-              </div>
-
-            </div>
-
-
-          </div>
-
-
-
-          <!-- Floating Card -->
-
-          <div
-            class="
-            absolute
-            -left-8
-            top-16
-            hidden md:block
-            bg-white
-            rounded-2xl
-            p-5
-            shadow-2xl
-            border border-slate-100
-            floating-animation
-            "
-          >
-
-            <div class="flex items-center gap-3">
-
-              <div
-                class="
-                w-11 h-11
-                rounded-xl
-                bg-yellow-100
-                text-yellow-600
-                flex items-center justify-center
-                "
-              >
-                <i class="fa-solid fa-star"></i>
-              </div>
-
-              <div>
-
-                <div class="text-2xl font-black">
-                  1-on-1
-                </div>
-
-                <div class="text-xs text-slate-500">
-                  Personalized lessons
-                </div>
-
-              </div>
-
-            </div>
-
-          </div>
-
-
-
-          <!-- Small Circle -->
-
-          <div
-            class="
-            absolute
-            -right-6
-            bottom-20
-            hidden md:flex
-            w-24 h-24
-            rounded-full
-            bg-violet-600
-            text-white
-            shadow-2xl
-            items-center justify-center
-            text-center
-            font-black
-            text-sm
-            floating-animation-slow
-            "
-          >
-            Better<br>
-            Learning
-          </div>
-
-
-        </div>
-
-
-      </div>
-
-    </div>
-
-
-  </section>
-
-
-
-  <!-- ===================================================== -->
-  <!-- SEARCH BOX -->
-  <!-- ===================================================== -->
-
-  <section
-    class="
-    relative z-20
-    -mt-14
-    px-5
-    "
-  >
-
-    <div
-      class="
-      max-w-5xl mx-auto
-      bg-white
-      rounded-[28px]
-      p-4
-      shadow-2xl shadow-slate-900/10
-      border border-slate-100
-      "
-    >
-
-      <div
-        class="
-        grid
-        md:grid-cols-[1fr_auto_auto]
-        gap-3
-        "
-      >
-
-
-        <div class="relative">
-
-          <i
-            class="
-            fa-solid fa-magnifying-glass
-            absolute
-            left-5
-            top-1/2
-            -translate-y-1/2
-            text-slate-400
-            "
-          ></i>
-
-
-          <input
-            id="searchInput"
-            oninput="filterTutors()"
-            type="text"
-            placeholder="What subject do you need help with?"
-            class="
-            w-full
-            pl-12 pr-5
-            py-4
-            rounded-2xl
-            bg-slate-50
-            border border-transparent
-            focus:bg-white
-            focus:border-blue-300
-            outline-none
-            transition
-            text-slate-800
-            "
-          />
-
-        </div>
-
-
-
-        <select
-          id="streamFilter"
-          onchange="filterTutors()"
-          class="
-          px-5 py-4
-          rounded-2xl
-          bg-slate-50
-          text-slate-600
-          border border-transparent
-          focus:border-blue-300
-          outline-none
-          cursor-pointer
-          "
-        >
-
-          <option value="ALL">
-            All Subjects
-          </option>
-
-          <option value="Natural Science">
-            Natural Science
-          </option>
-
-          <option value="Social Science">
-            Social Science
-          </option>
-
-          <option value="Language & General">
-            Languages & General
-          </option>
-
-        </select>
-
-
-
-        <a
-          href="#tutors"
-          class="
-          bg-blue-600
-          hover:bg-blue-700
-          text-white
-          rounded-2xl
-          px-8 py-4
-          font-bold
-          flex items-center justify-center
-          gap-2
-          transition
-          "
-        >
-          Search
-          <i class="fa-solid fa-arrow-right"></i>
-        </a>
-
 
       </div>
 
@@ -937,836 +1306,76 @@
   </section>
 
 
+  <!-- =========================================================
+       FOOTER
+  ========================================================== -->
 
-  <!-- ===================================================== -->
-  <!-- SUBJECTS -->
-  <!-- ===================================================== -->
-
-  <section
-    id="subjects"
-    class="
-    py-28
-    bg-slate-50
-    "
-  >
+  <footer class="bg-slate-950 border-t border-slate-800">
 
     <div
-      class="
-      max-w-7xl mx-auto
-      px-5 sm:px-8
-      "
+      class="max-w-7xl mx-auto px-5 lg:px-8 py-14 grid md:grid-cols-2 lg:grid-cols-4 gap-10"
     >
 
 
-      <!-- Header -->
+      <!-- Brand -->
 
-      <div
-        class="
-        max-w-2xl
-        mb-12
-        "
-      >
+      <div>
 
-        <div
-          class="
-          text-blue-600
-          font-bold
-          text-sm
-          uppercase
-          tracking-widest
-          mb-3
-          "
-        >
-          Explore Subjects
+        <div class="flex items-center gap-3">
+
+          <div
+            class="w-10 h-10 rounded-xl bg-amber-500 text-slate-950 flex items-center justify-center"
+          >
+            <i class="fa-solid fa-graduation-cap"></i>
+          </div>
+
+          <div>
+
+            <p class="font-black text-white">
+              HomeTutor
+            </p>
+
+            <p class="text-[9px] text-amber-400 uppercase tracking-widest">
+              Academy
+            </p>
+
+          </div>
+
         </div>
 
 
-        <h2
-          class="
-          text-4xl
-          sm:text-5xl
-          font-black
-          text-slate-900
-          tracking-tight
-          "
-        >
-          Whatever you are learning,
-          <span class="text-blue-600">
-            we can help.
-          </span>
-        </h2>
+        <p class="text-sm text-slate-500 leading-relaxed mt-5">
+          Connecting students with personalized academic support and
+          qualified tutors.
+        </p>
 
       </div>
 
 
+      <!-- Explore -->
 
-      <!-- Subject Cards -->
+      <div>
 
-      <div
-        class="
-        grid
-        sm:grid-cols-2
-        lg:grid-cols-4
-        gap-5
-        "
-      >
+        <h4 class="font-black text-white">
+          Explore
+        </h4>
 
+        <div class="grid gap-3 text-sm text-slate-500 mt-5">
 
-        <!-- Mathematics -->
+          <a href="#home" class="hover:text-amber-400">
+            Home
+          </a>
 
-        <button
-          onclick="quickSearch('Mathematics')"
-          class="
-          subject-card
-          text-left
-          bg-white
-          rounded-3xl
-          p-7
-          border border-slate-100
-          hover:border-blue-200
-          hover:shadow-xl
-          cursor-pointer
-          "
-        >
+          <a href="#how-it-works" class="hover:text-amber-400">
+            How It Works
+          </a>
 
-          <div
-            class="
-            w-16 h-16
-            rounded-2xl
-            bg-blue-50
-            text-blue-600
-            flex items-center justify-center
-            text-2xl
-            mb-6
-            "
-          >
-            <i class="fa-solid fa-square-root-variable"></i>
-          </div>
+          <a href="#tutors" class="hover:text-amber-400">
+            Find Tutors
+          </a>
 
-
-          <h3 class="font-black text-xl mb-2">
-            Mathematics
-          </h3>
-
-          <p class="text-sm text-slate-500">
-            Algebra, Calculus, Geometry and more.
-          </p>
-
-
-          <div
-            class="
-            mt-6
-            text-blue-600
-            text-sm
-            font-bold
-            "
-          >
-            Explore
-            <i class="fa-solid fa-arrow-right ml-1"></i>
-          </div>
-
-        </button>
-
-
-
-        <!-- Chemistry -->
-
-        <button
-          onclick="quickSearch('Chemistry')"
-          class="
-          subject-card
-          text-left
-          bg-white
-          rounded-3xl
-          p-7
-          border border-slate-100
-          hover:border-green-200
-          hover:shadow-xl
-          cursor-pointer
-          "
-        >
-
-          <div
-            class="
-            w-16 h-16
-            rounded-2xl
-            bg-green-50
-            text-green-600
-            flex items-center justify-center
-            text-2xl
-            mb-6
-            "
-          >
-            <i class="fa-solid fa-flask"></i>
-          </div>
-
-
-          <h3 class="font-black text-xl mb-2">
-            Chemistry
-          </h3>
-
-          <p class="text-sm text-slate-500">
-            Organic, Inorganic and Physical Chemistry.
-          </p>
-
-
-          <div
-            class="
-            mt-6
-            text-green-600
-            text-sm
-            font-bold
-            "
-          >
-            Explore
-            <i class="fa-solid fa-arrow-right ml-1"></i>
-          </div>
-
-        </button>
-
-
-
-        <!-- Physics -->
-
-        <button
-          onclick="quickSearch('Physics')"
-          class="
-          subject-card
-          text-left
-          bg-white
-          rounded-3xl
-          p-7
-          border border-slate-100
-          hover:border-violet-200
-          hover:shadow-xl
-          cursor-pointer
-          "
-        >
-
-          <div
-            class="
-            w-16 h-16
-            rounded-2xl
-            bg-violet-50
-            text-violet-600
-            flex items-center justify-center
-            text-2xl
-            mb-6
-            "
-          >
-            <i class="fa-solid fa-atom"></i>
-          </div>
-
-
-          <h3 class="font-black text-xl mb-2">
-            Physics
-          </h3>
-
-          <p class="text-sm text-slate-500">
-            Mechanics, Electricity, Waves and more.
-          </p>
-
-
-          <div
-            class="
-            mt-6
-            text-violet-600
-            text-sm
-            font-bold
-            "
-          >
-            Explore
-            <i class="fa-solid fa-arrow-right ml-1"></i>
-          </div>
-
-        </button>
-
-
-
-        <!-- Biology -->
-
-        <button
-          onclick="quickSearch('Biology')"
-          class="
-          subject-card
-          text-left
-          bg-white
-          rounded-3xl
-          p-7
-          border border-slate-100
-          hover:border-orange-200
-          hover:shadow-xl
-          cursor-pointer
-          "
-        >
-
-          <div
-            class="
-            w-16 h-16
-            rounded-2xl
-            bg-orange-50
-            text-orange-500
-            flex items-center justify-center
-            text-2xl
-            mb-6
-            "
-          >
-            <i class="fa-solid fa-dna"></i>
-          </div>
-
-
-          <h3 class="font-black text-xl mb-2">
-            Biology
-          </h3>
-
-          <p class="text-sm text-slate-500">
-            Human, Plant and Animal Biology.
-          </p>
-
-
-          <div
-            class="
-            mt-6
-            text-orange-500
-            text-sm
-            font-bold
-            "
-          >
-            Explore
-            <i class="fa-solid fa-arrow-right ml-1"></i>
-          </div>
-
-        </button>
-
-
-      </div>
-
-    </div>
-
-  </section>
-
-
-
-  <!-- ===================================================== -->
-  <!-- HOW IT WORKS -->
-  <!-- ===================================================== -->
-
-  <section
-    id="how-it-works"
-    class="
-    py-28
-    bg-white
-    "
-  >
-
-    <div
-      class="
-      max-w-7xl mx-auto
-      px-5 sm:px-8
-      "
-    >
-
-
-      <div class="text-center max-w-2xl mx-auto mb-16">
-
-        <div
-          class="
-          text-blue-600
-          font-bold
-          text-sm
-          uppercase
-          tracking-widest
-          mb-3
-          "
-        >
-          Simple & Easy
-        </div>
-
-
-        <h2
-          class="
-          text-4xl
-          sm:text-5xl
-          font-black
-          tracking-tight
-          "
-        >
-          Learning starts in
-          <span class="text-blue-600">
-            three simple steps.
-          </span>
-        </h2>
-
-      </div>
-
-
-
-      <div
-        class="
-        grid
-        md:grid-cols-3
-        gap-8
-        "
-      >
-
-
-        <div class="text-center">
-
-          <div
-            class="
-            relative
-            w-20 h-20
-            mx-auto
-            mb-6
-            rounded-3xl
-            bg-blue-600
-            text-white
-            flex items-center justify-center
-            text-3xl
-            shadow-xl shadow-blue-500/25
-            "
-          >
-            <i class="fa-solid fa-magnifying-glass"></i>
-
-            <div
-              class="
-              absolute
-              -top-2 -right-2
-              w-8 h-8
-              rounded-full
-              bg-yellow-400
-              text-slate-900
-              flex items-center justify-center
-              text-sm
-              font-black
-              "
-            >
-              1
-            </div>
-
-          </div>
-
-
-          <h3 class="font-black text-xl mb-3">
-            Find your subject
-          </h3>
-
-          <p class="text-slate-500 max-w-xs mx-auto">
-            Search qualified tutors based on the subject you need.
-          </p>
-
-        </div>
-
-
-
-        <div class="text-center">
-
-          <div
-            class="
-            relative
-            w-20 h-20
-            mx-auto
-            mb-6
-            rounded-3xl
-            bg-violet-600
-            text-white
-            flex items-center justify-center
-            text-3xl
-            shadow-xl shadow-violet-500/25
-            "
-          >
-            <i class="fa-solid fa-calendar-check"></i>
-
-            <div
-              class="
-              absolute
-              -top-2 -right-2
-              w-8 h-8
-              rounded-full
-              bg-yellow-400
-              text-slate-900
-              flex items-center justify-center
-              text-sm
-              font-black
-              "
-            >
-              2
-            </div>
-
-          </div>
-
-
-          <h3 class="font-black text-xl mb-3">
-            Book your lesson
-          </h3>
-
-          <p class="text-slate-500 max-w-xs mx-auto">
-            Select a convenient date and tell us what you want to learn.
-          </p>
-
-        </div>
-
-
-
-        <div class="text-center">
-
-          <div
-            class="
-            relative
-            w-20 h-20
-            mx-auto
-            mb-6
-            rounded-3xl
-            bg-green-500
-            text-white
-            flex items-center justify-center
-            text-3xl
-            shadow-xl shadow-green-500/25
-            "
-          >
-            <i class="fa-solid fa-book-open"></i>
-
-            <div
-              class="
-              absolute
-              -top-2 -right-2
-              w-8 h-8
-              rounded-full
-              bg-yellow-400
-              text-slate-900
-              flex items-center justify-center
-              text-sm
-              font-black
-              "
-            >
-              3
-            </div>
-
-          </div>
-
-
-          <h3 class="font-black text-xl mb-3">
-            Start learning
-          </h3>
-
-          <p class="text-slate-500 max-w-xs mx-auto">
-            Your tutor comes prepared for a focused learning session.
-          </p>
-
-        </div>
-
-
-      </div>
-
-    </div>
-
-  </section>
-
-
-
-  <!-- ===================================================== -->
-  <!-- TUTOR SECTION -->
-  <!-- ===================================================== -->
-
-  <section
-    id="tutors"
-    class="
-    py-28
-    bg-slate-950
-    relative
-    overflow-hidden
-    "
-  >
-
-
-    <div
-      class="
-      absolute
-      top-0 left-1/2
-      -translate-x-1/2
-      w-[700px] h-[400px]
-      bg-blue-600/15
-      blur-[150px]
-      rounded-full
-      "
-    ></div>
-
-
-
-    <div
-      class="
-      relative z-10
-      max-w-7xl mx-auto
-      px-5 sm:px-8
-      "
-    >
-
-
-      <!-- Header -->
-
-      <div
-        class="
-        flex
-        flex-col
-        md:flex-row
-        md:items-end
-        justify-between
-        gap-5
-        mb-14
-        "
-      >
-
-        <div>
-
-          <div
-            class="
-            text-blue-400
-            font-bold
-            text-sm
-            uppercase
-            tracking-widest
-            mb-3
-            "
-          >
-            Meet the Experts
-          </div>
-
-
-          <h2
-            class="
-            text-4xl
-            sm:text-5xl
-            font-black
-            text-white
-            tracking-tight
-            "
-          >
-            Find your perfect
-            <span class="text-blue-400">
-              tutor.
-            </span>
-          </h2>
-
-        </div>
-
-
-        <div
-          id="tutorCount"
-          class="
-          px-5 py-3
-          rounded-xl
-          bg-white/5
-          border border-white/10
-          text-slate-400
-          text-sm
-          font-bold
-          "
-        >
-          Loading tutors...
-        </div>
-
-      </div>
-
-
-
-      <!-- Tutors -->
-
-      <div
-        id="tutorGrid"
-        class="
-        grid
-        sm:grid-cols-2
-        lg:grid-cols-3
-        gap-6
-        "
-      ></div>
-
-
-    </div>
-
-  </section>
-
-
-
-  <!-- ===================================================== -->
-  <!-- CTA -->
-  <!-- ===================================================== -->
-
-  <section
-    class="
-    py-24
-    bg-blue-600
-    relative
-    overflow-hidden
-    "
-  >
-
-    <div
-      class="
-      absolute
-      -right-20 -top-20
-      w-96 h-96
-      border-[40px]
-      border-white/10
-      rounded-full
-      "
-    ></div>
-
-
-    <div
-      class="
-      relative z-10
-      max-w-4xl mx-auto
-      px-5
-      text-center
-      "
-    >
-
-      <h2
-        class="
-        text-4xl
-        sm:text-6xl
-        font-black
-        text-white
-        tracking-tight
-        mb-6
-        "
-      >
-        Ready to learn better?
-      </h2>
-
-
-      <p
-        class="
-        text-blue-100
-        text-lg
-        mb-9
-        "
-      >
-        Find a tutor who can help you reach your academic goals.
-      </p>
-
-
-      <a
-        href="#tutors"
-        class="
-        inline-flex
-        items-center
-        gap-3
-        px-8 py-4
-        rounded-2xl
-        bg-white
-        text-blue-600
-        font-black
-        hover:scale-105
-        transition
-        shadow-xl
-        "
-      >
-        Find a Tutor Now
-        <i class="fa-solid fa-arrow-right"></i>
-      </a>
-
-
-    </div>
-
-  </section>
-
-
-
-  <!-- ===================================================== -->
-  <!-- FOOTER -->
-  <!-- ===================================================== -->
-
-  <footer
-    class="
-    bg-slate-950
-    text-white
-    pt-16
-    pb-8
-    "
-  >
-
-    <div
-      class="
-      max-w-7xl mx-auto
-      px-5 sm:px-8
-      "
-    >
-
-      <div
-        class="
-        flex
-        flex-col
-        md:flex-row
-        justify-between
-        gap-10
-        pb-12
-        "
-      >
-
-        <div>
-
-          <div class="flex items-center gap-3 mb-4">
-
-            <div
-              class="
-              w-11 h-11
-              rounded-2xl
-              bg-blue-600
-              flex items-center justify-center
-              "
-            >
-              <i class="fa-solid fa-graduation-cap"></i>
-            </div>
-
-
-            <div
-              class="
-              text-2xl
-              font-black
-              "
-            >
-              Home<span class="text-blue-400">Tutor</span>
-            </div>
-
-          </div>
-
-
-          <p
-            class="
-            text-slate-400
-            max-w-sm
-            text-sm
-            leading-relaxed
-            "
-          >
-            Connecting Ethiopian students with qualified tutors
-            for personalized academic learning.
-          </p>
-
-        </div>
-
-
-
-        <div>
-
-          <div class="text-sm text-slate-500 mb-3">
-            Need help?
-          </div>
-
-          <a
-            href="tel:0906925258"
-            class="
-            text-xl
-            font-black
-            text-white
-            hover:text-blue-400
-            transition
-            "
-          >
-            <i class="fa-solid fa-phone text-blue-500 mr-2"></i>
-            0906925258
+          <a href="#about" class="hover:text-amber-400">
+            About Us
           </a>
 
         </div>
@@ -1774,17 +1383,108 @@
       </div>
 
 
+      <!-- Support -->
+
+      <div>
+
+        <h4 class="font-black text-white">
+          Support
+        </h4>
+
+        <div class="grid gap-3 text-sm text-slate-500 mt-5">
+
+          <a href="#faq" class="hover:text-amber-400">
+            FAQ
+          </a>
+
+          <a href="#contact" class="hover:text-amber-400">
+            Contact Us
+          </a>
+
+          <button
+            onclick="openModal('tutorModal')"
+            class="text-left hover:text-amber-400"
+          >
+            Become a Tutor
+          </button>
+
+          <a href="#contact" class="hover:text-amber-400">
+            Help Center
+          </a>
+
+        </div>
+
+      </div>
+
+
+      <!-- Contact -->
+
+      <div>
+
+        <h4 class="font-black text-white">
+          Stay Connected
+        </h4>
+
+        <p class="text-sm text-slate-500 mt-5">
+          Addis Ababa, Ethiopia
+        </p>
+
+        <p class="text-sm text-slate-400 mt-2">
+          0906925258
+        </p>
+
+        <div class="flex gap-3 mt-5">
+
+          <a
+            href="#"
+            class="w-10 h-10 rounded-xl bg-slate-900 border border-slate-800 hover:border-amber-500/50 flex items-center justify-center text-slate-400 hover:text-amber-400 transition"
+          >
+            <i class="fa-brands fa-telegram"></i>
+          </a>
+
+          <a
+            href="#"
+            class="w-10 h-10 rounded-xl bg-slate-900 border border-slate-800 hover:border-amber-500/50 flex items-center justify-center text-slate-400 hover:text-amber-400 transition"
+          >
+            <i class="fa-brands fa-instagram"></i>
+          </a>
+
+          <a
+            href="#"
+            class="w-10 h-10 rounded-xl bg-slate-900 border border-slate-800 hover:border-amber-500/50 flex items-center justify-center text-slate-400 hover:text-amber-400 transition"
+          >
+            <i class="fa-brands fa-facebook-f"></i>
+          </a>
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <div class="border-t border-slate-800">
+
       <div
-        class="
-        border-t
-        border-white/10
-        pt-7
-        text-center
-        text-xs
-        text-slate-500
-        "
+        class="max-w-7xl mx-auto px-5 lg:px-8 py-6 flex flex-col md:flex-row gap-3 justify-between text-xs text-slate-600"
       >
-        © 2026 HomeTutor Ethiopia. All rights reserved.
+
+        <p>
+          © <span id="year"></span> HomeTutor Academy. All rights reserved.
+        </p>
+
+        <div class="flex gap-5">
+
+          <a href="#" class="hover:text-slate-400">
+            Privacy Policy
+          </a>
+
+          <a href="#" class="hover:text-slate-400">
+            Terms of Service
+          </a>
+
+        </div>
+
       </div>
 
     </div>
@@ -1792,96 +1492,51 @@
   </footer>
 
 
-
-  <!-- ===================================================== -->
-  <!-- FLOATING BUTTON -->
-  <!-- ===================================================== -->
+  <!-- =========================================================
+       FLOATING CONTACT BUTTON
+  ========================================================== -->
 
   <a
     href="tel:0906925258"
-    class="
-    fixed
-    bottom-6 right-6
-    z-50
-    w-16 h-16
-    rounded-full
-    bg-green-500
-    hover:bg-green-600
-    text-white
-    shadow-2xl
-    shadow-green-500/30
-    flex
-    items-center
-    justify-center
-    text-2xl
-    transition
-    hover:scale-110
-    "
+    class="fixed bottom-5 right-5 z-40 flex items-center gap-3 bg-amber-500 hover:bg-amber-400 text-slate-950 px-5 py-4 rounded-full shadow-2xl shadow-amber-500/20 font-black text-sm transition hover:scale-105"
   >
-    <i class="fa-solid fa-phone"></i>
+
+    <i class="fa-solid fa-phone-volume animate-pulse"></i>
+
+    <span class="hidden sm:inline">
+      Call HomeTutor
+    </span>
+
   </a>
 
 
-
-  <!-- ===================================================== -->
-  <!-- TUTOR MODAL -->
-  <!-- ===================================================== -->
+  <!-- =========================================================
+       TUTOR REGISTRATION MODAL
+  ========================================================== -->
 
   <div
     id="tutorModal"
-    class="
-    hidden
-    fixed inset-0
-    z-[100]
-    bg-slate-950/60
-    backdrop-blur-sm
-    items-center
-    justify-center
-    p-4
-    "
+    class="hidden fixed inset-0 z-[60] bg-slate-950/90 backdrop-blur-md p-4 items-center justify-center"
   >
 
     <div
-      class="
-      bg-white
-      w-full
-      max-w-2xl
-      rounded-[30px]
-      shadow-2xl
-      max-h-[90vh]
-      overflow-y-auto
-      relative
-      "
+      class="bg-slate-900 border border-slate-700 rounded-3xl max-w-2xl w-full p-6 md:p-8 shadow-2xl max-h-[90vh] overflow-y-auto"
     >
 
-
-      <div
-        class="
-        sticky top-0 z-10
-        bg-white/95
-        backdrop-blur-xl
-        p-6
-        border-b
-        border-slate-100
-        flex
-        justify-between
-        items-center
-        "
-      >
+      <div class="flex items-start justify-between gap-5 mb-6">
 
         <div>
 
-          <h3
-            class="
-            text-2xl
-            font-black
-            "
-          >
-            Join HomeTutor
+          <p class="text-amber-400 text-xs font-black uppercase tracking-wider">
+            Join Our Network
+          </p>
+
+          <h3 class="text-2xl font-black text-white mt-2">
+            Become a HomeTutor
           </h3>
 
-          <p class="text-sm text-slate-500">
-            Create your professional tutor profile.
+          <p class="text-sm text-slate-400 mt-2">
+            Submit your profile for review.
           </p>
 
         </div>
@@ -1889,13 +1544,7 @@
 
         <button
           onclick="closeModal('tutorModal')"
-          class="
-          w-10 h-10
-          rounded-xl
-          bg-slate-100
-          hover:bg-slate-200
-          cursor-pointer
-          "
+          class="w-10 h-10 rounded-xl bg-slate-800 hover:bg-slate-700 flex items-center justify-center text-slate-400 hover:text-white"
         >
           <i class="fa-solid fa-xmark"></i>
         </button>
@@ -1903,212 +1552,207 @@
       </div>
 
 
-
       <form
         onsubmit="registerTutor(event)"
-        class="p-6 space-y-4"
+        class="space-y-4"
       >
 
 
-        <input
-          id="tName"
-          required
-          type="text"
-          placeholder="Full Name"
-          class="form-input"
-        />
+        <div class="grid md:grid-cols-2 gap-4">
+
+          <div>
+
+            <label class="block text-xs font-bold text-slate-400 mb-2">
+              FULL NAME
+            </label>
+
+            <input
+              id="tName"
+              required
+              type="text"
+              placeholder="Your full name"
+              class="input-field w-full"
+            />
+
+          </div>
 
 
-        <div class="grid sm:grid-cols-2 gap-4">
+          <div>
 
-          <input
-            id="tRate"
-            required
-            min="1"
-            type="number"
-            placeholder="Hourly Rate (ETB)"
-            class="
-            w-full px-4 py-3.5
-            bg-slate-50
-            border border-slate-200
-            rounded-xl
-            outline-none
-            focus:border-blue-500
-            "
-          />
+            <label class="block text-xs font-bold text-slate-400 mb-2">
+              PHONE NUMBER
+            </label>
 
+            <input
+              id="tPhone"
+              required
+              type="tel"
+              placeholder="0912345678"
+              class="input-field w-full"
+            />
 
-          <select
-            id="tDegree"
-            class="
-            w-full px-4 py-3.5
-            bg-slate-50
-            border border-slate-200
-            rounded-xl
-            outline-none
-            focus:border-blue-500
-            "
-          >
-            <option value="Bachelor's Degree">
-              Bachelor's Degree
-            </option>
-
-            <option value="Master's Degree">
-              Master's Degree
-            </option>
-
-            <option value="Ph.D. / Doctorate">
-              Ph.D. / Doctorate
-            </option>
-
-          </select>
+          </div>
 
         </div>
 
 
+        <div class="grid md:grid-cols-2 gap-4">
 
-        <select
-          id="tStream"
-          class="
-          w-full px-4 py-3.5
-          bg-slate-50
-          border border-slate-200
-          rounded-xl
-          outline-none
-          focus:border-blue-500
-          "
-        >
-          <option value="Natural Science">
-            Natural Science
-          </option>
+          <div>
 
-          <option value="Social Science">
-            Social Science
-          </option>
+            <label class="block text-xs font-bold text-slate-400 mb-2">
+              HOURLY RATE (ETB)
+            </label>
 
-          <option value="Language & General">
-            Languages & General Studies
-          </option>
+            <input
+              id="tRate"
+              required
+              type="number"
+              min="1"
+              placeholder="e.g. 400"
+              class="input-field w-full"
+            />
 
-        </select>
+          </div>
 
 
+          <div>
 
-        <input
-          id="tSubject"
-          required
-          type="text"
-          placeholder="Subjects you teach"
-          class="
-          w-full px-4 py-3.5
-          bg-slate-50
-          border border-slate-200
-          rounded-xl
-          outline-none
-          focus:border-blue-500
-          "
-        />
+            <label class="block text-xs font-bold text-slate-400 mb-2">
+              QUALIFICATION
+            </label>
 
+            <select id="tDegree" class="input-field w-full">
 
+              <option value="B.Sc / B.A. Degree">
+                B.Sc / B.A. Degree
+              </option>
 
-        <div class="grid sm:grid-cols-2 gap-4">
+              <option value="Master's Degree">
+                Master's Degree
+              </option>
 
-          <input
-            id="tPhone"
-            required
-            type="tel"
-            placeholder="Phone Number"
-            class="
-            w-full px-4 py-3.5
-            bg-slate-50
-            border border-slate-200
-            rounded-xl
-            outline-none
-            focus:border-blue-500
-            "
-          />
+              <option value="Ph.D. Doctorate">
+                Ph.D. Doctorate
+              </option>
 
+            </select>
 
-          <select
-            id="tGrade"
-            class="
-            w-full px-4 py-3.5
-            bg-slate-50
-            border border-slate-200
-            rounded-xl
-            outline-none
-            focus:border-blue-500
-            "
-          >
-            <option value="Grades 9-12">
-              Grades 9–12
-            </option>
-
-            <option value="Grades 6-8">
-              Grades 6–8
-            </option>
-
-            <option value="Grades 1-5">
-              Grades 1–5
-            </option>
-
-          </select>
+          </div>
 
         </div>
 
 
+        <div class="grid md:grid-cols-2 gap-4">
 
-        <input
-          id="tPhoto"
-          type="url"
-          placeholder="Profile Photo URL (Optional)"
-          class="
-          w-full px-4 py-3.5
-          bg-slate-50
-          border border-slate-200
-          rounded-xl
-          outline-none
-          focus:border-blue-500
-          "
-        />
+          <div>
+
+            <label class="block text-xs font-bold text-slate-400 mb-2">
+              STREAM
+            </label>
+
+            <select id="tStream" class="input-field w-full">
+
+              <option value="Natural Science">
+                Natural Science
+              </option>
+
+              <option value="Social Science">
+                Social Science
+              </option>
+
+              <option value="Language & General">
+                Language & General
+              </option>
+
+            </select>
+
+          </div>
 
 
+          <div>
 
-        <textarea
-          id="tBio"
-          required
-          placeholder="Tell students about your education, university and teaching experience..."
-          class="
-          w-full px-4 py-3.5
-          h-32
-          bg-slate-50
-          border border-slate-200
-          rounded-xl
-          outline-none
-          focus:border-blue-500
-          "
-        ></textarea>
+            <label class="block text-xs font-bold text-slate-400 mb-2">
+              STUDENT LEVEL
+            </label>
 
+            <select id="tGrade" class="input-field w-full">
+
+              <option value="High School (Grades 9-12)">
+                High School (Grades 9-12)
+              </option>
+
+              <option value="Middle School (Grades 6-8)">
+                Middle School (Grades 6-8)
+              </option>
+
+              <option value="Primary School (Grades 1-5)">
+                Primary School (Grades 1-5)
+              </option>
+
+            </select>
+
+          </div>
+
+        </div>
+
+
+        <div>
+
+          <label class="block text-xs font-bold text-slate-400 mb-2">
+            SUBJECTS YOU TEACH
+          </label>
+
+          <input
+            id="tSubject"
+            required
+            type="text"
+            placeholder="e.g. Chemistry, Biology and Mathematics"
+            class="input-field w-full"
+          />
+
+        </div>
+
+
+        <div>
+
+          <label class="block text-xs font-bold text-slate-400 mb-2">
+            PROFILE PHOTO URL (OPTIONAL)
+          </label>
+
+          <input
+            id="tPhoto"
+            type="url"
+            placeholder="https://..."
+            class="input-field w-full"
+          />
+
+        </div>
+
+
+        <div>
+
+          <label class="block text-xs font-bold text-slate-400 mb-2">
+            ABOUT YOUR EXPERIENCE
+          </label>
+
+          <textarea
+            id="tBio"
+            required
+            placeholder="Tell students about your education, university, teaching experience, and strengths..."
+            class="input-field w-full h-28 resize-none"
+          ></textarea>
+
+        </div>
 
 
         <button
+          id="tutorSubmitBtn"
           type="submit"
-          class="
-          w-full
-          py-4
-          bg-blue-600
-          hover:bg-blue-700
-          text-white
-          font-black
-          rounded-xl
-          cursor-pointer
-          transition
-          "
+          class="w-full bg-amber-500 hover:bg-amber-400 text-slate-950 font-black py-4 rounded-2xl transition"
         >
-          Create My Tutor Profile
-          <i class="fa-solid fa-arrow-right ml-2"></i>
+          Submit Tutor Profile
         </button>
-
 
       </form>
 
@@ -2117,76 +1761,59 @@
   </div>
 
 
-
-  <!-- ===================================================== -->
-  <!-- BOOKING MODAL -->
-  <!-- ===================================================== -->
+  <!-- =========================================================
+       BOOKING MODAL
+  ========================================================== -->
 
   <div
     id="bookingModal"
-    class="
-    hidden
-    fixed inset-0
-    z-[100]
-    bg-slate-950/60
-    backdrop-blur-sm
-    items-center
-    justify-center
-    p-4
-    "
+    class="hidden fixed inset-0 z-[60] bg-slate-950/90 backdrop-blur-md p-4 items-center justify-center"
   >
 
     <div
-      class="
-      bg-white
-      w-full
-      max-w-lg
-      rounded-[30px]
-      shadow-2xl
-      p-6
-      relative
-      "
+      class="bg-slate-900 border border-slate-700 rounded-3xl max-w-xl w-full p-6 md:p-8 shadow-2xl max-h-[90vh] overflow-y-auto"
     >
 
-      <button
-        onclick="closeModal('bookingModal')"
-        class="
-        absolute
-        right-5 top-5
-        w-10 h-10
-        rounded-xl
-        bg-slate-100
-        cursor-pointer
-        "
-      >
-        <i class="fa-solid fa-xmark"></i>
-      </button>
+      <div class="flex justify-between items-start mb-6">
+
+        <div>
+
+          <p class="text-emerald-400 text-xs font-black uppercase tracking-wider">
+            Lesson Booking
+          </p>
+
+          <h3 class="text-2xl font-black text-white mt-2">
+            Book Your Lesson
+          </h3>
+
+          <p
+            id="modalTutorName"
+            class="text-sm text-amber-400 mt-2 font-semibold"
+          ></p>
+
+        </div>
 
 
-      <h3 class="text-2xl font-black mb-2">
-        Book Your Lesson
-      </h3>
+        <button
+          onclick="closeModal('bookingModal')"
+          class="w-10 h-10 rounded-xl bg-slate-800 flex items-center justify-center text-slate-400"
+        >
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+
+      </div>
 
 
-      <p
-        id="modalTutorName"
-        class="
-        text-sm
-        text-blue-600
-        font-bold
-        mb-6
-        "
-      ></p>
-
-
+      <!-- IMPORTANT:
+           Replace the action and test key with your production
+           Chapa integration after server-side verification is ready.
+      -->
 
       <form
         action="https://api.chapa.co/v1/hosted/pay"
         method="POST"
         class="space-y-4"
       >
-
-        <!-- Chapa -->
 
         <input
           type="hidden"
@@ -2212,137 +1839,115 @@
           value="ETB"
         />
 
+        <input
+          type="hidden"
+          name="title"
+          value="HomeTutor Lesson Booking"
+        />
 
-        <div class="grid grid-cols-2 gap-3">
+        <input
+          type="hidden"
+          name="description"
+          value="Private tutoring lesson booking"
+        />
+
+
+        <div class="grid grid-cols-2 gap-4">
 
           <input
             name="first_name"
             required
-            placeholder="First Name"
-            class="
-            px-4 py-3
-            bg-slate-50
-            border border-slate-200
-            rounded-xl
-            outline-none
-            focus:border-blue-500
-            "
+            placeholder="Parent first name"
+            class="input-field w-full"
           />
-
 
           <input
             name="last_name"
             required
-            placeholder="Last Name"
-            class="
-            px-4 py-3
-            bg-slate-50
-            border border-slate-200
-            rounded-xl
-            outline-none
-            focus:border-blue-500
-            "
+            placeholder="Last name"
+            class="input-field w-full"
           />
 
         </div>
-
 
 
         <input
           name="email"
           required
           type="email"
-          placeholder="Email Address"
-          class="
-          w-full px-4 py-3
-          bg-slate-50
-          border border-slate-200
-          rounded-xl
-          outline-none
-          focus:border-blue-500
-          "
+          placeholder="Parent email address"
+          class="input-field w-full"
         />
 
+
+        <div class="grid grid-cols-2 gap-4">
+
+          <input
+            name="phone_number"
+            required
+            type="tel"
+            placeholder="Phone number"
+            class="input-field w-full"
+          />
+
+
+          <select
+            name="meta[student_grade]"
+            class="input-field w-full"
+          >
+
+            <option>
+              Grade 11-12
+            </option>
+
+            <option>
+              Grade 9-10
+            </option>
+
+            <option>
+              Grade 6-8
+            </option>
+
+            <option>
+              Grade 1-5
+            </option>
+
+          </select>
+
+        </div>
 
 
         <input
-          name="phone_number"
+          name="meta[house_location]"
           required
-          type="tel"
-          placeholder="Phone Number"
-          class="
-          w-full px-4 py-3
-          bg-slate-50
-          border border-slate-200
-          rounded-xl
-          outline-none
-          focus:border-blue-500
-          "
+          placeholder="Home location / neighborhood"
+          class="input-field w-full"
         />
 
 
+        <div class="grid md:grid-cols-2 gap-4">
 
-        <input
-          name="meta[location]"
-          required
-          placeholder="Home Location"
-          class="
-          w-full px-4 py-3
-          bg-slate-50
-          border border-slate-200
-          rounded-xl
-          outline-none
-          focus:border-blue-500
-          "
-        />
+          <input
+            name="meta[lesson_time]"
+            required
+            type="datetime-local"
+            class="input-field w-full"
+          />
 
 
+          <input
+            name="meta[topics]"
+            required
+            placeholder="Topics to study"
+            class="input-field w-full"
+          />
 
-        <input
-          id="lessonTime"
-          required
-          type="datetime-local"
-          class="
-          w-full px-4 py-3
-          bg-slate-50
-          border border-slate-200
-          rounded-xl
-          outline-none
-          focus:border-blue-500
-          "
-        />
-
-
-
-        <input
-          name="meta[topics]"
-          required
-          placeholder="Topics you need help with"
-          class="
-          w-full px-4 py-3
-          bg-slate-50
-          border border-slate-200
-          rounded-xl
-          outline-none
-          focus:border-blue-500
-          "
-        />
-
+        </div>
 
 
         <button
           type="submit"
-          class="
-          w-full
-          bg-green-500
-          hover:bg-green-600
-          text-white
-          py-4
-          rounded-xl
-          font-black
-          cursor-pointer
-          transition
-          "
+          class="w-full bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-black py-4 rounded-2xl transition"
         >
           Confirm Booking & Pay
           <i class="fa-solid fa-lock ml-2"></i>
@@ -2355,19 +1960,33 @@
   </div>
 
 
-
-  <!-- ===================================================== -->
-  <!-- JAVASCRIPT -->
-  <!-- ===================================================== -->
+  <!-- =========================================================
+       JAVASCRIPT
+  ========================================================== -->
 
   <script>
+
+    /* ---------------------------------------------------------
+       Tailwind Input Styling
+    --------------------------------------------------------- */
+
+    const inputStyle =
+      "bg-slate-950 border border-slate-700 focus:border-amber-500 focus:outline-none rounded-xl px-4 py-3 text-white placeholder:text-slate-600 text-sm transition";
+
+    document.querySelectorAll(".input-field").forEach(input => {
+      input.className += " " + inputStyle;
+    });
+
+
+    /* ---------------------------------------------------------
+       SUPABASE CONFIGURATION
+    --------------------------------------------------------- */
 
     const SUPABASE_URL =
       "https://dgpuehsptskscaaoxkij.supabase.co";
 
     const SUPABASE_KEY =
       "sb_publishable__5FrMgFc1iADdQ-M74DxDQ_Qr7VRlC8";
-
 
     const dbClient =
       window.supabase.createClient(
@@ -2377,64 +1996,85 @@
 
 
     let allTutors = [];
+    let selectedTutor = null;
 
+
+    /* ---------------------------------------------------------
+       UTILITY FUNCTIONS
+    --------------------------------------------------------- */
+
+    function escapeHTML(value = "") {
+      return String(value)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+    }
 
 
     function openModal(id) {
 
-      const modal =
-        document.getElementById(id);
+      const modal = document.getElementById(id);
 
       modal.classList.remove("hidden");
       modal.classList.add("flex");
 
-      document.body.classList.add("modal-open");
+      document.body.style.overflow = "hidden";
 
     }
-
 
 
     function closeModal(id) {
 
-      const modal =
-        document.getElementById(id);
+      const modal = document.getElementById(id);
 
       modal.classList.add("hidden");
       modal.classList.remove("flex");
 
-      document.body.classList.remove("modal-open");
+      document.body.style.overflow = "";
 
     }
 
 
+    function toggleMobileMenu() {
+
+      document
+        .getElementById("mobileMenu")
+        .classList.toggle("hidden");
+
+    }
+
+
+    /* ---------------------------------------------------------
+       LOAD TUTORS
+    --------------------------------------------------------- */
 
     async function loadTutors() {
 
       const grid =
         document.getElementById("tutorGrid");
 
-      grid.innerHTML = `
-        <div class="col-span-full text-center py-20">
-          <i class="fa-solid fa-spinner fa-spin text-blue-400 text-3xl mb-4"></i>
-          <p class="text-slate-400">Finding amazing tutors...</p>
-        </div>
-      `;
-
-
-      const { data, error } =
+      let response =
         await dbClient
           .from("tutors")
-          .select("*");
+          .select("*")
+          .order("id", { ascending: false });
 
 
-      if (error) {
+      if (response.error) {
 
-        console.error(error);
+        console.error(response.error);
 
         grid.innerHTML = `
-          <div class="col-span-full text-center py-20 text-slate-400">
-            <i class="fa-solid fa-triangle-exclamation text-red-400 text-3xl mb-4"></i>
-            <p>Unable to load tutors.</p>
+          <div class="col-span-full text-center py-16 bg-slate-950 border border-dashed border-slate-700 rounded-3xl">
+            <i class="fa-solid fa-triangle-exclamation text-3xl text-rose-400 mb-4"></i>
+            <p class="font-bold text-white">
+              Unable to load tutors.
+            </p>
+            <p class="text-sm text-slate-500 mt-2">
+              Please check your Supabase connection and table permissions.
+            </p>
           </div>
         `;
 
@@ -2443,13 +2083,25 @@
       }
 
 
-      allTutors = data || [];
+      const tutors =
+        response.data || [];
+
+
+      allTutors = tutors;
+
+      document.getElementById(
+        "statsTutorCount"
+      ).innerText = tutors.length;
+
 
       renderTutors(allTutors);
 
     }
 
 
+    /* ---------------------------------------------------------
+       RENDER TUTORS
+    --------------------------------------------------------- */
 
     function renderTutors(tutors) {
 
@@ -2457,50 +2109,35 @@
         document.getElementById("tutorGrid");
 
 
-      const count =
-        document.getElementById("tutorCount");
-
-
-      count.innerText =
-        `${tutors.length} tutor${tutors.length === 1 ? "" : "s"} available`;
+      document.getElementById(
+        "tutorCount"
+      ).innerText =
+        `${tutors.length} Tutor${tutors.length !== 1 ? "s" : ""} Available`;
 
 
       if (!tutors.length) {
 
         grid.innerHTML = `
-          <div
-            class="
-            col-span-full
-            bg-white/5
-            border border-white/10
-            rounded-3xl
-            text-center
-            py-20
-            "
-          >
+          <div class="col-span-full text-center py-16 bg-slate-950 border border-dashed border-slate-700 rounded-3xl">
 
-            <div
-              class="
-              w-16 h-16
-              bg-white/10
-              rounded-2xl
-              mx-auto
-              flex items-center justify-center
-              text-blue-400
-              text-2xl
-              mb-5
-              "
-            >
-              <i class="fa-solid fa-chalkboard-user"></i>
+            <div class="w-16 h-16 rounded-2xl bg-amber-500/10 text-amber-400 flex items-center justify-center text-2xl mx-auto">
+              <i class="fa-solid fa-graduation-cap"></i>
             </div>
 
-            <h3 class="text-white font-black text-xl">
-              No tutors found
+            <h3 class="font-black text-white text-xl mt-5">
+              No Tutors Found
             </h3>
 
-            <p class="text-slate-400 mt-2">
-              Try searching for another subject.
+            <p class="text-slate-500 text-sm mt-2">
+              Try another subject or register as a tutor.
             </p>
+
+            <button
+              onclick="openModal('tutorModal')"
+              class="mt-5 text-amber-400 font-bold text-sm"
+            >
+              + Become a Tutor
+            </button>
 
           </div>
         `;
@@ -2513,214 +2150,127 @@
       grid.innerHTML = "";
 
 
-      tutors.forEach((tutor) => {
+      tutors.forEach(tutor => {
+
+
+        const name =
+          escapeHTML(
+            tutor.full_name || "HomeTutor"
+          );
+
+
+        const subjects =
+          escapeHTML(
+            tutor.subject_title || "Academic Tutor"
+          );
+
+
+        const bio =
+          escapeHTML(
+            tutor.bio || "Qualified academic tutor."
+          );
+
+
+        const grade =
+          escapeHTML(
+            tutor.grade_level || "General"
+          );
+
+
+        const rate =
+          Number(tutor.hourly_rate || 0);
+
 
         const avatar =
           tutor.photo_url ||
           `https://ui-avatars.com/api/?name=${encodeURIComponent(
             tutor.full_name || "Tutor"
-          )}&background=2563eb&color=ffffff&bold=true`;
+          )}&background=0f172a&color=f59e0b&bold=true&size=256`;
+
+
+        const safeAvatar =
+          escapeHTML(avatar);
+
+
+        const encodedName =
+          encodeURIComponent(
+            tutor.full_name || ""
+          );
 
 
         grid.innerHTML += `
 
           <article
-            class="
-            tutor-card
-            bg-white
-            rounded-[28px]
-            overflow-hidden
-            shadow-xl
-            "
+            class="group bg-slate-950 border border-slate-800 rounded-3xl p-6 hover:border-amber-500/50 transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl"
           >
 
-
-            <div
-              class="
-              h-24
-              bg-gradient-to-r
-              from-blue-600
-              to-violet-600
-              relative
-              "
-            ></div>
-
-
-
-            <div
-              class="
-              p-6
-              pt-0
-              relative
-              "
-            >
-
+            <div class="flex items-start gap-4">
 
               <img
-                src="${avatar}"
-                class="
-                w-24 h-24
-                rounded-3xl
-                object-cover
-                border-4 border-white
-                shadow-lg
-                -mt-12
-                bg-white
-                "
-                alt="${tutor.full_name}"
+                src="${safeAvatar}"
+                alt="${name}"
+                class="w-16 h-16 rounded-2xl object-cover border border-amber-500/30"
+                onerror="this.src='https://ui-avatars.com/api/?name=${encodedName}&background=0f172a&color=f59e0b&bold=true'"
               />
 
 
-              <div
-                class="
-                absolute
-                right-6
-                top-6
-                px-3 py-1.5
-                bg-green-100
-                text-green-700
-                rounded-full
-                text-[10px]
-                font-black
-                uppercase
-                "
-              >
-                Available
-              </div>
+              <div class="min-w-0 flex-1">
+
+                <h3 class="font-black text-white text-lg truncate">
+                  ${name}
+                </h3>
 
 
-
-              <h3
-                class="
-                mt-4
-                text-xl
-                font-black
-                text-slate-900
-                "
-              >
-                ${tutor.full_name}
-              </h3>
+                <p class="text-amber-400 text-xs font-bold mt-1">
+                  <i class="fa-solid fa-book mr-1"></i>
+                  ${subjects}
+                </p>
 
 
-              <p
-                class="
-                text-blue-600
-                text-sm
-                font-bold
-                mt-1
-                "
-              >
-                <i class="fa-solid fa-book-open mr-1"></i>
-                ${tutor.subject_title}
-              </p>
-
-
-
-              <div
-                class="
-                mt-4
-                inline-flex
-                items-center
-                gap-2
-                px-3 py-2
-                bg-slate-100
-                rounded-xl
-                text-xs
-                text-slate-500
-                "
-              >
-                <i class="fa-solid fa-graduation-cap"></i>
-                ${tutor.grade_level || "General"}
-              </div>
-
-
-
-              <p
-                class="
-                mt-5
-                text-sm
-                leading-relaxed
-                text-slate-500
-                line-clamp-3
-                "
-              >
-                ${tutor.bio || "Experienced academic tutor."}
-              </p>
-
-
-
-              <div
-                class="
-                mt-6
-                pt-5
-                border-t
-                border-slate-100
-                flex
-                items-center
-                justify-between
-                "
-              >
-
-                <div>
-
-                  <div
-                    class="
-                    text-xs
-                    text-slate-400
-                    mb-1
-                    "
-                  >
-                    Starting from
-                  </div>
-
-                  <div
-                    class="
-                    text-xl
-                    font-black
-                    text-slate-900
-                    "
-                  >
-                    ${tutor.hourly_rate}
-
-                    <span
-                      class="
-                      text-xs
-                      text-slate-400
-                      "
-                    >
-                      ETB/hr
-                    </span>
-
-                  </div>
-
-                </div>
-
-
-
-                <button
-                  onclick='startBooking(
-                    ${JSON.stringify(tutor.full_name)},
-                    ${Number(tutor.hourly_rate)}
-                  )'
-                  class="
-                  px-5 py-3
-                  bg-slate-900
-                  hover:bg-blue-600
-                  text-white
-                  rounded-xl
-                  text-sm
-                  font-bold
-                  cursor-pointer
-                  transition
-                  "
+                <span
+                  class="inline-flex mt-3 text-[10px] font-bold uppercase tracking-wide bg-slate-900 border border-slate-700 text-slate-400 px-2.5 py-1 rounded-lg"
                 >
-                  Book Now
-                  <i class="fa-solid fa-arrow-right ml-1"></i>
-                </button>
-
+                  ${grade}
+                </span>
 
               </div>
 
+            </div>
+
+
+            <p
+              class="text-sm text-slate-400 leading-relaxed mt-5 line-clamp-3 min-h-[60px]"
+            >
+              ${bio}
+            </p>
+
+
+            <div
+              class="border-t border-slate-800 mt-6 pt-5 flex items-center justify-between gap-4"
+            >
+
+              <div>
+
+                <p class="text-xs text-slate-500">
+                  Hourly Rate
+                </p>
+
+                <p class="text-xl font-black text-white mt-1">
+                  ${rate}
+                  <span class="text-xs text-slate-500">
+                    ETB/hr
+                  </span>
+                </p>
+
+              </div>
+
+
+              <button
+                onclick="startBooking('${encodedName}', ${rate})"
+                class="bg-amber-500 hover:bg-amber-400 text-slate-950 px-5 py-3 rounded-xl text-sm font-black transition whitespace-nowrap"
+              >
+                Book Lesson
+              </button>
 
             </div>
 
@@ -2733,6 +2283,9 @@
     }
 
 
+    /* ---------------------------------------------------------
+       FILTER TUTORS
+    --------------------------------------------------------- */
 
     function filterTutors() {
 
@@ -2751,28 +2304,33 @@
 
 
       const filtered =
-        allTutors.filter((tutor) => {
+        allTutors.filter(tutor => {
 
           const searchable =
-            `${tutor.full_name || ""}
-             ${tutor.subject_title || ""}
-             ${tutor.grade_level || ""}
-             ${tutor.bio || ""}`
-            .toLowerCase();
+            [
+              tutor.full_name,
+              tutor.subject_title,
+              tutor.bio,
+              tutor.grade_level
+            ]
+              .join(" ")
+              .toLowerCase();
 
 
-          const searchMatch =
+          const matchesSearch =
             !query ||
             searchable.includes(query);
 
 
-          const streamMatch =
+          const matchesStream =
             stream === "ALL" ||
-            (tutor.bio || "")
-              .includes(stream);
+            (
+              tutor.bio &&
+              tutor.bio.includes(stream)
+            );
 
 
-          return searchMatch && streamMatch;
+          return matchesSearch && matchesStream;
 
         });
 
@@ -2782,36 +2340,38 @@
     }
 
 
-
-    function quickSearch(subject) {
-
-      document
-        .getElementById("searchInput")
-        .value = subject;
-
-
-      filterTutors();
-
-
-      document
-        .getElementById("tutors")
-        .scrollIntoView({
-          behavior: "smooth"
-        });
-
-    }
-
-
+    /* ---------------------------------------------------------
+       REGISTER TUTOR
+    --------------------------------------------------------- */
 
     async function registerTutor(event) {
 
       event.preventDefault();
 
 
-      const stream =
+      const submitButton =
+        document.getElementById(
+          "tutorSubmitBtn"
+        );
+
+
+      submitButton.disabled = true;
+      submitButton.innerText =
+        "Submitting Profile...";
+
+
+      const fullName =
         document
-          .getElementById("tStream")
-          .value;
+          .getElementById("tName")
+          .value
+          .trim();
+
+
+      const phone =
+        document
+          .getElementById("tPhone")
+          .value
+          .trim();
 
 
       const degree =
@@ -2820,43 +2380,72 @@
           .value;
 
 
+      const stream =
+        document
+          .getElementById("tStream")
+          .value;
+
+
+      const rate =
+        Number(
+          document
+            .getElementById("tRate")
+            .value
+        );
+
+
+      const subjects =
+        document
+          .getElementById("tSubject")
+          .value
+          .trim();
+
+
+      const grade =
+        document
+          .getElementById("tGrade")
+          .value;
+
+
+      const photo =
+        document
+          .getElementById("tPhoto")
+          .value
+          .trim();
+
+
       const bio =
-        `[${stream}] [${degree}] ` +
         document
           .getElementById("tBio")
-          .value;
+          .value
+          .trim();
+
+
+      /*
+        Compatibility with your current table.
+
+        The important metadata is kept in the bio text
+        so this version can work without immediately
+        changing your Supabase table.
+      */
+
+      const formattedBio =
+        `[${stream}] [${degree}] ${bio}`;
 
 
       const newTutor = {
 
-        full_name:
-          document
-            .getElementById("tName")
-            .value,
+        full_name: fullName,
 
-        hourly_rate:
-          Number(
-            document
-              .getElementById("tRate")
-              .value
-          ),
+        hourly_rate: rate,
 
-        subject_title:
-          document
-            .getElementById("tSubject")
-            .value,
+        subject_title: subjects,
 
-        grade_level:
-          document
-            .getElementById("tGrade")
-            .value,
+        grade_level: grade,
 
-        photo_url:
-          document
-            .getElementById("tPhoto")
-            .value || null,
+        photo_url: photo || null,
 
-        bio: bio
+        bio: formattedBio
 
       };
 
@@ -2869,10 +2458,18 @@
 
       if (error) {
 
+        console.error(error);
+
         alert(
-          "Could not create tutor profile: " +
+          "Unable to submit your profile: " +
           error.message
         );
+
+
+        submitButton.disabled = false;
+
+        submitButton.innerText =
+          "Submit Tutor Profile";
 
         return;
 
@@ -2880,7 +2477,7 @@
 
 
       alert(
-        "Congratulations! Your tutor profile has been created."
+        "Your tutor profile has been submitted successfully!"
       );
 
 
@@ -2890,68 +2487,118 @@
       closeModal("tutorModal");
 
 
+      submitButton.disabled = false;
+
+      submitButton.innerText =
+        "Submit Tutor Profile";
+
+
       loadTutors();
 
     }
 
 
+    /* ---------------------------------------------------------
+       BOOKING
+    --------------------------------------------------------- */
 
-    function startBooking(name, rate) {
+    function startBooking(
+      encodedName,
+      rate
+    ) {
 
-      const serviceFee = 100;
+      const name =
+        decodeURIComponent(
+          encodedName
+        );
+
+
+      selectedTutor = {
+        name,
+        rate
+      };
+
+
+      const platformFee = 100;
 
       const total =
-        Number(rate) + serviceFee;
+        Number(rate) +
+        platformFee;
 
 
-      document
-        .getElementById("modalTutorName")
-        .innerText =
-        `${name} • Lesson ${rate} ETB + service fee ${serviceFee} ETB`;
+      document.getElementById(
+        "modalTutorName"
+      ).innerText =
+        `Tutor: ${name} • ${rate} ETB/hr + ${platformFee} ETB platform fee = ${total} ETB`;
 
 
-      document
-        .getElementById("payAmount")
-        .value = total;
+      document.getElementById(
+        "payAmount"
+      ).value =
+        total;
 
 
-      document
-        .getElementById("tx_ref")
-        .value =
-        "HT-" + Date.now();
+      document.getElementById(
+        "tx_ref"
+      ).value =
+        `HT-${Date.now()}-${Math.floor(Math.random() * 1000)}`;
 
 
-      openModal("bookingModal");
+      openModal(
+        "bookingModal"
+      );
 
     }
 
 
+    /* ---------------------------------------------------------
+       CLOSE MODAL ON BACKGROUND CLICK
+    --------------------------------------------------------- */
 
-    window.addEventListener(
-      "click",
-      function(event) {
+    ["tutorModal", "bookingModal"]
+      .forEach(id => {
 
-        if (event.target.id === "tutorModal") {
-          closeModal("tutorModal");
-        }
-
-        if (event.target.id === "bookingModal") {
-          closeModal("bookingModal");
-        }
-
-      }
-    );
+        const modal =
+          document.getElementById(id);
 
 
+        modal.addEventListener(
+          "click",
+          event => {
+
+            if (
+              event.target === modal
+            ) {
+
+              closeModal(id);
+
+            }
+
+          }
+        );
+
+      });
+
+
+    /* ---------------------------------------------------------
+       CLOSE MODAL WITH ESC
+    --------------------------------------------------------- */
 
     document.addEventListener(
       "keydown",
-      function(event) {
+      event => {
 
-        if (event.key === "Escape") {
+        if (
+          event.key === "Escape"
+        ) {
 
-          closeModal("tutorModal");
-          closeModal("bookingModal");
+          closeModal(
+            "tutorModal"
+          );
+
+          closeModal(
+            "bookingModal"
+          );
 
         }
 
@@ -2959,11 +2606,23 @@
     );
 
 
+    /* ---------------------------------------------------------
+       FOOTER YEAR
+    --------------------------------------------------------- */
+
+    document.getElementById(
+      "year"
+    ).innerText =
+      new Date().getFullYear();
+
+
+    /* ---------------------------------------------------------
+       INITIAL LOAD
+    --------------------------------------------------------- */
 
     loadTutors();
 
   </script>
-
 
 </body>
 </html>
