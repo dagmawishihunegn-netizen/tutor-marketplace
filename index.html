@@ -12,7 +12,7 @@
 
   <!-- Authentic Classroom Desk Photo Background with Dark Overlay -->
   <div class="fixed inset-0 pointer-events-none z-0">
-    <div class="absolute inset-0 bg-[url('image.jpg')] bg-cover bg-center bg-no-repeat opacity-25"></div>
+    <div class="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-25" style="background-image: url('image.jpg');"></div>
     <div class="absolute inset-0 bg-gradient-to-b from-slate-950/90 via-slate-950/85 to-slate-950/95"></div>
   </div>
 
@@ -246,7 +246,6 @@
         const defaultAvatar = `https://ui-avatars.com/api/?name=${encodeURIComponent(t.full_name)}&background=0d172a&color=f59e0b&bold=true`;
         const avatarSrc = t.photo_url || defaultAvatar;
 
-        // Extract tutor phone from bio if saved
         let phoneDisplay = '';
         if (t.bio && t.bio.includes('[Phone:')) {
           const match = t.bio.match(/\[Phone:\s*([^\]]+)\]/);
