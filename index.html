@@ -6,330 +6,168 @@
   <title>HomeTutor - Verified In-Home Tutors</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 <body class="bg-slate-50 text-slate-900 font-sans antialiased">
 
-  <!-- Header / Navigation -->
+  <!-- Header -->
   <header class="border-b bg-white sticky top-0 z-50 shadow-sm">
     <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
       <div class="flex items-center gap-2 text-2xl font-black text-indigo-600 tracking-tight">
         <i class="fa-solid fa-graduation-cap"></i>
         <span>HomeTutor</span>
       </div>
-      <nav class="hidden md:flex items-center gap-8 font-medium text-slate-600">
-        <a href="#tutors" class="hover:text-indigo-600 transition">Find Tutors</a>
-        <a href="#how-it-works" class="hover:text-indigo-600 transition">How It Works</a>
-        <button onclick="openModal('tutorModal')" class="hover:text-indigo-600 transition font-medium">Become a Tutor</button>
-      </nav>
       <div class="flex items-center gap-3">
-        <button onclick="openModal('authModal')" class="text-slate-700 hover:text-indigo-600 px-3 py-2 font-semibold transition">Log In</button>
-        <button onclick="openModal('authModal')" class="bg-indigo-600 text-white px-5 py-2.5 rounded-xl font-semibold hover:bg-indigo-700 shadow-md transition">Sign Up Free</button>
+        <button onclick="openModal('tutorModal')" class="bg-indigo-600 text-white px-5 py-2.5 rounded-xl font-semibold hover:bg-indigo-700 shadow-md transition">+ Apply as a Tutor</button>
       </div>
     </div>
   </header>
 
   <!-- Hero Section -->
-  <section class="max-w-7xl mx-auto px-6 py-20 text-center relative">
-    <div class="inline-flex items-center gap-2 bg-indigo-50 border border-indigo-200 text-indigo-700 px-4 py-1.5 rounded-full text-sm font-semibold mb-6">
-      <i class="fa-solid fa-shield-halved text-indigo-600"></i> 100% Background-Checked Tutors
-    </div>
-    <h1 class="text-4xl md:text-6xl font-black tracking-tight text-slate-900 max-w-4xl mx-auto leading-tight mb-6">
-      Expert In-Home Tutors tailored for your child’s success.
-    </h1>
-    <p class="text-lg md:text-xl text-slate-600 max-w-2xl mx-auto mb-10">
-      Boost grades and confidence with verified, 1-on-1 private educators right in the comfort of your home.
-    </p>
+  <section class="max-w-7xl mx-auto px-6 py-16 text-center">
+    <h1 class="text-4xl md:text-5xl font-black text-slate-900 mb-4">Find Expert In-Home Tutors in Ethiopia</h1>
+    <p class="text-slate-600 max-w-xl mx-auto mb-8">Pay securely via Telebirr or CBE Birr. Verified educators with B.Sc, M.Sc, and PhD qualifications.</p>
+  </section>
 
-    <!-- Search Filter Bar -->
-    <div class="bg-white p-4 rounded-2xl shadow-xl border border-slate-200 max-w-4xl mx-auto grid md:grid-cols-3 gap-3">
-      <div class="relative">
-        <i class="fa-solid fa-book-open absolute left-4 top-4 text-slate-400"></i>
-        <input id="subjectSearch" type="text" placeholder="Subject (e.g., Math, Physics)" class="w-full pl-11 pr-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500 font-medium" />
-      </div>
-      <div class="relative">
-        <i class="fa-solid fa-layer-group absolute left-4 top-4 text-slate-400"></i>
-        <select id="gradeSelect" class="w-full pl-11 pr-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500 font-medium text-slate-600">
-          <option value="">All Grade Levels</option>
-          <option value="High School">High School (9-12)</option>
-          <option value="Middle School">Middle School (6-8)</option>
-          <option value="Elementary">Elementary (K-5)</option>
-        </select>
-      </div>
-      <button onclick="filterTutors()" class="bg-indigo-600 text-white py-3 px-6 rounded-xl font-bold flex items-center justify-center gap-2 hover:bg-indigo-700 shadow-lg transition">
-        <i class="fa-solid fa-magnifying-glass"></i> Search Tutors
-      </button>
+  <!-- Dynamic Tutors Grid -->
+  <section class="py-10 max-w-7xl mx-auto px-6">
+    <h2 class="text-2xl font-bold mb-6">Available Educators</h2>
+    <div id="tutorGrid" class="grid md:grid-cols-3 gap-6">
+      <p class="text-slate-500">Loading tutors from database...</p>
     </div>
   </section>
 
-  <!-- How It Works Section -->
-  <section id="how-it-works" class="bg-white py-20 border-y border-slate-200">
-    <div class="max-w-7xl mx-auto px-6">
-      <div class="text-center max-w-2xl mx-auto mb-16">
-        <h2 class="text-3xl font-extrabold text-slate-900 mb-3">How HomeTutor Works</h2>
-        <p class="text-slate-600">Simple, secure, and personalized learning in 4 easy steps.</p>
-      </div>
-      <div class="grid md:grid-cols-4 gap-8">
-        <div class="bg-slate-50 p-6 rounded-2xl border border-slate-100 text-center">
-          <div class="w-14 h-14 bg-indigo-100 text-indigo-600 rounded-2xl flex items-center justify-center mx-auto mb-4 text-xl font-bold">1</div>
-          <h3 class="font-bold text-lg mb-2">Search & Match</h3>
-          <p class="text-slate-600 text-sm">Filter tutors by subject specialization, location, and rate.</p>
-        </div>
-        <div class="bg-slate-50 p-6 rounded-2xl border border-slate-100 text-center">
-          <div class="w-14 h-14 bg-indigo-100 text-indigo-600 rounded-2xl flex items-center justify-center mx-auto mb-4 text-xl font-bold">2</div>
-          <h3 class="font-bold text-lg mb-2">Check Credentials</h3>
-          <p class="text-slate-600 text-sm">View verified qualifications, background checks, and reviews.</p>
-        </div>
-        <div class="bg-slate-50 p-6 rounded-2xl border border-slate-100 text-center">
-          <div class="w-14 h-14 bg-indigo-100 text-indigo-600 rounded-2xl flex items-center justify-center mx-auto mb-4 text-xl font-bold">3</div>
-          <h3 class="font-bold text-lg mb-2">Schedule Session</h3>
-          <p class="text-slate-600 text-sm">Select an available time slot for your tutor to visit your home.</p>
-        </div>
-        <div class="bg-slate-50 p-6 rounded-2xl border border-slate-100 text-center">
-          <div class="w-14 h-14 bg-indigo-100 text-indigo-600 rounded-2xl flex items-center justify-center mx-auto mb-4 text-xl font-bold">4</div>
-          <h3 class="font-bold text-lg mb-2">Learn & Grow</h3>
-          <p class="text-slate-600 text-sm">Get dedicated 1-on-1 guidance with guaranteed progress.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Featured Tutors Section -->
-  <section id="tutors" class="py-20 max-w-7xl mx-auto px-6">
-    <div class="flex flex-col md:flex-row md:items-end justify-between mb-12">
-      <div>
-        <h2 class="text-3xl font-extrabold text-slate-900 mb-2">Top Rated Local Tutors</h2>
-        <p class="text-slate-600">Hand-selected qualified educators available for in-home sessions.</p>
-      </div>
-      <button onclick="openModal('tutorModal')" class="mt-4 md:mt-0 bg-slate-900 text-white px-5 py-2.5 rounded-xl font-semibold hover:bg-slate-800 transition">
-        + Apply as a Tutor
-      </button>
-    </div>
-
-    <!-- Tutor Cards Grid -->
-    <div id="tutorGrid" class="grid md:grid-cols-3 gap-8">
-      <!-- Card 1 -->
-      <div class="tutor-card bg-white rounded-2xl shadow-md border border-slate-200 overflow-hidden hover:shadow-xl transition" data-subjects="calculus math algebra" data-grade="High School">
-        <div class="p-6">
-          <div class="flex items-center gap-4 mb-4">
-            <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=200" alt="Sarah" class="w-16 h-16 rounded-full object-cover border-2 border-indigo-600">
-            <div>
-              <h3 class="font-bold text-lg flex items-center gap-1">Sarah Jenkins <i class="fa-solid fa-circle-check text-indigo-600 text-sm"></i></h3>
-              <p class="text-slate-500 text-sm">Mathematics Specialist</p>
-              <div class="flex items-center gap-1 text-amber-500 text-sm mt-1">
-                <i class="fa-solid fa-star"></i><span class="font-bold text-slate-800">4.9</span> <span class="text-slate-400">(48 reviews)</span>
-              </div>
-            </div>
-          </div>
-          <p class="text-slate-600 text-sm mb-4">M.Sc in Mathematics with 6+ years experience helping High School & AP students master Calculus and Algebra.</p>
-          <div class="flex flex-wrap gap-2 mb-6">
-            <span class="bg-slate-100 text-slate-700 text-xs px-2.5 py-1 rounded-md font-semibold">Calculus</span>
-            <span class="bg-slate-100 text-slate-700 text-xs px-2.5 py-1 rounded-md font-semibold">SAT Math</span>
-          </div>
-          <div class="flex items-center justify-between border-t pt-4">
-            <div><span class="text-xs text-slate-400 block font-medium">HOURLY RATE</span><span class="text-xl font-black text-slate-900">$45<span class="text-xs text-slate-500 font-normal">/hr</span></span></div>
-            <button onclick="bookTutor('Sarah Jenkins', 45)" class="bg-indigo-600 text-white px-4 py-2 rounded-xl text-sm font-semibold hover:bg-indigo-700 transition">Book & Pay</button>
-          </div>
-        </div>
-      </div>
-
-      <!-- Card 2 -->
-      <div class="tutor-card bg-white rounded-2xl shadow-md border border-slate-200 overflow-hidden hover:shadow-xl transition" data-subjects="physics chemistry science" data-grade="High School">
-        <div class="p-6">
-          <div class="flex items-center gap-4 mb-4">
-            <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&q=80&w=200" alt="David" class="w-16 h-16 rounded-full object-cover border-2 border-indigo-600">
-            <div>
-              <h3 class="font-bold text-lg flex items-center gap-1">David Chen <i class="fa-solid fa-circle-check text-indigo-600 text-sm"></i></h3>
-              <p class="text-slate-500 text-sm">Physics & Chemistry Tutor</p>
-              <div class="flex items-center gap-1 text-amber-500 text-sm mt-1">
-                <i class="fa-solid fa-star"></i><span class="font-bold text-slate-800">5.0</span> <span class="text-slate-400">(62 reviews)</span>
-              </div>
-            </div>
-          </div>
-          <p class="text-slate-600 text-sm mb-4">Former High School Science teacher dedicated to breaking down complex Physics & Chemistry concepts.</p>
-          <div class="flex flex-wrap gap-2 mb-6">
-            <span class="bg-slate-100 text-slate-700 text-xs px-2.5 py-1 rounded-md font-semibold">Physics</span>
-            <span class="bg-slate-100 text-slate-700 text-xs px-2.5 py-1 rounded-md font-semibold">Chemistry</span>
-          </div>
-          <div class="flex items-center justify-between border-t pt-4">
-            <div><span class="text-xs text-slate-400 block font-medium">HOURLY RATE</span><span class="text-xl font-black text-slate-900">$50<span class="text-xs text-slate-500 font-normal">/hr</span></span></div>
-            <button onclick="bookTutor('David Chen', 50)" class="bg-indigo-600 text-white px-4 py-2 rounded-xl text-sm font-semibold hover:bg-indigo-700 transition">Book & Pay</button>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Parent Booking & Payment Modal -->
+  <!-- Booking Modal (Parents) -->
   <div id="bookingModal" class="hidden fixed inset-0 bg-slate-900/50 backdrop-blur-sm z-50 flex items-center justify-center p-4">
     <div class="bg-white rounded-2xl max-w-md w-full p-6 shadow-2xl relative">
       <button onclick="closeModal('bookingModal')" class="absolute right-4 top-4 text-slate-400 hover:text-slate-600"><i class="fa-solid fa-xmark text-xl"></i></button>
-      <h3 class="text-xl font-bold mb-1">Checkout & Booking</h3>
+      <h3 class="text-xl font-bold mb-1">Book Lesson (Chapa Payment)</h3>
       <p id="modalTutorName" class="text-sm text-indigo-600 font-semibold mb-4"></p>
 
-      <!-- Price Breakdown -->
-      <div class="bg-slate-50 p-4 rounded-xl mb-4 border text-sm space-y-1">
-        <div class="flex justify-between text-slate-600"><span>1 Hour Tutoring Session:</span><span id="tutorRateDisplay">$0.00</span></div>
-        <div class="flex justify-between text-slate-600"><span>Service & Protection Fee:</span><span>$5.00</span></div>
-        <div class="flex justify-between font-bold text-slate-900 border-t pt-2 mt-2"><span>Total Amount Due:</span><span id="totalRateDisplay">$0.00</span></div>
-      </div>
-
-      <form onsubmit="handleBookingSubmit(event)" class="space-y-3">
+      <form onsubmit="payWithChapa(event)" class="space-y-3">
         <div>
-          <label class="block text-xs font-bold text-slate-700 mb-1">HOME ADDRESS</label>
-          <input required type="text" placeholder="123 Main St, City" class="w-full px-4 py-2.5 border rounded-xl bg-slate-50 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500">
+          <label class="block text-xs font-bold text-slate-700 mb-1">PARENT EMAIL</label>
+          <input id="parentEmail" required type="email" placeholder="parent@gmail.com" class="w-full px-4 py-2.5 border rounded-xl bg-slate-50 text-sm">
         </div>
         <div>
-          <label class="block text-xs font-bold text-slate-700 mb-1">DATE & TIME</label>
-          <input required type="datetime-local" class="w-full px-4 py-2.5 border rounded-xl bg-slate-50 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500">
+          <label class="block text-xs font-bold text-slate-700 mb-1">PHONE NUMBER (Telebirr / CBE)</label>
+          <input id="parentPhone" required type="tel" placeholder="0912345678" class="w-full px-4 py-2.5 border rounded-xl bg-slate-50 text-sm">
         </div>
-        <div>
-          <label class="block text-xs font-bold text-slate-700 mb-1">CARD NUMBER</label>
-          <input required type="text" placeholder="4242 •••• •••• 4242" class="w-full px-4 py-2.5 border rounded-xl bg-slate-50 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500">
-        </div>
-        <div class="grid grid-cols-2 gap-2">
-          <input required type="text" placeholder="MM/YY" class="w-full px-4 py-2.5 border rounded-xl bg-slate-50 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500">
-          <input required type="text" placeholder="CVC" class="w-full px-4 py-2.5 border rounded-xl bg-slate-50 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500">
-        </div>
-        <button type="submit" class="w-full bg-indigo-600 text-white font-bold py-3 rounded-xl hover:bg-indigo-700 transition mt-2">
-          <i class="fa-solid fa-lock"></i> Pay & Confirm Lesson
+        <button type="submit" class="w-full bg-emerald-600 text-white font-bold py-3 rounded-xl hover:bg-emerald-700 transition mt-2">
+          Pay with Telebirr / CBE Birr
         </button>
       </form>
     </div>
   </div>
 
-  <!-- Teacher Onboarding Modal -->
+  <!-- Tutor Onboarding Modal (Teachers with Degree Level) -->
   <div id="tutorModal" class="hidden fixed inset-0 bg-slate-900/50 backdrop-blur-sm z-50 flex items-center justify-center p-4">
     <div class="bg-white rounded-2xl max-w-lg w-full p-6 shadow-2xl relative">
       <button onclick="closeModal('tutorModal')" class="absolute right-4 top-4 text-slate-400 hover:text-slate-600"><i class="fa-solid fa-xmark text-xl"></i></button>
-      <h3 class="text-2xl font-black mb-1">Become a Verified Tutor</h3>
-      <p class="text-sm text-slate-500 mb-6">Create your public profile to start receiving student bookings.</p>
-
-      <form onsubmit="handleTeacherRegistration(event)" class="space-y-4">
-        <div class="grid grid-cols-2 gap-3">
-          <div>
-            <label class="block text-xs font-bold text-slate-700 mb-1">FULL NAME</label>
-            <input id="newTeacherName" required type="text" placeholder="e.g. Alex Rivera" class="w-full px-4 py-2.5 border rounded-xl bg-slate-50 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500">
-          </div>
-          <div>
-            <label class="block text-xs font-bold text-slate-700 mb-1">HOURLY RATE ($)</label>
-            <input id="newTeacherRate" required type="number" placeholder="40" class="w-full px-4 py-2.5 border rounded-xl bg-slate-50 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500">
-          </div>
-        </div>
-        <div>
-          <label class="block text-xs font-bold text-slate-700 mb-1">SPECIALIZATION / TITLE</label>
-          <input id="newTeacherTitle" required type="text" placeholder="e.g. High School Physics & Calculus Teacher" class="w-full px-4 py-2.5 border rounded-xl bg-slate-50 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500">
-        </div>
-        <div>
-          <label class="block text-xs font-bold text-slate-700 mb-1">GRADE LEVEL</label>
-          <select id="newTeacherGrade" class="w-full px-4 py-2.5 border rounded-xl bg-slate-50 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500">
-            <option value="High School">High School</option>
-            <option value="Middle School">Middle School</option>
-            <option value="Elementary">Elementary</option>
+      <h3 class="text-2xl font-black mb-4">Register as a Tutor</h3>
+      
+      <form onsubmit="registerTutor(event)" class="space-y-3">
+        <input id="tName" required type="text" placeholder="Full Name" class="w-full px-4 py-2.5 border rounded-xl bg-slate-50 text-sm">
+        
+        <div class="grid grid-cols-2 gap-2">
+          <input id="tRate" required type="number" placeholder="Hourly Rate (ETB)" class="w-full px-4 py-2.5 border rounded-xl bg-slate-50 text-sm">
+          <select id="tDegree" class="w-full px-4 py-2.5 border rounded-xl bg-slate-50 text-sm font-semibold">
+            <option value="B.Sc / B.A. Degree">B.Sc / B.A. Degree</option>
+            <option value="M.Sc / M.A. Master's">M.Sc / M.A. Master's</option>
+            <option value="Ph.D. Doctorate">Ph.D. Doctorate</option>
+            <option value="University Student">University Student</option>
           </select>
         </div>
-        <div>
-          <label class="block text-xs font-bold text-slate-700 mb-1">SHORT BIO</label>
-          <textarea id="newTeacherBio" required rows="3" placeholder="Describe your teaching experience and degree..." class="w-full px-4 py-2.5 border rounded-xl bg-slate-50 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"></textarea>
-        </div>
-        <button type="submit" class="w-full bg-indigo-600 text-white font-bold py-3 rounded-xl hover:bg-indigo-700 transition">Publish Profile Live</button>
+
+        <input id="tSubject" required type="text" placeholder="Subject (e.g. Physics, Math, English)" class="w-full px-4 py-2.5 border rounded-xl bg-slate-50 text-sm">
+        
+        <select id="tGrade" class="w-full px-4 py-2.5 border rounded-xl bg-slate-50 text-sm">
+          <option value="High School (9-12)">High School (9-12)</option>
+          <option value="Middle School (6-8)">Middle School (6-8)</option>
+          <option value="Elementary (K-5)">Elementary (K-5)</option>
+        </select>
+
+        <textarea id="tBio" required placeholder="Describe your degree, university background, and teaching experience..." class="w-full px-4 py-2.5 border rounded-xl bg-slate-50 text-sm"></textarea>
+        
+        <button type="submit" class="w-full bg-indigo-600 text-white font-bold py-3 rounded-xl hover:bg-indigo-700 transition">Publish Live Profile</button>
       </form>
     </div>
   </div>
 
-  <!-- Auth Modal -->
-  <div id="authModal" class="hidden fixed inset-0 bg-slate-900/50 backdrop-blur-sm z-50 flex items-center justify-center p-4">
-    <div class="bg-white rounded-2xl max-w-md w-full p-6 shadow-2xl relative text-center">
-      <button onclick="closeModal('authModal')" class="absolute right-4 top-4 text-slate-400 hover:text-slate-600"><i class="fa-solid fa-xmark text-xl"></i></button>
-      <i class="fa-solid fa-graduation-cap text-4xl text-indigo-600 mb-2"></i>
-      <h3 class="text-2xl font-black mb-1">Welcome to HomeTutor</h3>
-      <p class="text-sm text-slate-500 mb-6">Sign in or create your account.</p>
-      
-      <form onsubmit="handleAuthSubmit(event)" class="space-y-4">
-        <input required type="email" placeholder="Email Address" class="w-full px-4 py-2.5 border rounded-xl bg-slate-50 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500">
-        <input required type="password" placeholder="Password" class="w-full px-4 py-2.5 border rounded-xl bg-slate-50 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500">
-        <button type="submit" class="w-full bg-indigo-600 text-white font-bold py-3 rounded-xl hover:bg-indigo-700 transition">Continue</button>
-      </form>
-    </div>
-  </div>
-
-  <!-- Interactivity Scripts -->
   <script>
+    const SUPABASE_URL = "https://dgpuehsptskscaaoxkij.supabase.co";
+    const SUPABASE_KEY = "sb_publishable__5FrMgFc1iADdQ-M74DxDQ_Qr7VRlC8";
+    const supabase = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+    let selectedTutor = null;
+
     function openModal(id) { document.getElementById(id).classList.remove('hidden'); }
     function closeModal(id) { document.getElementById(id).classList.add('hidden'); }
 
-    function bookTutor(name, rate) {
-      document.getElementById('modalTutorName').innerText = `Tutor: ${name}`;
-      document.getElementById('tutorRateDisplay').innerText = `$${rate}.00`;
-      document.getElementById('totalRateDisplay').innerText = `$${rate + 5}.00`;
+    async function loadTutors() {
+      const { data: tutors, error } = await supabase.from('tutors').select('*');
+      const grid = document.getElementById('tutorGrid');
+      grid.innerHTML = '';
+
+      if (error || !tutors || !tutors.length) {
+        grid.innerHTML = '<p class="text-slate-500">No tutors registered yet. Click "+ Apply as a Tutor" to add the first profile!</p>';
+        return;
+      }
+
+      tutors.forEach(t => {
+        grid.innerHTML += `
+          <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
+            <div class="flex items-center justify-between mb-2">
+              <h3 class="font-bold text-lg">${t.full_name}</h3>
+              <span class="bg-indigo-50 text-indigo-700 text-xs px-2.5 py-1 rounded-md font-bold">${t.grade_level || 'Degree Holder'}</span>
+            </div>
+            <p class="text-slate-500 text-sm font-medium mb-1"><i class="fa-solid fa-graduation-cap text-indigo-600"></i> ${t.subject_title}</p>
+            <p class="text-slate-600 text-sm my-3">${t.bio}</p>
+            <div class="flex items-center justify-between border-t pt-3 mt-4">
+              <span class="text-lg font-black">${t.hourly_rate} ETB/hr</span>
+              <button onclick="startBooking('${t.full_name}', ${t.hourly_rate})" class="bg-indigo-600 text-white px-4 py-2 rounded-xl text-sm font-semibold hover:bg-indigo-700 transition">Book & Pay</button>
+            </div>
+          </div>
+        `;
+      });
+    }
+
+    async function registerTutor(e) {
+      e.preventDefault();
+      const degree = document.getElementById('tDegree').value;
+      const bioText = `[${degree}] ` + document.getElementById('tBio').value;
+
+      const newTutor = {
+        full_name: document.getElementById('tName').value,
+        hourly_rate: document.getElementById('tRate').value,
+        subject_title: document.getElementById('tSubject').value,
+        grade_level: document.getElementById('tGrade').value,
+        bio: bioText
+      };
+
+      const { error } = await supabase.from('tutors').insert([newTutor]);
+      if (!error) {
+        alert('Tutor profile published live to database!');
+        closeModal('tutorModal');
+        loadTutors();
+      } else {
+        alert('Error saving tutor: ' + error.message);
+      }
+    }
+
+    function startBooking(name, rate) {
+      selectedTutor = { name, rate };
+      document.getElementById('modalTutorName').innerText = `Tutor: ${name} (${rate} ETB/hr)`;
       openModal('bookingModal');
     }
 
-    function handleBookingSubmit(e) {
+    function payWithChapa(e) {
       e.preventDefault();
-      alert('Payment Successful! Your session has been booked and held in escrow.');
+      const totalAmount = Number(selectedTutor.rate) + 100;
+      alert(`Redirecting to Telebirr / CBE Birr via Chapa...\nTotal Payment: ${totalAmount} ETB (Includes 100 ETB Service Fee)`);
       closeModal('bookingModal');
     }
 
-    function handleAuthSubmit(e) {
-      e.preventDefault();
-      alert('Successfully logged in!');
-      closeModal('authModal');
-    }
-
-    function handleTeacherRegistration(e) {
-      e.preventDefault();
-      const name = document.getElementById('newTeacherName').value;
-      const rate = document.getElementById('newTeacherRate').value;
-      const title = document.getElementById('newTeacherTitle').value;
-      const grade = document.getElementById('newTeacherGrade').value;
-      const bio = document.getElementById('newTeacherBio').value;
-
-      const cardHTML = `
-        <div class="tutor-card bg-white rounded-2xl shadow-md border border-slate-200 overflow-hidden hover:shadow-xl transition" data-subjects="${title.toLowerCase()}" data-grade="${grade}">
-          <div class="p-6">
-            <div class="flex items-center gap-4 mb-4">
-              <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=200" class="w-16 h-16 rounded-full object-cover border-2 border-indigo-600">
-              <div>
-                <h3 class="font-bold text-lg flex items-center gap-1">${name} <i class="fa-solid fa-circle-check text-indigo-600 text-sm"></i></h3>
-                <p class="text-slate-500 text-sm">${title}</p>
-                <div class="flex items-center gap-1 text-amber-500 text-sm mt-1">
-                  <i class="fa-solid fa-star"></i><span class="font-bold text-slate-800">New</span>
-                </div>
-              </div>
-            </div>
-            <p class="text-slate-600 text-sm mb-4">${bio}</p>
-            <div class="flex items-center justify-between border-t pt-4">
-              <div><span class="text-xs text-slate-400 block font-medium">HOURLY RATE</span><span class="text-xl font-black text-slate-900">$${rate}<span class="text-xs text-slate-500 font-normal">/hr</span></span></div>
-              <button onclick="bookTutor('${name}', ${rate})" class="bg-indigo-600 text-white px-4 py-2 rounded-xl text-sm font-semibold hover:bg-indigo-700 transition">Book & Pay</button>
-            </div>
-          </div>
-        </div>
-      `;
-
-      document.getElementById('tutorGrid').insertAdjacentHTML('beforeend', cardHTML);
-      alert('Your tutor profile is live!');
-      closeModal('tutorModal');
-    }
-
-    function filterTutors() {
-      const subject = document.getElementById('subjectSearch').value.toLowerCase();
-      const grade = document.getElementById('gradeSelect').value;
-      const cards = document.querySelectorAll('.tutor-card');
-
-      cards.forEach(card => {
-        const cardSubjects = card.getAttribute('data-subjects');
-        const cardGrade = card.getAttribute('data-grade');
-
-        const matchSubject = !subject || cardSubjects.includes(subject);
-        const matchGrade = !grade || cardGrade === grade;
-
-        if (matchSubject && matchGrade) {
-          card.classList.remove('hidden');
-        } else {
-          card.classList.add('hidden');
-        }
-      });
-    }
+    loadTutors();
   </script>
 </body>
 </html>
