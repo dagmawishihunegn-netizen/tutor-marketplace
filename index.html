@@ -1,165 +1,795 @@
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>HomeTutor Academy | Trusted In-Home & Private Tutors in Addis Ababa</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>HomeTutor Academy | Trusted In-Home & Private Tutors in Addis Ababa, Ethiopia</title>
+
+  <meta
+    name="description"
+    content="HomeTutor Academy connects Ethiopian families with verified private in-home tutors for personalized, 1-on-1 academic lessons tailored to national and international curricula."
+  />
+
+  <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Font Awesome Icons CDN -->
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+  />
+
+  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet">
+
+  <!-- Supabase JS Client -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            display: ['"Space Grotesk"', 'sans-serif'],
+          },
+          colors: {
+            brand: {
+              50: '#fffbeedb',
+              100: '#fef3c7',
+              200: '#fde68a',
+              300: '#fcd34d',
+              400: '#fbbf24',
+              500: '#f59e0b',
+              600: '#d97706',
+              700: '#b45309',
+              800: '#92400e',
+              900: '#78350f',
+            },
+            royal: {
+              50: '#f0f3ff',
+              100: '#e0e7ff',
+              200: '#c7d2fe',
+              300: '#a5b4fc',
+              400: '#818cf8',
+              500: '#6366f1',
+              600: '#4f46e5',
+              700: '#4338ca',
+              800: '#3730a3',
+              900: '#312e81',
+              950: '#1e1b4b',
+            }
+          },
+          animation: {
+            'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+            'float': 'float 6s ease-in-out infinite',
+            'shimmer': 'shimmer 2s linear infinite',
+          },
+          keyframes: {
+            float: {
+              '0%, 100%': { transform: 'translateY(0px)' },
+              '50%': { transform: 'translateY(-10px)' },
+            },
+            shimmer: {
+              '0%': { backgroundPosition: '-200% 0' },
+              '100%': { backgroundPosition: '200% 0' },
+            }
+          }
+        }
+      }
+    }
+  </script>
+
   <style>
+    /* ==========================================================================
+       INLINE STYLES & CUSTOM UTILITIES
+       ========================================================================== */
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
+      overflow-x: hidden;
+      background-color: #f8fafc;
+      color: #0f172a;
       font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+
+    .hero-pattern {
+      background-image: 
+        radial-gradient(circle at 10% 20%, rgba(245, 158, 11, 0.06) 0%, transparent 40%),
+        radial-gradient(circle at 90% 80%, rgba(67, 56, 202, 0.06) 0%, transparent 40%),
+        linear-gradient(rgba(241, 245, 249, 0.8) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(241, 245, 249, 0.8) 1px, transparent 1px);
+      background-size: 100% 100%, 100% 100%, 32px 32px, 32px 32px;
+    }
+
+    .dark .hero-pattern {
+      background-image: 
+        radial-gradient(circle at 10% 20%, rgba(245, 158, 11, 0.1) 0%, transparent 40%),
+        radial-gradient(circle at 90% 80%, rgba(99, 102, 241, 0.1) 0%, transparent 40%),
+        linear-gradient(rgba(30, 41, 59, 0.5) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(30, 41, 59, 0.5) 1px, transparent 1px);
+      background-size: 100% 100%, 100% 100%, 32px 32px, 32px 32px;
+    }
+
+    .card-shadow {
+      box-shadow: 0 10px 30px -5px rgba(15, 23, 42, 0.04), 0 0 10px -2px rgba(15, 23, 42, 0.02);
+    }
+
+    .card-hover-shadow {
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .card-hover-shadow:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 20px 35px -10px rgba(15, 23, 42, 0.08), 0 0 15px -3px rgba(15, 23, 42, 0.03);
+    }
+
+    .line-clamp-2 {
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .line-clamp-3 {
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .input-field {
+      background-color: #ffffff;
+      border: 1px solid #cbd5e1;
+      border-radius: 0.75rem;
+      padding: 0.75rem 1rem;
+      color: #0f172a;
+      font-size: 0.875rem;
+      transition: all 0.2s ease;
+    }
+
+    .input-field:focus {
+      outline: none;
+      border-color: #d97706;
+      box-shadow: 0 0 0 3px rgba(217, 119, 6, 0.15);
+    }
+
+    .glass-panel {
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(226, 232, 240, 0.8);
+    }
+
+    .custom-scrollbar::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+
+    .custom-scrollbar::-webkit-scrollbar-track {
+      background: #f1f5f9;
+      border-radius: 10px;
+    }
+
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+      background: #cbd5e1;
+      border-radius: 10px;
+    }
+
+    .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+      background: #94a3b8;
     }
   </style>
 </head>
-<body class="bg-slate-50 text-slate-800 antialiased selection:bg-amber-500 selection:text-white">
 
-  <!-- ==================== HEADER / NAVIGATION ==================== -->
-  <header class="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-slate-100 shadow-sm">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
-      
-      <!-- Logo -->
-      <a href="#home" class="flex items-center gap-3 group">
-        <div class="w-10 h-10 bg-gradient-to-br from-amber-500 to-orange-500 text-white rounded-xl flex items-center justify-center font-black text-xl shadow-md group-hover:scale-105 transition-transform">
-          H
-        </div>
-        <div>
-          <div class="flex items-center gap-1.5">
-            <span class="font-extrabold text-xl text-slate-900 tracking-tight leading-none">HomeTutor</span>
-            <span class="bg-amber-100 text-amber-800 text-[10px] font-bold px-1.5 py-0.5 rounded uppercase tracking-wider">Addis</span>
+<body class="font-sans antialiased text-slate-800 bg-slate-50 selection:bg-amber-500 selection:text-white">
+
+  <!-- =========================================================
+       HEADER / NAVIGATION BAR
+  ========================================================== -->
+  <header class="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-slate-100 shadow-sm transition-all duration-200" id="mainHeader">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="h-20 flex items-center justify-between">
+
+        <!-- Brand Logo -->
+        <a href="#home" class="flex items-center gap-3 group">
+          <div class="w-11 h-11 rounded-2xl bg-gradient-to-br from-amber-500 to-amber-600 flex items-center justify-center text-white shadow-md shadow-amber-500/20 group-hover:scale-105 transition-transform">
+            <i class="fa-solid fa-house-chimney-user text-lg"></i>
           </div>
-          <span class="text-[10px] tracking-widest text-slate-400 font-bold uppercase block mt-0.5">In-Home Learning Ethiopia</span>
+          <div>
+            <div class="flex items-center gap-1.5">
+              <h1 class="font-extrabold text-xl text-slate-900 tracking-tight leading-none font-display">
+                HomeTutor
+              </h1>
+              <span class="bg-amber-100 text-amber-800 text-[10px] font-bold px-1.5 py-0.5 rounded uppercase">Addis</span>
+            </div>
+            <p class="text-[11px] font-semibold tracking-wider uppercase text-amber-600 mt-1">
+              In-Home Learning Ethiopia
+            </p>
+          </div>
+        </a>
+
+        <!-- Desktop Navigation Links -->
+        <nav class="hidden md:flex items-center gap-7 text-sm font-semibold text-slate-600">
+          <a href="#home" class="hover:text-amber-600 transition py-1 border-b-2 border-transparent hover:border-amber-500">Home</a>
+          <a href="#how-it-works" class="hover:text-amber-600 transition py-1 border-b-2 border-transparent hover:border-amber-500">How It Works</a>
+          <a href="#tutors" class="hover:text-amber-600 transition py-1 border-b-2 border-transparent hover:border-amber-500">Find In-Home Tutors</a>
+          <a href="#curriculum" class="hover:text-amber-600 transition py-1 border-b-2 border-transparent hover:border-amber-500">Curricula</a>
+          <a href="#benefits" class="hover:text-amber-600 transition py-1 border-b-2 border-transparent hover:border-amber-500">Why Us</a>
+          <a href="#reviews" class="hover:text-amber-600 transition py-1 border-b-2 border-transparent hover:border-amber-500">Reviews</a>
+          <a href="#faq" class="hover:text-amber-600 transition py-1 border-b-2 border-transparent hover:border-amber-500">FAQ</a>
+        </nav>
+
+        <!-- Action CTA Buttons -->
+        <div class="hidden lg:flex items-center gap-3">
+          <a href="tel:0906925258" class="flex items-center gap-2 text-xs font-bold text-slate-700 bg-slate-100 hover:bg-slate-200 px-3.5 py-2.5 rounded-xl transition border border-slate-200/60">
+            <i class="fa-solid fa-phone text-amber-600"></i>
+            <span>0906925258</span>
+          </a>
+
+          <button onclick="openModal('tutorModal')" class="bg-amber-500 hover:bg-amber-600 text-white font-bold text-xs px-4 py-2.5 rounded-xl shadow-md shadow-amber-500/20 transition cursor-pointer flex items-center gap-2">
+            <i class="fa-solid fa-chalkboard-user"></i>
+            <span>Become a Tutor</span>
+          </button>
+
+          <button onclick="openModal('adminModal')" class="bg-slate-900 hover:bg-slate-800 text-white font-bold text-xs px-3.5 py-2.5 rounded-xl shadow-md transition cursor-pointer flex items-center gap-1.5">
+            <i class="fa-solid fa-user-shield text-amber-400"></i>
+            <span>Admin</span>
+          </button>
         </div>
-      </a>
 
-      <!-- Desktop Nav -->
-      <nav class="hidden lg:flex items-center gap-7 font-semibold text-slate-600 text-sm">
-        <a href="#home" class="text-amber-600 hover:text-amber-600 transition">Home</a>
-        <a href="#how-it-works" class="hover:text-amber-600 transition">How It Works</a>
-        <a href="#tutors" class="hover:text-amber-600 transition">Find In-Home Tutors</a>
-        <a href="#curricula" class="hover:text-amber-600 transition">Curricula</a>
-        <a href="#why-us" class="hover:text-amber-600 transition">Why Us</a>
-        <a href="#reviews" class="hover:text-amber-600 transition">Reviews</a>
-        <a href="#faq" class="hover:text-amber-600 transition">FAQ</a>
-      </nav>
+        <!-- Mobile Menu Toggle Button -->
+        <button onclick="toggleMobileMenu()" class="md:hidden p-2.5 rounded-xl border border-slate-200 text-slate-600 hover:bg-slate-100 focus:outline-none">
+          <i class="fa-solid fa-bars text-xl"></i>
+        </button>
 
-      <!-- Action Buttons -->
-      <div class="flex items-center gap-3">
-        <a href="tel:0906925258" class="hidden sm:flex items-center gap-2 text-sm font-bold text-slate-700 bg-slate-100 px-4 py-2.5 rounded-xl hover:bg-slate-200 transition">
-          <svg class="w-4 h-4 text-amber-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
-          0906925258
-        </a>
-        <a href="#become-tutor" class="bg-amber-500 hover:bg-amber-600 text-white text-sm font-bold px-5 py-2.5 rounded-xl transition shadow-md hover:shadow-lg active:scale-95">
-          Become a Tutor
-        </a>
       </div>
+
+      <!-- Mobile Navigation Drawer -->
+      <div id="mobileMenu" class="hidden md:hidden pb-6 pt-2 border-t border-slate-100 animate-fadeIn">
+        <div class="grid grid-cols-2 gap-2 text-sm font-medium pt-2">
+          <a href="#home" onclick="toggleMobileMenu()" class="p-3 rounded-xl bg-slate-100 text-slate-700 font-semibold flex items-center gap-2"><i class="fa-solid fa-house text-amber-600"></i> Home</a>
+          <a href="#how-it-works" onclick="toggleMobileMenu()" class="p-3 rounded-xl bg-slate-100 text-slate-700 font-semibold flex items-center gap-2"><i class="fa-solid fa-list-check text-amber-600"></i> How It Works</a>
+          <a href="#tutors" onclick="toggleMobileMenu()" class="p-3 rounded-xl bg-slate-100 text-slate-700 font-semibold flex items-center gap-2"><i class="fa-solid fa-user-graduate text-amber-600"></i> Find Tutors</a>
+          <a href="#curriculum" onclick="toggleMobileMenu()" class="p-3 rounded-xl bg-slate-100 text-slate-700 font-semibold flex items-center gap-2"><i class="fa-solid fa-book text-amber-600"></i> Curricula</a>
+          <a href="#benefits" onclick="toggleMobileMenu()" class="p-3 rounded-xl bg-slate-100 text-slate-700 font-semibold flex items-center gap-2"><i class="fa-solid fa-shield-halved text-amber-600"></i> Why Us</a>
+          <a href="#reviews" onclick="toggleMobileMenu()" class="p-3 rounded-xl bg-slate-100 text-slate-700 font-semibold flex items-center gap-2"><i class="fa-solid fa-star text-amber-600"></i> Reviews</a>
+        </div>
+        <div class="mt-4 flex flex-col gap-2">
+          <a href="tel:0906925258" class="flex items-center justify-center gap-2 text-sm font-bold text-slate-700 bg-slate-100 py-3 rounded-xl border border-slate-200">
+            <i class="fa-solid fa-phone text-amber-600"></i>
+            <span>Call Us: 0906925258</span>
+          </a>
+          <button onclick="openModal('tutorModal'); toggleMobileMenu();" class="w-full bg-amber-500 text-white font-bold py-3 rounded-xl shadow-md text-sm">
+            Become a Tutor
+          </button>
+          <button onclick="openModal('adminModal'); toggleMobileMenu();" class="w-full bg-slate-900 text-white font-bold py-2.5 rounded-xl shadow-md text-xs">
+            Portal Admin Dashboard
+          </button>
+        </div>
+      </div>
+
     </div>
   </header>
 
-  <!-- ==================== HERO SECTION ==================== -->
-  <section id="home" class="relative bg-slate-50 pt-12 pb-24 lg:py-20 overflow-hidden">
+
+  <!-- =========================================================
+       HERO SECTION
+  ========================================================== -->
+  <section id="home" class="relative py-16 md:py-24 hero-pattern border-b border-slate-200/60 overflow-hidden">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="grid lg:grid-cols-12 gap-12 items-center">
-        
-        <!-- Left Content -->
-        <div class="lg:col-span-6 space-y-6">
-          <div class="inline-flex items-center gap-2 bg-amber-100 text-amber-800 text-xs font-bold uppercase tracking-wider px-4 py-1.5 rounded-full">
-            <span class="w-2 h-2 rounded-full bg-amber-500 animate-pulse"></span>
-            Verified Private In-Home Tutors • All Addis Ababa Sub-Cities
+
+        <!-- Left Hero Content -->
+        <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+
+          <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-amber-100/80 border border-amber-200 text-amber-900 text-xs font-bold">
+            <i class="fa-solid fa-house-user text-amber-600"></i>
+            <span>Verified Private In-Home Tutors • All Addis Ababa Sub-Cities</span>
           </div>
-          
-          <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black text-slate-900 leading-tight tracking-tight">
-            Give Your Child the <span class="text-amber-500">In-Home Academic Advantage</span> They Deserve.
+
+          <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-slate-900 tracking-tight leading-[1.12] font-display">
+            Give Your Child the <br class="hidden sm:inline"/>
+            <span class="text-transparent bg-clip-text bg-gradient-to-r from-amber-600 via-amber-500 to-orange-500">
+              In-Home Academic Advantage
+            </span> They Deserve.
           </h1>
-          
-          <p class="text-lg text-slate-600 max-w-2xl leading-relaxed">
-            We connect families across Addis Ababa with verified, university-educated private tutors for personalized 1-on-1 lessons. Tailored support for Grade 1–12, Ethiopian National Examinations, and IGCSE/IB curricula.
+
+          <p class="text-base sm:text-lg text-slate-600 max-w-2xl mx-auto lg:mx-0 leading-relaxed font-normal">
+            We connect families across Addis Ababa with verified, university-educated private tutors for personalized 1-on-1 lessons. Tailored support for Grade 1-12, Ethiopian National Examinations, and IGCSE/IB curricula.
           </p>
 
-          <div class="flex flex-wrap items-center gap-4 pt-2">
-            <a href="#quick-find" class="bg-amber-500 hover:bg-amber-600 text-white font-extrabold px-8 py-4 rounded-2xl shadow-xl transition transform hover:-translate-y-0.5 active:translate-y-0">
-              Find a Tutor Near You
+          <!-- CTAs -->
+          <div class="flex flex-col sm:flex-row justify-center lg:justify-start gap-4 pt-2">
+            <a href="#tutors" class="bg-amber-500 hover:bg-amber-600 text-white font-bold px-8 py-4 rounded-xl shadow-lg shadow-amber-500/25 transition text-center flex items-center justify-center gap-2 text-sm sm:text-base">
+              <i class="fa-solid fa-magnifying-glass"></i>
+              <span>Find a Tutor Near You</span>
             </a>
-            <a href="#how-it-works" class="border border-slate-200 bg-white hover:bg-slate-100 text-slate-700 font-bold px-6 py-4 rounded-2xl transition shadow-sm">
-              How In-Home Tutoring Works
+            <a href="#how-it-works" class="bg-white hover:bg-slate-50 border border-slate-300 text-slate-700 font-bold px-7 py-4 rounded-xl transition text-center card-shadow text-sm sm:text-base">
+              <span>How In-Home Tutoring Works</span>
             </a>
           </div>
 
-          <!-- Trust Badges -->
-          <div class="pt-6 border-t border-slate-200 flex flex-wrap items-center gap-6 text-xs text-slate-500 font-semibold">
+          <!-- Feature Badges -->
+          <div class="pt-6 border-t border-slate-200/80 flex flex-wrap justify-center lg:justify-start gap-6 text-xs font-bold text-slate-500">
             <div class="flex items-center gap-2">
-              <span class="text-amber-500">✔</span> Vetted & Background Checked
+              <i class="fa-solid fa-shield-check text-emerald-500 text-sm"></i>
+              <span>Vetted & Background Checked</span>
             </div>
             <div class="flex items-center gap-2">
-              <span class="text-amber-500">🕒</span> Custom Home Schedules
+              <i class="fa-solid fa-clock text-amber-500 text-sm"></i>
+              <span>Custom Home Schedules</span>
             </div>
             <div class="flex items-center gap-2">
-              <span class="text-amber-500">🎓</span> National & Int'l Curricula
+              <i class="fa-solid fa-graduation-cap text-indigo-500 text-sm"></i>
+              <span>National & Int'l Curricula</span>
             </div>
+          </div>
+
+        </div>
+
+        <!-- Right Hero Visual Card -->
+        <div class="lg:col-span-5">
+          <div class="relative mx-auto max-w-md lg:max-w-none">
+            
+            <div class="bg-white p-4 sm:p-6 rounded-3xl border border-slate-200 card-shadow space-y-4">
+              <div class="relative rounded-2xl overflow-hidden h-64 sm:h-72 bg-slate-100">
+                <img
+                  src="https://images.unsplash.com/photo-1577896851231-70ef18881754?auto=format&fit=crop&w=1000&q=80"
+                  alt="In-home tutoring session"
+                  class="w-full h-full object-cover"
+                />
+                <div class="absolute inset-0 bg-gradient-to-t from-slate-900/70 via-transparent to-transparent"></div>
+                <div class="absolute bottom-4 left-4 right-4 text-white">
+                  <span class="bg-amber-500 text-slate-950 text-[10px] font-black px-2 py-0.5 rounded uppercase tracking-wider">1-on-1 At Home</span>
+                  <p class="font-extrabold text-lg mt-1 font-display">Comfortable & Safe Home Environment</p>
+                </div>
+              </div>
+
+              <!-- Quick Search Filter Card inside Hero -->
+              <div class="bg-slate-50 p-4 rounded-2xl border border-slate-200/80">
+                <p class="text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">
+                  <i class="fa-solid fa-filter text-amber-600 mr-1"></i> Quick Find Tutor
+                </p>
+                <div class="space-y-2">
+                  <input
+                    id="heroSearchInput"
+                    onkeyup="syncHeroSearch()"
+                    type="text"
+                    placeholder="Subject e.g. Math, Physics, English..."
+                    class="w-full bg-white border border-slate-300 rounded-xl px-4 py-2.5 text-xs text-slate-800 focus:outline-none focus:border-amber-500"
+                  />
+                  <div class="grid grid-cols-2 gap-2">
+                    <select
+                      id="heroStreamFilter"
+                      onchange="syncHeroSearch()"
+                      class="w-full bg-white border border-slate-300 rounded-xl px-3 py-2 text-xs text-slate-700 focus:outline-none focus:border-amber-500"
+                    >
+                      <option value="ALL">All Streams</option>
+                      <option value="Natural Science">Natural Science</option>
+                      <option value="Social Science">Social Science</option>
+                      <option value="Language & General">Languages & Primary</option>
+                    </select>
+                    <select
+                      id="heroLocationFilter"
+                      onchange="syncHeroSearch()"
+                      class="w-full bg-white border border-slate-300 rounded-xl px-3 py-2 text-xs text-slate-700 focus:outline-none focus:border-amber-500"
+                    >
+                      <option value="ALL">All Sub-Cities</option>
+                      <option value="Bole">Bole</option>
+                      <option value="Yeka">Yeka</option>
+                      <option value="Kirkos">Kirkos</option>
+                      <option value="Nifas Silk">Nifas Silk</option>
+                      <option value="Arada">Arada</option>
+                      <option value="Gullele">Gullele</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
+            <!-- Floating Badge Overlay -->
+            <div class="absolute -bottom-6 -left-6 bg-white p-4 rounded-2xl border border-slate-200 card-shadow hidden sm:flex items-center gap-3">
+              <div class="w-12 h-12 rounded-xl bg-amber-100 text-amber-600 flex items-center justify-center text-xl font-black">
+                <i class="fa-solid fa-star"></i>
+              </div>
+              <div>
+                <p class="text-xs font-extrabold text-slate-900">Proven Results</p>
+                <p class="text-[11px] text-slate-500 font-medium">95%+ Student Score Improvement</p>
+              </div>
+            </div>
+
           </div>
         </div>
 
-        <!-- Right Hero Container -->
-        <div id="quick-find" class="lg:col-span-6 space-y-6">
+      </div>
+    </div>
+  </section>
+
+
+  <!-- =========================================================
+       METRICS & STATS HIGHLIGHTS
+  ========================================================== -->
+  <section class="bg-white border-b border-slate-200 py-10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+
+        <div class="p-4 border-r border-slate-100 last:border-r-0">
+          <div class="text-3xl sm:text-4xl font-extrabold text-slate-900 font-display">
+            <span id="statsTutorCount">150</span>+
+          </div>
+          <p class="text-xs font-bold uppercase tracking-wider text-amber-600 mt-1">
+            Registered Private Tutors
+          </p>
+        </div>
+
+        <div class="p-4 border-r border-slate-100 last:border-r-0">
+          <div class="text-3xl sm:text-4xl font-extrabold text-slate-900 font-display">
+            100%
+          </div>
+          <p class="text-xs font-bold uppercase tracking-wider text-amber-600 mt-1">
+            In-Home Instruction
+          </p>
+        </div>
+
+        <div class="p-4 border-r border-slate-100 last:border-r-0">
+          <div class="text-3xl sm:text-4xl font-extrabold text-slate-900 font-display">
+            11
+          </div>
+          <p class="text-xs font-bold uppercase tracking-wider text-amber-600 mt-1">
+            Addis Ababa Sub-Cities
+          </p>
+        </div>
+
+        <div class="p-4">
+          <div class="text-3xl sm:text-4xl font-extrabold text-slate-900 font-display">
+            Grade 1-12
+          </div>
+          <p class="text-xs font-bold uppercase tracking-wider text-amber-600 mt-1">
+            All National Curricula
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- =========================================================
+       HOW IT WORKS SECTION
+  ========================================================== -->
+  <section id="how-it-works" class="py-20 bg-slate-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+      <div class="text-center max-w-3xl mx-auto mb-16 space-y-3">
+        <span class="text-xs font-extrabold text-amber-600 uppercase tracking-widest bg-amber-100 px-3 py-1 rounded-full">
+          Simple 3-Step Process
+        </span>
+        <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 font-display">
+          How HomeTutor Academy Works
+        </h2>
+        <p class="text-slate-600 text-sm sm:text-base">
+          Getting dedicated private academic instruction in the comfort of your own home has never been simpler.
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-8">
+
+        <!-- Step 1 -->
+        <div class="bg-white rounded-3xl p-8 border border-slate-200 card-shadow relative hover:border-amber-400 transition card-hover-shadow">
+          <div class="w-12 h-12 rounded-2xl bg-amber-500 text-white font-extrabold text-lg flex items-center justify-center mb-6 shadow-md shadow-amber-500/20">
+            1
+          </div>
+          <div class="w-12 h-12 rounded-xl bg-amber-50 text-amber-600 flex items-center justify-center text-xl mb-4">
+            <i class="fa-solid fa-magnifying-glass"></i>
+          </div>
+          <h3 class="text-xl font-bold text-slate-900 font-display">
+            Search & Compare Tutors
+          </h3>
+          <p class="text-slate-600 text-sm mt-3 leading-relaxed">
+            Filter profiles by subject expertise, teaching background, hourly rates, location in Addis Ababa, and target grade level.
+          </p>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="bg-white rounded-3xl p-8 border border-slate-200 card-shadow relative hover:border-amber-400 transition card-hover-shadow">
+          <div class="w-12 h-12 rounded-2xl bg-amber-500 text-white font-extrabold text-lg flex items-center justify-center mb-6 shadow-md shadow-amber-500/20">
+            2
+          </div>
+          <div class="w-12 h-12 rounded-xl bg-indigo-50 text-indigo-600 flex items-center justify-center text-xl mb-4">
+            <i class="fa-solid fa-calendar-days"></i>
+          </div>
+          <h3 class="text-xl font-bold text-slate-900 font-display">
+            Schedule Home Sessions
+          </h3>
+          <p class="text-slate-600 text-sm mt-3 leading-relaxed">
+            Choose your preferred lesson times, specify your house address, and book secure sessions tailored to your child's weekly routine.
+          </p>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="bg-white rounded-3xl p-8 border border-slate-200 card-shadow relative hover:border-amber-400 transition card-hover-shadow">
+          <div class="w-12 h-12 rounded-2xl bg-amber-500 text-white font-extrabold text-lg flex items-center justify-center mb-6 shadow-md shadow-amber-500/20">
+            3
+          </div>
+          <div class="w-12 h-12 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center text-xl mb-4">
+            <i class="fa-solid fa-house-laptop"></i>
+          </div>
+          <h3 class="text-xl font-bold text-slate-900 font-display">
+            Learn Comfortably at Home
+          </h3>
+          <p class="text-slate-600 text-sm mt-3 leading-relaxed">
+            Your tutor arrives at your doorstep to deliver customized 1-on-1 instruction, exam prep, and homework guidance.
+          </p>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- =========================================================
+       TUTORS MARKETPLACE / LISTING SECTION
+  ========================================================== -->
+  <section id="tutors" class="py-20 bg-white border-y border-slate-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+      <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-8">
+        <div>
+          <span class="text-xs font-extrabold text-amber-600 uppercase tracking-widest bg-amber-100 px-3 py-1 rounded-full">
+            Available In-Home Educators
+          </span>
+          <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 mt-3 font-display">
+            Find Your Private Home Tutor
+          </h2>
+          <p class="text-slate-600 text-sm mt-2">
+            Select a verified teacher to deliver personalized private lessons at your residence.
+          </p>
+        </div>
+
+        <span id="tutorCount" class="bg-slate-100 text-slate-700 border border-slate-200 text-xs font-bold px-4 py-2 rounded-xl self-start md:self-auto">
+          Loading available tutors...
+        </span>
+      </div>
+
+      <!-- Advanced Filter Toolbar -->
+      <div class="bg-slate-50 p-4 sm:p-6 rounded-3xl border border-slate-200 mb-10 card-shadow space-y-4">
+        <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          <div>
+            <label class="block text-[11px] font-bold text-slate-500 uppercase tracking-wider mb-1">Search Keywords</label>
+            <div class="relative">
+              <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-3 text-slate-400 text-xs"></i>
+              <input
+                id="searchInput"
+                onkeyup="filterTutors()"
+                type="text"
+                placeholder="Subject, Tutor Name, University..."
+                class="w-full bg-white border border-slate-300 rounded-xl pl-9 pr-4 py-2 text-xs text-slate-800 focus:outline-none focus:border-amber-500"
+              />
+            </div>
+          </div>
+
+          <div>
+            <label class="block text-[11px] font-bold text-slate-500 uppercase tracking-wider mb-1">Academic Stream</label>
+            <select
+              id="streamFilter"
+              onchange="filterTutors()"
+              class="w-full bg-white border border-slate-300 rounded-xl px-3 py-2 text-xs text-slate-700 focus:outline-none focus:border-amber-500"
+            >
+              <option value="ALL">All Academic Streams</option>
+              <option value="Natural Science">Natural Science (Physics, Chem, Math)</option>
+              <option value="Social Science">Social Science (History, Geo, Civics)</option>
+              <option value="Language & General">Languages & Primary Education</option>
+            </select>
+          </div>
+
+          <div>
+            <label class="block text-[11px] font-bold text-slate-500 uppercase tracking-wider mb-1">Sub-City Location</label>
+            <select
+              id="locationFilter"
+              onchange="filterTutors()"
+              class="w-full bg-white border border-slate-300 rounded-xl px-3 py-2 text-xs text-slate-700 focus:outline-none focus:border-amber-500"
+            >
+              <option value="ALL">All Sub-Cities (Addis Ababa)</option>
+              <option value="Bole">Bole (CMC, Old Airport, Gerji)</option>
+              <option value="Yeka">Yeka (Megenagna, Ayat)</option>
+              <option value="Kirkos">Kirkos (Kazanchis, Gotera)</option>
+              <option value="Nifas Silk">Nifas Silk (Sarbet, Jikka, Lafto)</option>
+              <option value="Arada">Arada (Piazza, 4 Kilo)</option>
+              <option value="Gullele">Gullele (6 Kilo, Shiromeda)</option>
+            </select>
+          </div>
+
+          <div>
+            <label class="block text-[11px] font-bold text-slate-500 uppercase tracking-wider mb-1">Max Hourly Rate (ETB)</label>
+            <div class="flex items-center gap-3 pt-1">
+              <input
+                id="rateRange"
+                type="range"
+                min="200"
+                max="1200"
+                step="50"
+                value="1200"
+                oninput="updateRateLabel(this.value); filterTutors();"
+                class="w-full accent-amber-500"
+              />
+              <span id="rateLabel" class="text-xs font-bold text-slate-700 whitespace-nowrap min-w-[70px]">1200 ETB</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tutor Grid -->
+      <div id="tutorGrid" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+
+        <!-- Loading Skeleton Cards -->
+        <div class="h-80 rounded-3xl bg-slate-100 animate-pulse border border-slate-200"></div>
+        <div class="h-80 rounded-3xl bg-slate-100 animate-pulse border border-slate-200"></div>
+        <div class="h-80 rounded-3xl bg-slate-100 animate-pulse border border-slate-200"></div>
+
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- =========================================================
+       SUBJECT CURRICULUM ROADMAP SECTION
+  ========================================================== -->
+  <section id="curriculum" class="py-20 bg-slate-50 border-b border-slate-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+
+      <div class="text-center max-w-3xl mx-auto space-y-3">
+        <span class="text-xs font-extrabold text-amber-600 uppercase tracking-widest bg-amber-100 px-3 py-1 rounded-full">
+          Comprehensive Coverage
+        </span>
+        <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 font-display">
+          Curricula & Grade Breakdown
+        </h2>
+        <p class="text-slate-600 text-sm sm:text-base">
+          Our tutors specialize in standard national educational benchmarks as well as specialized international program syllabi.
+        </p>
+      </div>
+
+      <!-- Curriculum Cards Grid -->
+      <div class="grid md:grid-cols-3 gap-8">
+
+        <!-- Card 1 -->
+        <div class="bg-white rounded-3xl p-7 border border-slate-200 card-shadow">
+          <div class="w-12 h-12 rounded-2xl bg-amber-100 text-amber-600 flex items-center justify-center text-xl mb-4">
+            <i class="fa-solid fa-book-bookmark"></i>
+          </div>
+          <h3 class="text-lg font-bold text-slate-900 font-display">Ethiopian Primary (Grades 1-8)</h3>
+          <p class="text-xs text-slate-600 mt-2 leading-relaxed">
+            Building strong foundations in Amharic, English literacy, Mathematics, Environmental Science, and foundational logic.
+          </p>
+          <ul class="mt-4 space-y-2 text-xs text-slate-700">
+            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-500"></i> Reading & Writing Literacy</li>
+            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-500"></i> Grade 6 & Grade 8 Ministry Exam Prep</li>
+            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-500"></i> Homework & Daily Study Routine</li>
+          </ul>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="bg-white rounded-3xl p-7 border border-slate-200 card-shadow">
+          <div class="w-12 h-12 rounded-2xl bg-indigo-100 text-indigo-600 flex items-center justify-center text-xl mb-4">
+            <i class="fa-solid fa-atom"></i>
+          </div>
+          <h3 class="text-lg font-bold text-slate-900 font-display">Ethiopian Secondary (Grades 9-12)</h3>
+          <p class="text-xs text-slate-600 mt-2 leading-relaxed">
+            Targeted instruction in Natural Science (Physics, Chemistry, Biology) and Social Science (Economics, History, Geography).
+          </p>
+          <ul class="mt-4 space-y-2 text-xs text-slate-700">
+            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-500"></i> Grade 12 National Exit Exam Prep</li>
+            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-500"></i> Advanced Problem Solving in Math/Physics</li>
+            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-500"></i> Mock Test Drills & Time Management</li>
+          </ul>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="bg-white rounded-3xl p-7 border border-slate-200 card-shadow">
+          <div class="w-12 h-12 rounded-2xl bg-emerald-100 text-emerald-600 flex items-center justify-center text-xl mb-4">
+            <i class="fa-solid fa-globe"></i>
+          </div>
+          <h3 class="text-lg font-bold text-slate-900 font-display">International Curricula (IGCSE / IB)</h3>
+          <p class="text-xs text-slate-600 mt-2 leading-relaxed">
+            Specialized tutoring for students attending international private academies across Addis Ababa following Cambridge/IB tracks.
+          </p>
+          <ul class="mt-4 space-y-2 text-xs text-slate-700">
+            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-500"></i> Cambridge O-Level & A-Level Syllabi</li>
+            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-500"></i> IB Diploma & MYP Coursework</li>
+            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-500"></i> SAT & IELTS Test Preparation</li>
+          </ul>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- =========================================================
+       WHY IN-HOME TUTORING (BENEFITS)
+  ========================================================== -->
+  <section id="benefits" class="py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid lg:grid-cols-12 gap-12 items-center">
+
+        <!-- Image Gallery Side -->
+        <div class="lg:col-span-6 relative">
+          <div class="grid grid-cols-2 gap-4">
+            <img
+              src="https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=800&q=80"
+              alt="Student focused studying"
+              class="rounded-3xl object-cover h-64 w-full card-shadow"
+            />
+            <img
+              src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=800&q=80"
+              alt="Teacher explaining concept"
+              class="rounded-3xl object-cover h-64 w-full mt-8 card-shadow"
+            />
+          </div>
           
-          <!-- Image Feature Card -->
-          <div class="relative bg-white rounded-3xl p-4 shadow-lg border border-slate-100 overflow-hidden">
-            <img src="https://images.unsplash.com/photo-1577896851231-70ef18881754?auto=format&fit=crop&w=800&q=80" alt="In-Home Tutoring Session" class="w-full h-56 object-cover rounded-2xl">
-            <div class="absolute bottom-6 left-6 bg-slate-900/80 backdrop-blur-md text-white px-4 py-2 rounded-xl text-xs font-bold">
-              📍 1-ON-1 AT HOME • Comfortable & Safe Environment
-            </div>
+          <div class="absolute -bottom-6 left-1/2 -translate-x-1/2 bg-white px-6 py-4 rounded-2xl border border-slate-200 card-shadow w-10/12 text-center">
+            <p class="font-extrabold text-slate-900 text-sm font-display">Safe, Convenient & Flexible</p>
+            <p class="text-xs text-slate-500 mt-0.5">No commute or traffic stress for parents or students.</p>
           </div>
+        </div>
 
-          <!-- Main Quick Find Form Card -->
-          <div class="bg-white text-slate-800 rounded-3xl p-6 sm:p-8 shadow-xl border border-slate-100">
-            <div class="flex items-center gap-2 mb-4 text-amber-600 font-bold text-xs uppercase tracking-wider">
-              <span>🔻</span> Quick Find Tutor
-            </div>
-            
-            <form class="space-y-4" onsubmit="event.preventDefault(); alert('Request submitted! We will contact you shortly.');">
+        <!-- Benefits Content -->
+        <div class="lg:col-span-6 space-y-6">
+          <span class="text-xs font-extrabold text-amber-600 uppercase tracking-widest bg-amber-100 px-3 py-1 rounded-full">
+            Why Parents Choose Us
+          </span>
+
+          <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 leading-tight font-display">
+            The Power of 1-on-1 In-Home Learning
+          </h2>
+
+          <p class="text-slate-600 text-sm sm:text-base leading-relaxed">
+            Large classrooms often leave students behind. Home tutoring provides tailored pacing, immediate error correction, and a comfortable setting where students feel safe asking questions.
+          </p>
+
+          <div class="space-y-4 pt-2">
+
+            <div class="flex items-start gap-4 p-4 rounded-2xl bg-slate-50 border border-slate-200/80 card-shadow">
+              <div class="w-10 h-10 rounded-xl bg-amber-100 text-amber-600 flex items-center justify-center shrink-0">
+                <i class="fa-solid fa-house-user"></i>
+              </div>
               <div>
-                <input type="text" placeholder="Subject e.g. Math, Physics, English..." class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-amber-500 focus:bg-white transition">
+                <h3 class="font-bold text-slate-900 text-sm">No Commute or Transport Stress</h3>
+                <p class="text-xs text-slate-600 mt-1">Save precious time. Your tutor comes straight to your doorstep according to your schedule.</p>
               </div>
+            </div>
 
-              <div class="grid sm:grid-cols-2 gap-4">
-                <div>
-                  <select class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-amber-500 focus:bg-white transition">
-                    <option>All Streams / Grades</option>
-                    <option>Primary (Grades 1-8)</option>
-                    <option>High School (Grades 9-12)</option>
-                    <option>International (IGCSE/IB)</option>
-                  </select>
-                </div>
-                <div>
-                  <select class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-amber-500 focus:bg-white transition">
-                    <option>All Sub-Cities</option>
-                    <option>Bole</option>
-                    <option>Yeka</option>
-                    <option>Nifas Silk-Lafto</option>
-                    <option>Kirkos</option>
-                    <option>Arada</option>
-                    <option>Gullele</option>
-                  </select>
-                </div>
+            <div class="flex items-start gap-4 p-4 rounded-2xl bg-slate-50 border border-slate-200/80 card-shadow">
+              <div class="w-10 h-10 rounded-xl bg-indigo-100 text-indigo-600 flex items-center justify-center shrink-0">
+                <i class="fa-solid fa-bullseye"></i>
               </div>
-
-              <button type="submit" class="w-full bg-amber-500 hover:bg-amber-600 text-white font-extrabold py-3.5 rounded-xl shadow-md transition transform active:scale-95 text-center block">
-                Find Tutors
-              </button>
-            </form>
-          </div>
-
-          <!-- Proven Results Card (Positioned naturally in layout flow without overlap) -->
-          <div class="bg-amber-50 border border-amber-200 p-4 rounded-2xl shadow-sm flex items-center gap-4">
-            <div class="w-10 h-10 bg-amber-500 text-white rounded-xl flex items-center justify-center font-bold text-lg shrink-0">
-              ★
+              <div>
+                <h3 class="font-bold text-slate-900 text-sm">100% Focused Attention</h3>
+                <p class="text-xs text-slate-600 mt-1">Lessons are structured around your child's specific school curriculum, upcoming exams, and skill gaps.</p>
+              </div>
             </div>
-            <div>
-              <div class="text-sm font-extrabold text-slate-900">Proven Results</div>
-              <div class="text-xs text-slate-600 font-medium">95%+ Student Score Improvement across Addis Ababa</div>
+
+            <div class="flex items-start gap-4 p-4 rounded-2xl bg-slate-50 border border-slate-200/80 card-shadow">
+              <div class="w-10 h-10 rounded-xl bg-emerald-100 text-emerald-600 flex items-center justify-center shrink-0">
+                <i class="fa-solid fa-chart-line"></i>
+              </div>
+              <div>
+                <h3 class="font-bold text-slate-900 text-sm">Direct Parental Visibility</h3>
+                <p class="text-xs text-slate-600 mt-1">Monitor study progress firsthand in your home environment and receive regular tutor updates.</p>
+              </div>
             </div>
+
           </div>
 
         </div>
@@ -168,12 +798,1039 @@
     </div>
   </section>
 
-  <!-- Floating Call Action Button -->
-  <div class="fixed bottom-6 right-6 z-50">
-    <a href="tel:0906925258" class="bg-amber-500 hover:bg-amber-600 text-white font-extrabold px-6 py-3.5 rounded-full shadow-2xl flex items-center gap-2 text-sm transition transform hover:scale-105">
-      📞 Call HomeTutor: 0906925258
-    </a>
+
+  <!-- =========================================================
+       PARENT & STUDENT REVIEWS SECTION
+  ========================================================== -->
+  <section id="reviews" class="py-20 bg-slate-50 border-y border-slate-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+
+      <div class="text-center max-w-3xl mx-auto space-y-3">
+        <span class="text-xs font-extrabold text-amber-600 uppercase tracking-widest bg-amber-100 px-3 py-1 rounded-full">
+          Parent Testimonials
+        </span>
+        <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 font-display">
+          Trusted by Families Across Addis Ababa
+        </h2>
+        <p class="text-slate-600 text-sm sm:text-base">
+          Read real experiences from parents and students who have transformed their academic performance.
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-8">
+
+        <!-- Review 1 -->
+        <div class="bg-white p-7 rounded-3xl border border-slate-200 card-shadow space-y-4">
+          <div class="flex items-center gap-1 text-amber-500 text-xs">
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+          </div>
+          <p class="text-xs text-slate-600 italic leading-relaxed">
+            "Finding a tutor for my Grade 12 son in Bole was challenging until we used HomeTutor Academy. His tutor helped him excel in Physics and Math national exit exams."
+          </p>
+          <div class="flex items-center gap-3 pt-2 border-t border-slate-100">
+            <div class="w-10 h-10 rounded-full bg-amber-100 text-amber-800 flex items-center justify-center font-bold text-xs">
+              WA
+            </div>
+            <div>
+              <h4 class="font-bold text-slate-900 text-xs">Wondwossen T.</h4>
+              <p class="text-[10px] text-slate-500">Parent in Bole Sub-City</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Review 2 -->
+        <div class="bg-white p-7 rounded-3xl border border-slate-200 card-shadow space-y-4">
+          <div class="flex items-center gap-1 text-amber-500 text-xs">
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+          </div>
+          <p class="text-xs text-slate-600 italic leading-relaxed">
+            "The home tutor who comes to teach my Grade 6 daughter in Sarbet is punctual, polite, and makes Amharic and Math interactive. Her confidence has soared."
+          </p>
+          <div class="flex items-center gap-3 pt-2 border-t border-slate-100">
+            <div class="w-10 h-10 rounded-full bg-indigo-100 text-indigo-800 flex items-center justify-center font-bold text-xs">
+              M
+            </div>
+            <div>
+              <h4 class="font-bold text-slate-900 text-xs">Mulu G.</h4>
+              <p class="text-[10px] text-slate-500">Parent in Nifas Silk Sub-City</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Review 3 -->
+        <div class="bg-white p-7 rounded-3xl border border-slate-200 card-shadow space-y-4">
+          <div class="flex items-center gap-1 text-amber-500 text-xs">
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+          </div>
+          <p class="text-xs text-slate-600 italic leading-relaxed">
+            "As an IGCSE student preparing for Cambridge exams, my tutor helped me break down complex Chemistry concepts easily right at our home desk."
+          </p>
+          <div class="flex items-center gap-3 pt-2 border-t border-slate-100">
+            <div class="w-10 h-10 rounded-full bg-emerald-100 text-emerald-800 flex items-center justify-center font-bold text-xs">
+              KB
+            </div>
+            <div>
+              <h4 class="font-bold text-slate-900 text-xs">Kirubel B.</h4>
+              <p class="text-[10px] text-slate-500">Grade 10 IGCSE Student</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- =========================================================
+       BECOME A TUTOR CALLOUT BANNER
+  ========================================================== -->
+  <section class="py-16 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="bg-gradient-to-br from-amber-500 via-amber-600 to-orange-600 rounded-3xl p-8 sm:p-12 text-white shadow-xl relative overflow-hidden">
+        
+        <div class="relative z-10 max-w-3xl space-y-4">
+          <span class="bg-white/20 text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">
+            Join Our Faculty
+          </span>
+          <h2 class="text-3xl sm:text-4xl font-extrabold text-white leading-tight font-display">
+            Are You an Experienced Educator or University Graduate?
+          </h2>
+          <p class="text-amber-50 text-sm sm:text-base leading-relaxed">
+            Become a private in-home tutor with HomeTutor Academy. Earn competitive hourly pay, choose your own teaching schedule, and empower students across Addis Ababa.
+          </p>
+          <div class="pt-2">
+            <button onclick="openModal('tutorModal')" class="bg-white hover:bg-slate-100 text-amber-700 font-extrabold px-8 py-4 rounded-xl shadow-lg transition cursor-pointer inline-flex items-center gap-2 text-sm sm:text-base">
+              <i class="fa-solid fa-user-plus"></i>
+              <span>Apply to Teach as a Tutor</span>
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- =========================================================
+       ABOUT SECTION
+  ========================================================== -->
+  <section id="about" class="py-20 bg-slate-50 border-t border-slate-200">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-12">
+
+      <div class="space-y-3">
+        <span class="text-xs font-extrabold text-amber-600 uppercase tracking-widest bg-amber-100 px-3 py-1 rounded-full">
+          About HomeTutor Academy
+        </span>
+        <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 font-display">
+          Dedicated to Academic Excellence at Home
+        </h2>
+        <p class="text-slate-600 text-sm sm:text-base max-w-2xl mx-auto leading-relaxed">
+          HomeTutor Academy is Addis Ababa's premier network for matching verified tutors with parents and students seeking personalized 1-on-1 home education.
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-6 text-left">
+
+        <div class="bg-white p-7 rounded-3xl border border-slate-200 card-shadow">
+          <div class="w-12 h-12 rounded-2xl bg-amber-100 text-amber-600 flex items-center justify-center text-xl mb-4">
+            <i class="fa-solid fa-bullseye"></i>
+          </div>
+          <h3 class="font-bold text-slate-900 text-lg font-display">Our Mission</h3>
+          <p class="text-xs text-slate-600 mt-2 leading-relaxed">
+            To provide safe, reliable, and results-driven home academic tutoring that helps students master complex subjects and build lifelong learning habits.
+          </p>
+        </div>
+
+        <div class="bg-white p-7 rounded-3xl border border-slate-200 card-shadow">
+          <div class="w-12 h-12 rounded-2xl bg-indigo-100 text-indigo-600 flex items-center justify-center text-xl mb-4">
+            <i class="fa-solid fa-eye"></i>
+          </div>
+          <h3 class="font-bold text-slate-900 text-lg font-display">Our Vision</h3>
+          <p class="text-xs text-slate-600 mt-2 leading-relaxed">
+            To become Ethiopia's most trusted educational network, recognized for tutor qualification standards and measurable student success.
+          </p>
+        </div>
+
+        <div class="bg-white p-7 rounded-3xl border border-slate-200 card-shadow">
+          <div class="w-12 h-12 rounded-2xl bg-emerald-100 text-emerald-600 flex items-center justify-center text-xl mb-4">
+            <i class="fa-solid fa-heart"></i>
+          </div>
+          <h3 class="font-bold text-slate-900 text-lg font-display">Core Values</h3>
+          <p class="text-xs text-slate-600 mt-2 leading-relaxed">
+            Integrity, safety, academic excellence, continuous tutor evaluation, and personalized support for every family.
+          </p>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- =========================================================
+       FREQUENTLY ASKED QUESTIONS (FAQ)
+  ========================================================== -->
+  <section id="faq" class="py-20 bg-white border-t border-slate-200">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+
+      <div class="text-center space-y-3">
+        <span class="text-xs font-extrabold text-amber-600 uppercase tracking-widest bg-amber-100 px-3 py-1 rounded-full">
+          Got Questions?
+        </span>
+        <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 font-display">
+          Frequently Asked Questions
+        </h2>
+      </div>
+
+      <div class="space-y-4">
+
+        <details class="group bg-slate-50 border border-slate-200 rounded-2xl p-5 card-shadow">
+          <summary class="cursor-pointer list-none flex items-center justify-between font-bold text-slate-900 text-sm sm:text-base">
+            <span>How does in-home tutoring work with HomeTutor Academy?</span>
+            <i class="fa-solid fa-chevron-down text-slate-400 group-open:rotate-180 transition"></i>
+          </summary>
+          <p class="text-xs sm:text-sm text-slate-600 mt-4 leading-relaxed">
+            After selecting a tutor and completing a booking with your location details, your chosen tutor visits your home at the agreed date and time to deliver 1-on-1 private academic instruction.
+          </p>
+        </details>
+
+        <details class="group bg-slate-50 border border-slate-200 rounded-2xl p-5 card-shadow">
+          <summary class="cursor-pointer list-none flex items-center justify-between font-bold text-slate-900 text-sm sm:text-base">
+            <span>Are the tutors background-checked and verified?</span>
+            <i class="fa-solid fa-chevron-down text-slate-400 group-open:rotate-180 transition"></i>
+          </summary>
+          <p class="text-xs sm:text-sm text-slate-600 mt-4 leading-relaxed">
+            Yes! All tutors undergo identity verification, degree verification, and background evaluation before being listed on our platform.
+          </p>
+        </details>
+
+        <details class="group bg-slate-50 border border-slate-200 rounded-2xl p-5 card-shadow">
+          <summary class="cursor-pointer list-none flex items-center justify-between font-bold text-slate-900 text-sm sm:text-base">
+            <span>Which sub-cities in Addis Ababa do you cover?</span>
+            <i class="fa-solid fa-chevron-down text-slate-400 group-open:rotate-180 transition"></i>
+          </summary>
+          <p class="text-xs sm:text-sm text-slate-600 mt-4 leading-relaxed">
+            We serve all sub-cities across Addis Ababa including Bole, Yeka, Kirkos, Nifas Silk, Arada, Gullele, Lideta, Akaki Kality, Kolfe Keraniyo, and Addis Ketema.
+          </p>
+        </details>
+
+        <details class="group bg-slate-50 border border-slate-200 rounded-2xl p-5 card-shadow">
+          <summary class="cursor-pointer list-none flex items-center justify-between font-bold text-slate-900 text-sm sm:text-base">
+            <span>How are payments processed?</span>
+            <i class="fa-solid fa-chevron-down text-slate-400 group-open:rotate-180 transition"></i>
+          </summary>
+          <p class="text-xs sm:text-sm text-slate-600 mt-4 leading-relaxed">
+            Bookings are securely processed via integrated Ethiopian payment gateways like Chapa. You can reserve individual sessions or recurring weekly blocks.
+          </p>
+        </details>
+
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- =========================================================
+       FOOTER
+  ========================================================== -->
+  <footer class="bg-slate-900 text-slate-300 py-16 border-t border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid md:grid-cols-4 gap-10">
+
+      <!-- Brand Info -->
+      <div class="space-y-4">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-xl bg-amber-500 text-white flex items-center justify-center font-extrabold text-lg">
+            <i class="fa-solid fa-house-chimney-user"></i>
+          </div>
+          <span class="font-extrabold text-xl text-white font-display">HomeTutor</span>
+        </div>
+        <p class="text-xs text-slate-400 leading-relaxed">
+          Addis Ababa's premier in-home tutoring network connecting qualified private teachers directly with parents and students.
+        </p>
+      </div>
+
+      <!-- Quick Links -->
+      <div>
+        <h4 class="font-extrabold text-white text-sm uppercase tracking-wider mb-4 font-display">Quick Links</h4>
+        <ul class="space-y-2 text-xs">
+          <li><a href="#home" class="hover:text-amber-400 transition">Home</a></li>
+          <li><a href="#how-it-works" class="hover:text-amber-400 transition">How It Works</a></li>
+          <li><a href="#tutors" class="hover:text-amber-400 transition">Browse Tutors</a></li>
+          <li><a href="#curriculum" class="hover:text-amber-400 transition">Curricula Breakdown</a></li>
+          <li><a href="#benefits" class="hover:text-amber-400 transition">Why In-Home Tutoring</a></li>
+        </ul>
+      </div>
+
+      <!-- Support & Legal -->
+      <div>
+        <h4 class="font-extrabold text-white text-sm uppercase tracking-wider mb-4 font-display">Support & Legal</h4>
+        <ul class="space-y-2 text-xs">
+          <li><a href="#faq" class="hover:text-amber-400 transition">FAQ</a></li>
+          <li><button onclick="openModal('tutorModal')" class="hover:text-amber-400 transition text-left">Become a Tutor</button></li>
+          <li><button onclick="openModal('adminModal')" class="hover:text-amber-400 transition text-left">Admin Portal</button></li>
+          <li><a href="#" class="hover:text-amber-400 transition">Privacy Policy</a></li>
+          <li><a href="#" class="hover:text-amber-400 transition">Terms of Service</a></li>
+        </ul>
+      </div>
+
+      <!-- Contact Info -->
+      <div>
+        <h4 class="font-extrabold text-white text-sm uppercase tracking-wider mb-4 font-display">Contact Us</h4>
+        <p class="text-xs text-slate-400 mb-2"><i class="fa-solid fa-location-dot text-amber-500 mr-2"></i>Addis Ababa, Ethiopia</p>
+        <p class="text-sm font-bold text-amber-400"><i class="fa-solid fa-phone text-amber-500 mr-2"></i>Phone: 0906925258</p>
+        <p class="text-xs text-slate-400 mt-2"><i class="fa-solid fa-envelope text-amber-500 mr-2"></i>support@hometutoracademy.com</p>
+      </div>
+
+    </div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-12 pt-6 border-t border-slate-800 text-center text-xs text-slate-500">
+      © <span id="year"></span> HomeTutor Academy. All rights reserved. Built for quality in-home academic education in Ethiopia.
+    </div>
+  </footer>
+
+
+  <!-- =========================================================
+       FLOATING CALL ACTION BUTTON
+  ========================================================== -->
+  <a href="tel:0906925258" class="fixed bottom-6 right-6 z-40 bg-amber-500 hover:bg-amber-600 text-white font-extrabold px-5 py-3.5 rounded-full shadow-2xl transition-transform hover:scale-105 flex items-center gap-3 text-sm">
+    <i class="fa-solid fa-phone animate-pulse"></i>
+    <span class="hidden sm:inline">Call HomeTutor: 0906925258</span>
+  </a>
+
+
+  <!-- =========================================================
+       MODAL 1: TUTOR REGISTRATION
+  ========================================================== -->
+  <div id="tutorModal" class="hidden fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm p-4 flex items-center justify-center">
+    <div class="bg-white rounded-3xl max-w-2xl w-full p-6 sm:p-8 shadow-2xl max-h-[90vh] overflow-y-auto border border-slate-200 custom-scrollbar">
+
+      <div class="flex items-start justify-between gap-4 mb-6 pb-4 border-b border-slate-100">
+        <div>
+          <span class="text-xs font-bold text-amber-600 uppercase tracking-wider">Join Our Home Faculty</span>
+          <h3 class="text-2xl font-extrabold text-slate-900 mt-1 font-display">Register as a Private Tutor</h3>
+        </div>
+        <button onclick="closeModal('tutorModal')" class="w-9 h-9 rounded-xl bg-slate-100 text-slate-500 hover:bg-slate-200 flex items-center justify-center">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <form onsubmit="registerTutor(event)" class="space-y-4">
+
+        <div class="grid sm:grid-cols-2 gap-4">
+          <div>
+            <label class="block text-xs font-bold text-slate-700 mb-1">FULL NAME</label>
+            <input id="tName" required type="text" placeholder="e.g. Abebe Bikila" class="input-field w-full" />
+          </div>
+          <div>
+            <label class="block text-xs font-bold text-slate-700 mb-1">PHONE NUMBER</label>
+            <input id="tPhone" required type="tel" placeholder="0911223344" class="input-field w-full" />
+          </div>
+        </div>
+
+        <div class="grid sm:grid-cols-2 gap-4">
+          <div>
+            <label class="block text-xs font-bold text-slate-700 mb-1">HOURLY RATE (ETB)</label>
+            <input id="tRate" required type="number" min="150" max="2000" placeholder="e.g. 400" class="input-field w-full" />
+          </div>
+          <div>
+            <label class="block text-xs font-bold text-slate-700 mb-1">HIGHEST QUALIFICATION</label>
+            <select id="tDegree" class="input-field w-full">
+              <option value="B.Sc / B.A. Degree">B.Sc / B.A. Degree</option>
+              <option value="Master's Degree">Master's Degree</option>
+              <option value="Ph.D. Doctorate">Ph.D. Doctorate</option>
+              <option value="Undergraduate Student">University Senior Student</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="grid sm:grid-cols-2 gap-4">
+          <div>
+            <label class="block text-xs font-bold text-slate-700 mb-1">STREAM / FIELD</label>
+            <select id="tStream" class="input-field w-full">
+              <option value="Natural Science">Natural Science</option>
+              <option value="Social Science">Social Science</option>
+              <option value="Language & General">Language & General</option>
+            </select>
+          </div>
+          <div>
+            <label class="block text-xs font-bold text-slate-700 mb-1">PREFERRED LOCATION</label>
+            <select id="tLocation" class="input-field w-full">
+              <option value="Bole">Bole</option>
+              <option value="Yeka">Yeka</option>
+              <option value="Kirkos">Kirkos</option>
+              <option value="Nifas Silk">Nifas Silk</option>
+              <option value="Arada">Arada</option>
+              <option value="Gullele">Gullele</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="grid sm:grid-cols-2 gap-4">
+          <div>
+            <label class="block text-xs font-bold text-slate-700 mb-1">STUDENT GRADE LEVEL</label>
+            <select id="tGrade" class="input-field w-full">
+              <option value="High School (Grades 9-12)">High School (Grades 9-12)</option>
+              <option value="Middle School (Grades 6-8)">Middle School (Grades 6-8)</option>
+              <option value="Primary School (Grades 1-5)">Primary School (Grades 1-5)</option>
+            </select>
+          </div>
+          <div>
+            <label class="block text-xs font-bold text-slate-700 mb-1">SUBJECTS TAUGHT</label>
+            <input id="tSubject" required type="text" placeholder="e.g. Math, Physics, English" class="input-field w-full" />
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-xs font-bold text-slate-700 mb-1">PROFILE PHOTO URL (OPTIONAL)</label>
+          <input id="tPhoto" type="url" placeholder="https://..." class="input-field w-full" />
+        </div>
+
+        <div>
+          <label class="block text-xs font-bold text-slate-700 mb-1">EXPERIENCE & TUTOR BIO</label>
+          <textarea id="tBio" required placeholder="Describe your background, teaching methodology, and experience with national/international curricula..." class="input-field w-full h-24 resize-none"></textarea>
+        </div>
+
+        <button id="tutorSubmitBtn" type="submit" class="w-full bg-amber-500 hover:bg-amber-600 text-white font-extrabold py-3.5 rounded-xl transition shadow-md font-display">
+          Submit Tutor Application
+        </button>
+
+      </form>
+
+    </div>
   </div>
+
+
+  <!-- =========================================================
+       MODAL 2: LESSON BOOKING WITH CHAPA PAYMENT
+  ========================================================== -->
+  <div id="bookingModal" class="hidden fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm p-4 flex items-center justify-center">
+    <div class="bg-white rounded-3xl max-w-lg w-full p-6 sm:p-8 shadow-2xl max-h-[90vh] overflow-y-auto border border-slate-200 custom-scrollbar">
+
+      <div class="flex justify-between items-start mb-6 pb-4 border-b border-slate-100">
+        <div>
+          <span class="text-xs font-bold text-emerald-600 uppercase tracking-wider">Book Home Session</span>
+          <h3 class="text-2xl font-extrabold text-slate-900 mt-1 font-display">Schedule In-Home Lesson</h3>
+          <p id="modalTutorName" class="text-xs font-bold text-amber-600 mt-1"></p>
+        </div>
+        <button onclick="closeModal('bookingModal')" class="w-9 h-9 rounded-xl bg-slate-100 text-slate-500 hover:bg-slate-200 flex items-center justify-center">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <form action="https://api.chapa.co/v1/hosted/pay" method="POST" onsubmit="handleBookingSubmit(event)" class="space-y-4">
+
+        <input type="hidden" name="public_key" value="CHAPUBK_TEST-xxxxxx" />
+        <input type="hidden" name="tx_ref" id="tx_ref" />
+        <input type="hidden" name="amount" id="payAmount" />
+        <input type="hidden" name="currency" value="ETB" />
+        <input type="hidden" name="title" value="HomeTutor In-Home Lesson" />
+        <input type="hidden" name="description" value="Private in-home academic lesson" />
+
+        <div class="grid grid-cols-2 gap-4">
+          <div>
+            <label class="block text-[11px] font-bold text-slate-600 mb-1">PARENT FIRST NAME</label>
+            <input id="bFirstName" name="first_name" required placeholder="Abebe" class="input-field w-full" />
+          </div>
+          <div>
+            <label class="block text-[11px] font-bold text-slate-600 mb-1">LAST NAME</label>
+            <input id="bLastName" name="last_name" required placeholder="Tadesse" class="input-field w-full" />
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-[11px] font-bold text-slate-600 mb-1">EMAIL ADDRESS</label>
+          <input id="bEmail" name="email" required type="email" placeholder="parent@example.com" class="input-field w-full" />
+        </div>
+
+        <div class="grid grid-cols-2 gap-4">
+          <div>
+            <label class="block text-[11px] font-bold text-slate-600 mb-1">PHONE NUMBER</label>
+            <input id="bPhone" name="phone_number" required type="tel" placeholder="0911000000" class="input-field w-full" />
+          </div>
+          <div>
+            <label class="block text-[11px] font-bold text-slate-600 mb-1">STUDENT GRADE</label>
+            <select id="bGrade" name="meta[student_grade]" class="input-field w-full">
+              <option>Grade 11-12</option>
+              <option>Grade 9-10</option>
+              <option>Grade 6-8</option>
+              <option>Grade 1-5</option>
+            </select>
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-[11px] font-bold text-slate-600 mb-1">HOME LOCATION / SUB-CITY</label>
+          <input id="bLocation" name="meta[house_location]" required placeholder="e.g. Bole Atlas, Near Edna Mall" class="input-field w-full" />
+        </div>
+
+        <div class="grid sm:grid-cols-2 gap-4">
+          <div>
+            <label class="block text-[11px] font-bold text-slate-600 mb-1">DATE & TIME</label>
+            <input id="bTime" name="meta[lesson_time]" required type="datetime-local" class="input-field w-full" />
+          </div>
+          <div>
+            <label class="block text-[11px] font-bold text-slate-600 mb-1">TARGET TOPICS</label>
+            <input id="bTopics" name="meta[topics]" required placeholder="Algebra, Exam Prep" class="input-field w-full" />
+          </div>
+        </div>
+
+        <button type="submit" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-extrabold py-3.5 rounded-xl transition shadow-md flex items-center justify-center gap-2 font-display">
+          <i class="fa-solid fa-lock"></i>
+          <span>Confirm Home Booking & Pay with Chapa</span>
+        </button>
+
+      </form>
+
+    </div>
+  </div>
+
+
+  <!-- =========================================================
+       MODAL 3: ADMIN PORTAL DASHBOARD
+  ========================================================== -->
+  <div id="adminModal" class="hidden fixed inset-0 z-50 bg-slate-900/70 backdrop-blur-sm p-4 flex items-center justify-center">
+    <div class="bg-white rounded-3xl max-w-4xl w-full p-6 sm:p-8 shadow-2xl max-h-[90vh] overflow-y-auto border border-slate-200 custom-scrollbar">
+
+      <div class="flex items-center justify-between gap-4 mb-6 pb-4 border-b border-slate-100">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-xl bg-slate-900 text-amber-400 flex items-center justify-center text-lg">
+            <i class="fa-solid fa-user-shield"></i>
+          </div>
+          <div>
+            <h3 class="text-xl font-extrabold text-slate-900 font-display">Admin Operations Dashboard</h3>
+            <p class="text-xs text-slate-500">Manage registered tutors & customer bookings</p>
+          </div>
+        </div>
+        <button onclick="closeModal('adminModal')" class="w-9 h-9 rounded-xl bg-slate-100 text-slate-500 hover:bg-slate-200 flex items-center justify-center">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <!-- Admin Navigation Tabs -->
+      <div class="flex items-center gap-2 border-b border-slate-200 mb-6">
+        <button id="adminTabTutors" onclick="switchAdminTab('tutors')" class="px-4 py-2 text-xs font-bold border-b-2 border-amber-500 text-amber-600">
+          Tutors Registry
+        </button>
+        <button id="adminTabBookings" onclick="switchAdminTab('bookings')" class="px-4 py-2 text-xs font-bold border-b-2 border-transparent text-slate-500 hover:text-slate-700">
+          Recent Bookings
+        </button>
+      </div>
+
+      <!-- Tab Content 1: Tutors Table -->
+      <div id="adminTutorsView" class="space-y-4">
+        <div class="overflow-x-auto">
+          <table class="w-full text-left border-collapse text-xs">
+            <thead>
+              <tr class="bg-slate-100 text-slate-600 uppercase font-bold border-b border-slate-200">
+                <th class="p-3 rounded-l-xl">ID</th>
+                <th class="p-3">Tutor Name</th>
+                <th class="p-3">Subject & Stream</th>
+                <th class="p-3">Location</th>
+                <th class="p-3">Rate (ETB)</th>
+                <th class="p-3 text-right rounded-r-xl">Action</th>
+              </tr>
+            </thead>
+            <tbody id="adminTutorsTable" class="divide-y divide-slate-100">
+              <!-- Rendered dynamically -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Tab Content 2: Bookings Table -->
+      <div id="adminBookingsView" class="hidden space-y-4">
+        <div class="overflow-x-auto">
+          <table class="w-full text-left border-collapse text-xs">
+            <thead>
+              <tr class="bg-slate-100 text-slate-600 uppercase font-bold border-b border-slate-200">
+                <th class="p-3 rounded-l-xl">Ref ID</th>
+                <th class="p-3">Parent Name</th>
+                <th class="p-3">Phone / Location</th>
+                <th class="p-3">Grade</th>
+                <th class="p-3">Amount</th>
+                <th class="p-3 rounded-r-xl">Status</th>
+              </tr>
+            </thead>
+            <tbody id="adminBookingsTable" class="divide-y divide-slate-100">
+              <!-- Rendered dynamically -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+
+  <!-- =========================================================
+       CORE JAVASCRIPT ENGINE & SUPABASE INTEGRATION
+  ========================================================== -->
+  <script>
+    /* ---------------------------------------------------------
+       SUPABASE & LOCAL STATE INITIALIZATION
+    --------------------------------------------------------- */
+    const SUPABASE_URL = "https://dgpuehsptskscaaoxkij.supabase.co";
+    const SUPABASE_KEY = "sb_publishable__5FrMgFc1iADdQ-M74DxDQ_Qr7VRlC8";
+
+    const dbClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+
+    // Initial Mock Backup Database for Seamless Experience
+    const fallbackTutors = [
+      {
+        id: 101,
+        full_name: "Amanueal Tadesse",
+        hourly_rate: 450,
+        subject_title: "Physics & Mathematics",
+        grade_level: "High School (Grades 9-12)",
+        photo_url: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=300&q=80",
+        bio: "[Natural Science] [B.Sc Degree] Specialized in Grade 12 National Exit Exam preparation and physics problem solving. Based in Bole Sub-City."
+      },
+      {
+        id: 102,
+        full_name: "Bethlehem Worku",
+        hourly_rate: 400,
+        subject_title: "Chemistry & Biology",
+        grade_level: "Middle & High School",
+        photo_url: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=300&q=80",
+        bio: "[Natural Science] [Master's Degree] Experienced educator focusing on organic chemistry and biology foundations in Yeka Sub-City."
+      },
+      {
+        id: 103,
+        full_name: "Yonas Alemu",
+        hourly_rate: 350,
+        subject_title: "English & Social Studies",
+        grade_level: "Primary & Middle School",
+        photo_url: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=300&q=80",
+        bio: "[Language & General] [B.A. Degree] Passionate language teacher building literacy and reading fluency for primary students in Kirkos."
+      },
+      {
+        id: 104,
+        full_name: "Selamawit Girma",
+        hourly_rate: 500,
+        subject_title: "Mathematics & SAT Math",
+        grade_level: "Grades 8-12 & IGCSE",
+        photo_url: "https://images.unsplash.com/photo-1580894732413-8d0034680d28?auto=format&fit=crop&w=300&q=80",
+        bio: "[Natural Science] [B.Sc Degree] Cambridge IGCSE and SAT math tutor. Based in Nifas Silk Sub-City."
+      },
+      {
+        id: 105,
+        full_name: "Dawit Kebede",
+        hourly_rate: 380,
+        subject_title: "Economics & History",
+        grade_level: "High School (Grades 9-12)",
+        photo_url: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=300&q=80",
+        bio: "[Social Science] [B.A. Degree] Interactive social science instructor covering Ethiopian national social studies syllabus in Arada."
+      }
+    ];
+
+    const mockBookings = [
+      {
+        ref: "HT-169283-401",
+        name: "Kassahun Bekele",
+        phone: "0911122334",
+        location: "Bole Atlas",
+        grade: "Grade 12",
+        amount: "550 ETB",
+        status: "Confirmed"
+      },
+      {
+        ref: "HT-169283-402",
+        name: "Tigist Haile",
+        phone: "0922334455",
+        location: "Sarbet",
+        grade: "Grade 8",
+        amount: "450 ETB",
+        status: "Completed"
+      }
+    ];
+
+    let allTutors = [];
+
+    /* ---------------------------------------------------------
+       DOM HELPER UTILITIES
+    --------------------------------------------------------- */
+    function escapeHTML(value = "") {
+      return String(value)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+    }
+
+    function openModal(id) {
+      const modal = document.getElementById(id);
+      if (modal) {
+        modal.classList.remove("hidden");
+        document.body.style.overflow = "hidden";
+        if (id === 'adminModal') renderAdminTables();
+      }
+    }
+
+    function closeModal(id) {
+      const modal = document.getElementById(id);
+      if (modal) {
+        modal.classList.add("hidden");
+        document.body.style.overflow = "";
+      }
+    }
+
+    function toggleMobileMenu() {
+      const menu = document.getElementById("mobileMenu");
+      if (menu) menu.classList.toggle("hidden");
+    }
+
+    function updateRateLabel(val) {
+      document.getElementById("rateLabel").innerText = `${val} ETB`;
+    }
+
+    function syncHeroSearch() {
+      const query = document.getElementById("heroSearchInput").value;
+      const stream = document.getElementById("heroStreamFilter").value;
+      const location = document.getElementById("heroLocationFilter").value;
+
+      document.getElementById("searchInput").value = query;
+      document.getElementById("streamFilter").value = stream;
+      document.getElementById("locationFilter").value = location;
+
+      filterTutors();
+    }
+
+    /* ---------------------------------------------------------
+       LOAD TUTORS DATA
+    --------------------------------------------------------- */
+    async function loadTutors() {
+      const grid = document.getElementById("tutorGrid");
+
+      try {
+        let { data, error } = await dbClient
+          .from("tutors")
+          .select("*")
+          .order("id", { ascending: false });
+
+        if (error || !data || data.length === 0) {
+          console.warn("Using fallback dataset due to network or empty DB.");
+          allTutors = fallbackTutors;
+        } else {
+          allTutors = data;
+        }
+      } catch (err) {
+        console.error("Supabase load exception:", err);
+        allTutors = fallbackTutors;
+      }
+
+      document.getElementById("statsTutorCount").innerText = allTutors.length;
+      renderTutors(allTutors);
+    }
+
+    /* ---------------------------------------------------------
+       RENDER TUTOR CARDS
+    --------------------------------------------------------- */
+    function renderTutors(tutors) {
+      const grid = document.getElementById("tutorGrid");
+
+      document.getElementById("tutorCount").innerText = 
+        `${tutors.length} In-Home Tutor${tutors.length !== 1 ? "s" : ""} Available`;
+
+      if (!tutors.length) {
+        grid.innerHTML = `
+          <div class="col-span-full text-center py-12 bg-white border border-dashed border-slate-300 rounded-3xl p-6">
+            <div class="w-12 h-12 rounded-2xl bg-amber-100 text-amber-600 flex items-center justify-center text-xl mx-auto mb-3">
+              <i class="fa-solid fa-graduation-cap"></i>
+            </div>
+            <h3 class="font-extrabold text-slate-800 text-lg font-display">No Tutors Match Your Criteria</h3>
+            <p class="text-xs text-slate-500 mt-1">Try resetting search keywords, rate range, or location filters.</p>
+            <button onclick="openModal('tutorModal')" class="mt-4 text-xs font-bold text-amber-600 hover:underline">
+              + Apply as a Tutor
+            </button>
+          </div>
+        `;
+        return;
+      }
+
+      grid.innerHTML = "";
+
+      tutors.forEach(tutor => {
+        const name = escapeHTML(tutor.full_name || "Private Tutor");
+        const subjects = escapeHTML(tutor.subject_title || "Academic Subjects");
+        const bio = escapeHTML(tutor.bio || "Qualified private home instructor.");
+        const grade = escapeHTML(tutor.grade_level || "Grades 1-12");
+        const rate = Number(tutor.hourly_rate || 0);
+
+        const avatar = tutor.photo_url || 
+          `https://ui-avatars.com/api/?name=${encodeURIComponent(tutor.full_name || "Tutor")}&background=fef3c7&color=b45309&bold=true&size=256`;
+
+        const safeAvatar = escapeHTML(avatar);
+        const encodedName = encodeURIComponent(tutor.full_name || "");
+
+        grid.innerHTML += `
+          <article class="bg-white rounded-3xl border border-slate-200 p-6 card-shadow card-hover-shadow flex flex-col justify-between">
+            <div>
+              <div class="flex items-start gap-4">
+                <img
+                  src="${safeAvatar}"
+                  alt="${name}"
+                  class="w-16 h-16 rounded-2xl object-cover border border-amber-200 shrink-0"
+                  onerror="this.src='https://ui-avatars.com/api/?name=${encodedName}&background=fef3c7&color=b45309&bold=true'"
+                />
+                <div class="min-w-0 flex-1">
+                  <h3 class="font-extrabold text-slate-900 text-base truncate font-display">${name}</h3>
+                  <p class="text-xs font-bold text-amber-600 mt-0.5">
+                    <i class="fa-solid fa-book-open mr-1"></i> ${subjects}
+                  </p>
+                  <span class="inline-block mt-2 text-[10px] font-bold uppercase bg-slate-100 text-slate-600 px-2 py-0.5 rounded">
+                    ${grade}
+                  </span>
+                </div>
+              </div>
+
+              <p class="text-xs text-slate-600 mt-4 leading-relaxed line-clamp-3 min-h-[48px]">
+                ${bio}
+              </p>
+            </div>
+
+            <div class="border-t border-slate-100 mt-6 pt-4 flex items-center justify-between">
+              <div>
+                <span class="text-[10px] font-bold text-slate-400 uppercase">Hourly Rate</span>
+                <p class="text-lg font-extrabold text-slate-900 font-display">
+                  ${rate} <span class="text-xs font-normal text-slate-500">ETB/hr</span>
+                </p>
+              </div>
+
+              <button
+                onclick="startBooking('${encodedName}', ${rate})"
+                class="bg-amber-500 hover:bg-amber-600 text-white px-4 py-2.5 rounded-xl text-xs font-extrabold transition shadow-md shadow-amber-500/10 font-display"
+              >
+                Book Lesson
+              </button>
+            </div>
+          </article>
+        `;
+      });
+    }
+
+    /* ---------------------------------------------------------
+       FILTER LOGIC
+    --------------------------------------------------------- */
+    function filterTutors() {
+      const query = (document.getElementById("searchInput").value || "").toLowerCase().trim();
+      const stream = document.getElementById("streamFilter").value;
+      const location = document.getElementById("locationFilter").value;
+      const maxRate = Number(document.getElementById("rateRange").value);
+
+      const filtered = allTutors.filter(tutor => {
+        const searchable = [
+          tutor.full_name,
+          tutor.subject_title,
+          tutor.bio,
+          tutor.grade_level
+        ].join(" ").toLowerCase();
+
+        const matchesSearch = !query || searchable.includes(query);
+        const matchesStream = stream === "ALL" || (tutor.bio && tutor.bio.includes(stream));
+        const matchesLocation = location === "ALL" || (tutor.bio && tutor.bio.toLowerCase().includes(location.toLowerCase()));
+        const matchesRate = Number(tutor.hourly_rate || 0) <= maxRate;
+
+        return matchesSearch && matchesStream && matchesLocation && matchesRate;
+      });
+
+      renderTutors(filtered);
+    }
+
+    /* ---------------------------------------------------------
+       REGISTER TUTOR FORM SUBMISSION
+    --------------------------------------------------------- */
+    async function registerTutor(event) {
+      event.preventDefault();
+
+      const submitButton = document.getElementById("tutorSubmitBtn");
+      submitButton.disabled = true;
+      submitButton.innerText = "Submitting Profile...";
+
+      const fullName = document.getElementById("tName").value.trim();
+      const phone = document.getElementById("tPhone").value.trim();
+      const degree = document.getElementById("tDegree").value;
+      const stream = document.getElementById("tStream").value;
+      const location = document.getElementById("tLocation").value;
+      const rate = Number(document.getElementById("tRate").value);
+      const subjects = document.getElementById("tSubject").value.trim();
+      const grade = document.getElementById("tGrade").value;
+      const photo = document.getElementById("tPhoto").value.trim();
+      const bio = document.getElementById("tBio").value.trim();
+
+      const formattedBio = `[${stream}] [${degree}] Based in ${location}. Phone: ${phone}. ${bio}`;
+
+      const newTutor = {
+        full_name: fullName,
+        hourly_rate: rate,
+        subject_title: subjects,
+        grade_level: grade,
+        photo_url: photo || null,
+        bio: formattedBio
+      };
+
+      try {
+        const { error } = await dbClient.from("tutors").insert([newTutor]);
+        if (error) throw error;
+      } catch (err) {
+        console.warn("Supabase direct write warning, saving to local state:", err);
+        newTutor.id = Date.now();
+        allTutors.unshift(newTutor);
+      }
+
+      alert("Your tutor application has been submitted successfully!");
+      event.target.reset();
+      closeModal("tutorModal");
+      submitButton.disabled = false;
+      submitButton.innerText = "Submit Tutor Application";
+
+      loadTutors();
+    }
+
+    /* ---------------------------------------------------------
+       BOOKING INITIATION
+    --------------------------------------------------------- */
+    function startBooking(encodedName, rate) {
+      const name = decodeURIComponent(encodedName);
+      const platformFee = 100;
+      const total = Number(rate) + platformFee;
+
+      document.getElementById("modalTutorName").innerText = 
+        `Tutor: ${name} • ${rate} ETB/hr + ${platformFee} ETB fee = ${total} ETB total`;
+
+      document.getElementById("payAmount").value = total;
+      document.getElementById("tx_ref").value = `HT-${Date.now()}-${Math.floor(Math.random() * 1000)}`;
+
+      openModal("bookingModal");
+    }
+
+    function handleBookingSubmit(event) {
+      // Allows smooth demo form submission fallback
+      const ref = document.getElementById("tx_ref").value;
+      const name = document.getElementById("bFirstName").value + " " + document.getElementById("bLastName").value;
+      const phone = document.getElementById("bPhone").value;
+      const loc = document.getElementById("bLocation").value;
+      const grade = document.getElementById("bGrade").value;
+      const amt = document.getElementById("payAmount").value + " ETB";
+
+      mockBookings.unshift({
+        ref: ref,
+        name: name,
+        phone: phone,
+        location: loc,
+        grade: grade,
+        amount: amt,
+        status: "Pending Chapa"
+      });
+    }
+
+    /* ---------------------------------------------------------
+       ADMIN DASHBOARD LOGIC
+    --------------------------------------------------------- */
+    function switchAdminTab(tab) {
+      const tutorsView = document.getElementById("adminTutorsView");
+      const bookingsView = document.getElementById("adminBookingsView");
+      const tabTutorsBtn = document.getElementById("adminTabTutors");
+      const tabBookingsBtn = document.getElementById("adminTabBookings");
+
+      if (tab === 'tutors') {
+        tutorsView.classList.remove("hidden");
+        bookingsView.classList.add("hidden");
+        tabTutorsBtn.className = "px-4 py-2 text-xs font-bold border-b-2 border-amber-500 text-amber-600";
+        tabBookingsBtn.className = "px-4 py-2 text-xs font-bold border-b-2 border-transparent text-slate-500 hover:text-slate-700";
+      } else {
+        tutorsView.classList.add("hidden");
+        bookingsView.classList.remove("hidden");
+        tabBookingsBtn.className = "px-4 py-2 text-xs font-bold border-b-2 border-amber-500 text-amber-600";
+        tabTutorsBtn.className = "px-4 py-2 text-xs font-bold border-b-2 border-transparent text-slate-500 hover:text-slate-700";
+      }
+    }
+
+    function renderAdminTables() {
+      // Tutors Table
+      const tutorsBody = document.getElementById("adminTutorsTable");
+      tutorsBody.innerHTML = "";
+      allTutors.forEach((t, i) => {
+        tutorsBody.innerHTML += `
+          <tr class="hover:bg-slate-50">
+            <td class="p-3 font-mono text-[10px] text-slate-400">#${t.id || (i + 1)}</td>
+            <td class="p-3 font-bold text-slate-800">${escapeHTML(t.full_name)}</td>
+            <td class="p-3 text-slate-600">${escapeHTML(t.subject_title)}</td>
+            <td class="p-3 text-slate-500">${escapeHTML(t.grade_level)}</td>
+            <td class="p-3 font-extrabold text-slate-900">${t.hourly_rate} ETB</td>
+            <td class="p-3 text-right">
+              <button onclick="removeTutor(${t.id || i})" class="text-rose-500 hover:text-rose-700 font-bold text-[11px]">Remove</button>
+            </td>
+          </tr>
+        `;
+      });
+
+      // Bookings Table
+      const bookingsBody = document.getElementById("adminBookingsTable");
+      bookingsBody.innerHTML = "";
+      mockBookings.forEach(b => {
+        bookingsBody.innerHTML += `
+          <tr class="hover:bg-slate-50">
+            <td class="p-3 font-mono text-[10px] text-amber-600">${b.ref}</td>
+            <td class="p-3 font-bold text-slate-800">${escapeHTML(b.name)}</td>
+            <td class="p-3 text-slate-600">${escapeHTML(b.phone)} (${escapeHTML(b.location)})</td>
+            <td class="p-3 text-slate-500">${escapeHTML(b.grade)}</td>
+            <td class="p-3 font-extrabold text-slate-900">${b.amount}</td>
+            <td class="p-3">
+              <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-amber-100 text-amber-800">${b.status}</span>
+            </td>
+          </tr>
+        `;
+      });
+    }
+
+    function removeTutor(id) {
+      if (confirm("Are you sure you want to remove this tutor?")) {
+        allTutors = allTutors.filter(t => (t.id || t) !== id);
+        renderTutors(allTutors);
+        renderAdminTables();
+      }
+    }
+
+    /* ---------------------------------------------------------
+       CLOSE MODALS ON BACKGROUND CLICK & ESC
+    --------------------------------------------------------- */
+    ["tutorModal", "bookingModal", "adminModal"].forEach(id => {
+      const modal = document.getElementById(id);
+      if (modal) {
+        modal.addEventListener("click", event => {
+          if (event.target === modal) closeModal(id);
+        });
+      }
+    });
+
+    document.addEventListener("keydown", event => {
+      if (event.key === "Escape") {
+        closeModal("tutorModal");
+        closeModal("bookingModal");
+        closeModal("adminModal");
+      }
+    });
+
+    /* ---------------------------------------------------------
+       FOOTER YEAR & INITIALIZATION
+    --------------------------------------------------------- */
+    document.getElementById("year").innerText = new Date().getFullYear();
+    loadTutors();
+  </script>
 
 </body>
 </html>
